@@ -24,13 +24,15 @@ namespace Mageplaza\BetterPopup\Model\Config\Source;
 use Magento\Framework\Option\ArrayInterface;
 
 /**
- * Class Responsive
+ * Class IncludePages
  * @package Mageplaza\BetterPopup\Model\Config\Source
  */
-class Responsive implements ArrayInterface
+class IncludePages implements ArrayInterface
 {
-	const CENTER_POPUP = 1;
-	const FULLSCREEN_POPUP = 2;
+	const CATALOG_PRODUCT_VIEW = 1;
+	const HOME_INDEX_INDEX = 2;
+	const MAGEPLAZA_BLOG_INDEX = 3;
+	const MAGEPLAZA_BLOG_POSTS = 4;
 
 	/**
 	 * Return array of options as value-label pairs
@@ -40,8 +42,10 @@ class Responsive implements ArrayInterface
 	public function toOptionArray()
 	{
 		return [
-			['value' => self::CENTER_POPUP, 'label' => __('Center Popup')],
-			['value' => self::FULLSCREEN_POPUP, 'label' => __('FullScreen Popup')],
+			['value' => self::CATALOG_PRODUCT_VIEW, 'label' => __('Catalog_Product_View')],
+			['value' => self::HOME_INDEX_INDEX, 'label' => __('Home_Index_Index')],
+			['value' => self::MAGEPLAZA_BLOG_INDEX, 'label' => __('Mageplaza_Blog_Index')],
+			['value' => self::MAGEPLAZA_BLOG_POSTS, 'label' => __('Mageplaza_Blog_Posts')],
 		];
 	}
 }

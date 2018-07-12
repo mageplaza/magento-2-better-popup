@@ -24,13 +24,15 @@ namespace Mageplaza\BetterPopup\Model\Config\Source;
 use Magento\Framework\Option\ArrayInterface;
 
 /**
- * Class Responsive
+ * Class Appear
  * @package Mageplaza\BetterPopup\Model\Config\Source
  */
-class Responsive implements ArrayInterface
+class Appear implements ArrayInterface
 {
-	const CENTER_POPUP = 1;
-	const FULLSCREEN_POPUP = 2;
+	const EXIT_INTENT = 1;
+	const AFTER_PAGE_LOADED = 2;
+	const AFTER_X_SECONDS = 3;
+	const AFTER_SCROLL_DOWN = 4;
 
 	/**
 	 * Return array of options as value-label pairs
@@ -40,8 +42,10 @@ class Responsive implements ArrayInterface
 	public function toOptionArray()
 	{
 		return [
-			['value' => self::CENTER_POPUP, 'label' => __('Center Popup')],
-			['value' => self::FULLSCREEN_POPUP, 'label' => __('FullScreen Popup')],
+			['value' => self::EXIT_INTENT, 'label' => __('Exit Intent')],
+			['value' => self::AFTER_PAGE_LOADED, 'label' => __('After page loaded')],
+			['value' => self::AFTER_X_SECONDS, 'label' => __('After x seconds')],
+			['value' => self::AFTER_SCROLL_DOWN, 'label' => __('After scroll down x%')],
 		];
 	}
 }

@@ -26,5 +26,7 @@ use Magento\Widget\Block\BlockInterface;
 
 class Popup extends AbstractProduct implements BlockInterface
 {
+	public function getResponsive(){
 
+	}
 }

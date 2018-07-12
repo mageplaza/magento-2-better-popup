@@ -24,13 +24,13 @@ namespace Mageplaza\BetterPopup\Model\Config\Source;
 use Magento\Framework\Option\ArrayInterface;
 
 /**
- * Class Responsive
+ * Class ButtonDirection
  * @package Mageplaza\BetterPopup\Model\Config\Source
  */
-class Responsive implements ArrayInterface
+class ButtonDirection implements ArrayInterface
 {
-	const CENTER_POPUP = 1;
-	const FULLSCREEN_POPUP = 2;
+	const FLOAT_LEFT = 1;
+	const FLOAT_RIGHT = 2;
 
 	/**
 	 * Return array of options as value-label pairs
@@ -40,8 +40,8 @@ class Responsive implements ArrayInterface
 	public function toOptionArray()
 	{
 		return [
-			['value' => self::CENTER_POPUP, 'label' => __('Center Popup')],
-			['value' => self::FULLSCREEN_POPUP, 'label' => __('FullScreen Popup')],
+			['value' => self::FLOAT_LEFT, 'label' => __('Left')],
+			['value' => self::FLOAT_RIGHT, 'label' => __('Right')],
 		];
 	}
 }

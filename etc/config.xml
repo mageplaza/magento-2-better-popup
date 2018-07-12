@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <betterpopup>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <what_to_show>
+                <responsive>1</responsive>
+                <width>400</width>
+                <height>300</height>
+                <background_color>#3d9bc7</background_color>
+                <text_color>#FFFFFF</text_color>
+                <popup_success>
+                    <enabled_fireworks>0</enabled_fireworks>
+                </popup_success>
+            </what_to_show>
+            <where_to_show>
+                <which_page_to_show>2</which_page_to_show>
+            </where_to_show>
+            <when_to_show>
+                <popup_appear>1</popup_appear>
+                <after_scroll>50</after_scroll>
+                <delay>5</delay>
+                <cookieExp>7</cookieExp>
+                <show_float_button>0</show_float_button>
+            </when_to_show>
+        </betterpopup>
+    </default>
+</config>

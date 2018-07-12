@@ -24,13 +24,14 @@ namespace Mageplaza\BetterPopup\Model\Config\Source;
 use Magento\Framework\Option\ArrayInterface;
 
 /**
- * Class Responsive
+ * Class PageToShow
  * @package Mageplaza\BetterPopup\Model\Config\Source
  */
-class Responsive implements ArrayInterface
+class PageToShow implements ArrayInterface
 {
-	const CENTER_POPUP = 1;
-	const FULLSCREEN_POPUP = 2;
+	const MANUALLY_INSERT = 1;
+	const ALL_PAGES = 2;
+	const SPECIFIC_PAGES = 3;
 
 	/**
 	 * Return array of options as value-label pairs
@@ -40,8 +41,9 @@ class Responsive implements ArrayInterface
 	public function toOptionArray()
 	{
 		return [
-			['value' => self::CENTER_POPUP, 'label' => __('Center Popup')],
-			['value' => self::FULLSCREEN_POPUP, 'label' => __('FullScreen Popup')],
+			['value' => self::MANUALLY_INSERT, 'label' => __('Manually Insert')],
+			['value' => self::ALL_PAGES, 'label' => __('All Pages')],
+			['value' => self::SPECIFIC_PAGES, 'label' => __('Specific pages')],
 		];
 	}
 }

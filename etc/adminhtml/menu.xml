@@ -5,7 +5,7 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the mageplaza.com license that is
+ * This source file is subject to the Mageplaza.com license that is
  * available through the world-wide-web at this URL:
  * https://www.mageplaza.com/LICENSE.txt
  *
@@ -16,12 +16,12 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) 2017-2018 Mageplaza (https://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 -->
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Mageplaza_BetterPopup::betterpopup" title="Better Popup" module="Mageplaza_BetterPopup" sortOrder="30" resource="Mageplaza_BetterPopup::betterpopup" parent="Mageplaza_Core::menu"/>
         <add id="Mageplaza_BetterPopup::config" title="Configuration" module="Mageplaza_BetterPopup" sortOrder="10" action="adminhtml/system_config/edit/section/betterpopup" resource="Mageplaza_BetterPopup::config" parent="Mageplaza_BetterPopup::betterpopup"/>
