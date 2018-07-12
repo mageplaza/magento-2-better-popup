@@ -26,10 +26,20 @@ use Magento\Framework\ObjectManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData as AbstractHelper;
 
+/**
+ * Class Data
+ * @package Mageplaza\BetterPopup\Helper
+ */
 class Data extends AbstractHelper
 {
 	const CONFIG_MODULE_PATH = 'betterpopup';
 
+	/**
+	 * Data constructor.
+	 * @param \Magento\Framework\App\Helper\Context $context
+	 * @param \Magento\Framework\ObjectManagerInterface $objectManager
+	 * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+	 */
 	public function __construct(
 		Context $context,
 		ObjectManagerInterface $objectManager,
@@ -49,6 +59,36 @@ class Data extends AbstractHelper
 		$code = ($code !== '') ? '/' . $code : '';
 
 		return $this->getConfigValue(self::CONFIG_MODULE_PATH . $code, $storeId);
+	}
+
+	/**
+	 * @param $code
+	 * @param null $storeId
+	 * @return array|mixed
+	 */
+	public function getWhatToShowConfig($code, $storeId = null)
+	{
+		return $this->getPopupConfig('what_to_show/' . $code, $storeId);
+	}
+
+	/**
+	 * @param $code
+	 * @param null $storeId
+	 * @return array|mixed
+	 */
+	public function getWhereToShowConfig($code, $storeId = null)
+	{
+		return $this->getPopupConfig('where_to_show/' . $code, $storeId);
+	}
+
+	/**
+	 * @param $code
+	 * @param null $storeId
+	 * @return array|mixed
+	 */
+	public function getWhenToShowConfig($code, $storeId = null)
+	{
+		return $this->getPopupConfig('when_to_show/' . $code, $storeId);
 	}
 
 

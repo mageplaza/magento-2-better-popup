@@ -18,20 +18,22 @@
  * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
+
+use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
 ?>
 
 <script type="text/javascript">
     bioEp.init({
-        width:1000,
-        height:1000,
+        width: <?php echo $block->getWidthPopup(); ?>,
+        height: <?php echo $block->getHeightPopup(); ?>,
         cookieExp: 0,
         delay: 1
     });
 </script>
 
-<div id="mageplaza_betterpopup-block" >
+<div id="mageplaza_betterpopup-block">
     <div id="bio_ep">
-        <div id="bio_ep_content">
+        <div id="bio_ep_content" class="better-popup-content">
             <span>HOLD ON!</span>
             <span>Get <b>10%</b> off immediately</span>
             <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
@@ -40,10 +42,20 @@
     </div>
 </div>
 
+<?php if($block->getResponsive() == Responsive::FULLSCREEN_POPUP): ?>
+    <style>
+        #bio_ep_bg {
+            background-color: <?php echo $block->getBackGroundColor(); ?>;
+            opacity: 1;
+        }
+        #bio_ep {
+            box-shadow: none;
+        }
+    </style>
+<?php endif ?>
+
 <style>
     #bio_ep {
-        width: 400px;
-        height: 300px;
         color: #333;
         background-color: #3d9bc7;
         text-align: center;
