@@ -44,7 +44,7 @@
                 <popup_appear>1</popup_appear>
                 <after_scroll>50</after_scroll>
                 <delay>5</delay>
-                <cookieExp>7</cookieExp>
+                <cookieExp>0</cookieExp>
                 <show_float_button>0</show_float_button>
             </when_to_show>
         </betterpopup>

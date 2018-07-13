@@ -23,7 +23,7 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <link src="Mageplaza_BetterPopup::js/bioep.min.js"/>
+        <link src="Mageplaza_BetterPopup::js/lib/bioep.min.js"/>
     </head>
     <body>
         <referenceContainer name="after.body.start" label="Page Top">

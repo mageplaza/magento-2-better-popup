@@ -25,6 +25,7 @@ use Magento\Catalog\Block\Product\AbstractProduct;
 use Magento\Widget\Block\BlockInterface;
 use Magento\Catalog\Block\Product\Context;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
+use Mageplaza\BetterPopup\Model\Config\Source\Appear;
 use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
 
 /**
@@ -126,6 +127,64 @@ class Popup extends AbstractProduct implements BlockInterface
 	}
 
 	/**
+	 * Get Config Popup Appear
+	 *
+	 * @return array|mixed
+	 */
+	public function getPopupAppear()
+	{
+		return $this->_helperData->getWhenToShowConfig('popup_appear');
+	}
+
+	/**
+	 * Get time delay to show popup
+	 *
+	 * @return array|int|mixed
+	 */
+	public function getDelayConfig()
+	{
+		if ($this->getPopupAppear() == Appear::AFTER_X_SECONDS) {
+			return $this->_helperData->getWhenToShowConfig('delay');
+		}
+
+		return 0;
+	}
+
+	/**
+	 * is Show on Delay
+	 *
+	 * @return string
+	 */
+	public function isShowOnDelay()
+	{
+		if ($this->getPopupAppear() == Appear::EXIT_INTENT) {
+			return 'false';
+		}
+
+		return 'true';
+	}
+
+	/**
+	 * Get Popup show again after (days)
+	 *
+	 * @return array|mixed
+	 */
+	public function getCookieConfig()
+	{
+		return $this->_helperData->getWhenToShowConfig('cookieExp');
+	}
+
+	/**
+	 * Get Percentage scroll down to show Popup
+	 *
+	 * @return array|mixed
+	 */
+	public function getPercentageScroll()
+	{
+		return $this->_helperData->getWhenToShowConfig('after_scroll');
+	}
+
+	/**
 	 * Get Css for Popups
 	 *
 	 * @return string
@@ -139,6 +198,31 @@ class Popup extends AbstractProduct implements BlockInterface
 		}
 
 		return $css;
+	}
+
+	/**
+	 * Get All Config of Bio_ep
+	 *
+	 * @return string
+	 */
+	public function BioEpConfig()
+	{
+		return
+			'width:' . $this->getWidthPopup() . ',' .
+			'height:' . $this->getHeightPopup() . ',' .
+			"css:'" . $this->getCss() . "'," .
+			'cookieExp:' . $this->getCookieConfig() . ',' .
+			'delay:' . $this->getDelayConfig() . ',' .
+			'showOnDelay:' . $this->isShowOnDelay();
+	}
+
+	public function getDataPopup()
+	{
+		$data = [
+			'percentage' => $this->getPercentageScroll()
+		];
+
+		return HelperData::jsonEncode($data);
 	}
 
 }

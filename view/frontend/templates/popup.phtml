@@ -28,15 +28,11 @@ use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
 
 <script type="text/javascript">
     bioEp.init({
-        width: <?php echo $block->getWidthPopup(); ?>,
-        height: <?php echo $block->getHeightPopup(); ?>,
-        css: "<?php echo $block->getCss(); ?>",
-        cookieExp: 0,
-        delay: 1
+        <?php echo $block->BioEpConfig(); ?>
     });
 </script>
 
-<div id="mageplaza-betterpopup-block">
+<div id="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getDataPopup() ?>}}'>
     <div id="bio_ep">
         <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
             <span>HOLD ON!</span>
@@ -52,17 +48,6 @@ use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
     </div>
 	<?php endif; ?>
 </div>
-
-<script>
-    require([
-        'jquery'
-    ], function ($) {
-        $('#mp-better-popup-click-trigger').click(function () {
-            $('#bio_ep').show();
-            $('#bio_ep_bg').show();
-        });
-    });
-</script>
 
 <style>
      #mp-better-popup-click-trigger {

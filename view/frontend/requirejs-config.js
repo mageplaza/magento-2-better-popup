@@ -19,10 +19,7 @@
  */
 
 var config = {
-    map: {
-        '*': {
-            'mageplaza/betterpopup_popup': 'Mageplaza_BetterPopup/js/popup',
-            'mageplaza/betterpopup_bioep': 'Mageplaza_BetterPopup/js/bioep'
-        }
+    paths: {
+        mpPopup: 'Mageplaza_BetterPopup/js/popup'
     }
 };
