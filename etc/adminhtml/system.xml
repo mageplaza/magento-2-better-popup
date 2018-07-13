@@ -125,7 +125,7 @@
                 </field>
                 <field id="manually_insert" translate="label" type="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Insert manually this snippet to your page</label>
-                    <frontend_model>Mageplaza\Shopbybrand\Block\Adminhtml\System\FeatureDisplay</frontend_model>
+                    <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\FeatureDisplay</frontend_model>
                     <depends>
                         <field id="betterpopup/where_to_show/which_page_to_show">1</field>
                     </depends>

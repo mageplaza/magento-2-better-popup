@@ -19,44 +19,74 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
+use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
+?>
+
+<?php
+    $floatLocation = ($block->getLocationFloatButton() == ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
 ?>
 
 <script type="text/javascript">
     bioEp.init({
         width: <?php echo $block->getWidthPopup(); ?>,
         height: <?php echo $block->getHeightPopup(); ?>,
+        css: "<?php echo $block->getCss(); ?>",
         cookieExp: 0,
         delay: 1
     });
 </script>
 
-<div id="mageplaza_betterpopup-block">
+<div id="mageplaza-betterpopup-block">
     <div id="bio_ep">
-        <div id="bio_ep_content" class="better-popup-content">
+        <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
             <span>HOLD ON!</span>
             <span>Get <b>10%</b> off immediately</span>
             <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
             <button href="#" type="submit" class="better-popup-btn-submit primary">Send me my coupon</button>
         </div>
     </div>
+
+	<?php if($block->isShowFloatButton()): ?>
+        <div id="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
+        <button class="click-trigger primary">Show Popup</button>
+    </div>
+	<?php endif; ?>
 </div>
 
-<?php if($block->getResponsive() == Responsive::FULLSCREEN_POPUP): ?>
-    <style>
-        #bio_ep_bg {
-            background-color: <?php echo $block->getBackGroundColor(); ?>;
-            opacity: 1;
-        }
-        #bio_ep {
-            box-shadow: none;
-        }
-    </style>
-<?php endif ?>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $('#mp-better-popup-click-trigger').click(function () {
+            $('#bio_ep').show();
+            $('#bio_ep_bg').show();
+        });
+    });
+</script>
 
 <style>
+     #mp-better-popup-click-trigger {
+         position: fixed;
+         bottom: 0;
+         z-index: 999;
+     }
+
+     .click-trigger {
+         background-color : #31B0D5;
+         color: white;
+         padding: 10px 25px;
+         border-top-right-radius: 5px;
+         border-top-left-radius: 5px;
+         border-color: #46b8da;
+     }
+
+     .click-trigger:hover {
+         background-color : #31B0D5;
+         color: white;
+         border: 1px solid #31B0D5;
+     }
+
     #bio_ep {
-        color: #333;
         background-color: #3d9bc7;
         text-align: center;
     }
@@ -68,7 +98,6 @@ use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
         border-bottom: 3px solid;
         margin: 0 25% 0 25%;
         display: block;
-        color: #FFFFFF;
         font-size: 35px;
         font-weight: 600;
     }
@@ -76,7 +105,6 @@ use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
     #bio_ep_content span:nth-child(2) {
         display: block;
         font-size: 25px;
-        color: #FFFFFF;
         margin: 20px;
     }
 
