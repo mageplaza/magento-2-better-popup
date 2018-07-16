@@ -54,7 +54,6 @@ define([
             $('#bio_ep_close').click(function () {
                 $('#bio_ep').hide();
                 $('#bio_ep_bg').hide();
-                $('#bio_ep_close').hide();
             })
         },
 

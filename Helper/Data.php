@@ -91,35 +91,4 @@ class Data extends AbstractHelper
 		return $this->getPopupConfig('when_to_show/' . $code, $storeId);
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -212,9 +212,32 @@ class Popup extends AbstractProduct implements BlockInterface
 	{
 		if ($this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::SPECIFIC_PAGES) {
 			$fullActionName = $this->getRequest()->getFullActionName();
-			$includePages   = explode(',', $this->_helperData->getWhereToShowConfig('include_pages'));
+			$arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
+			$includePages   = array_map('trim', $arrayPages);
 
 			return in_array($fullActionName, $includePages);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Check url paths to show popup
+	 *
+	 * @return bool
+	 */
+	public function checkIncludePathUrl()
+	{
+		if ($this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::SPECIFIC_PAGES) {
+			$currentPath  = $this->getRequest()->getRequestUri();
+			$arrayPathUrl = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages_with_url'));
+			$pathUrl      = array_map('trim', $arrayPathUrl);
+
+			foreach ($pathUrl as $path) {
+				if (strpos($currentPath, $path)) return true;
+			}
+
+			return false;
 		}
 
 		return true;
