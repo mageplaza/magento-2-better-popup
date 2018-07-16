@@ -27,6 +27,7 @@ use Magento\Catalog\Block\Product\Context;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
 use Mageplaza\BetterPopup\Model\Config\Source\Appear;
 use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
+use Mageplaza\BetterPopup\Model\Config\Source\PageToShow;
 
 /**
  * Class Popup
@@ -171,7 +172,9 @@ class Popup extends AbstractProduct implements BlockInterface
 	 */
 	public function getCookieConfig()
 	{
-		return $this->_helperData->getWhenToShowConfig('cookieExp');
+		$cookieDays = $this->_helperData->getWhenToShowConfig('cookieExp');
+
+		return ($cookieDays != null) ? $cookieDays : '30';
 	}
 
 	/**
@@ -191,7 +194,7 @@ class Popup extends AbstractProduct implements BlockInterface
 	 */
 	public function getCss()
 	{
-		$css = '';
+		$css = "#bio_ep {background-color:" . $this->getBackGroundColor() . ";}";
 
 		if ($this->getResponsive() == Responsive::FULLSCREEN_POPUP) {
 			$css .= "#bio_ep_bg {background-color:" . $this->getBackGroundColor() . "; opacity: 1; }" . "#bio_ep {box-shadow: none;}";
@@ -199,6 +202,33 @@ class Popup extends AbstractProduct implements BlockInterface
 
 		return $css;
 	}
+
+	/**
+	 * Check pages are showed Popup
+	 *
+	 * @return bool
+	 */
+	public function checkIncludePages()
+	{
+		if ($this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::SPECIFIC_PAGES) {
+			$fullActionName = $this->getRequest()->getFullActionName();
+			$includePages   = explode(',', $this->_helperData->getWhereToShowConfig('include_pages'));
+
+			return in_array($fullActionName, $includePages);
+		}
+
+		return true;
+	}
+
+//	public function checkIncludePagesUrl()
+//	{
+//		$arrayPath = explode('/', $this->getRequest()->getRequestUri());
+//		$pagesUrl  = explode(';', $this->_helperData->getWhereToShowConfig('include_pages_with_url'));
+//
+//		\Zend_Debug::dump($arrayPath);
+//		\Zend_Debug::dump($pagesUrl);
+//		die('x');
+//	}
 
 	/**
 	 * Get All Config of Bio_ep
@@ -219,6 +249,7 @@ class Popup extends AbstractProduct implements BlockInterface
 	public function getDataPopup()
 	{
 		$data = [
+			'isScroll'   => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN ? true : false,
 			'percentage' => $this->getPercentageScroll()
 		];
 

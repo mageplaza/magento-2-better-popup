@@ -29,10 +29,11 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class IncludePages implements ArrayInterface
 {
-	const CATALOG_PRODUCT_VIEW = 1;
-	const HOME_INDEX_INDEX = 2;
-	const MAGEPLAZA_BLOG_INDEX = 3;
-	const MAGEPLAZA_BLOG_POSTS = 4;
+	const HOME_INDEX_INDEX = 'cms_index_index';
+	const CATALOG_PRODUCT_VIEW = 'catalog_product_view';
+	const CATALOG_CATEGORY_VIEW = 'catalog_category_view';
+	const MAGEPLAZA_BLOG_INDEX = 'mpblog_post_index';
+	const MAGEPLAZA_BLOG_POSTS = 'mpblog_post_view';
 
 	/**
 	 * Return array of options as value-label pairs
@@ -42,8 +43,10 @@ class IncludePages implements ArrayInterface
 	public function toOptionArray()
 	{
 		return [
-			['value' => self::CATALOG_PRODUCT_VIEW, 'label' => __('Catalog_Product_View')],
+			['value' => '0', 'label' => __('--Please Select--')],
 			['value' => self::HOME_INDEX_INDEX, 'label' => __('Home_Index_Index')],
+			['value' => self::CATALOG_PRODUCT_VIEW, 'label' => __('Catalog_Product_View')],
+			['value' => self::CATALOG_CATEGORY_VIEW, 'label' => __('Catalog_Category_View')],
 			['value' => self::MAGEPLAZA_BLOG_INDEX, 'label' => __('Mageplaza_Blog_Index')],
 			['value' => self::MAGEPLAZA_BLOG_POSTS, 'label' => __('Mageplaza_Blog_Posts')],
 		];

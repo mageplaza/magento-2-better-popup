@@ -31,7 +31,9 @@ define([
 
         _create: function () {
             this._clickTrigger();
-            this._scrollToShow();
+            if (this.options.dataPopup.isScroll) {
+                this._scrollToShow();
+            }
         },
 
         _clickTrigger: function () {
@@ -43,16 +45,15 @@ define([
 
         _scrollToShow: function () {
             var self = this;
-            $(window).scroll(function(){
-                var scrollTop = $(window).scrollTop();
-                var docHeight = $(document).height();
-                var winHeight = $(window).height();
-                var scrollPercent = (scrollTop) / (docHeight - winHeight);
-                var optionScroll = self.options.dataPopup.percentage/100;
 
-                // alert(this.options.percentage);
+            $(window).scroll(function () {
+                var scrollTop = $(window).scrollTop(),
+                    docHeight = $(document).height(),
+                    winHeight = $(window).height(),
+                    scrollPercent = (scrollTop) / (docHeight - winHeight),
+                    optionScroll = self.options.dataPopup.percentage / 100;
 
-                if(scrollPercent > optionScroll) {
+                if (scrollPercent > optionScroll) {
                     $('#bio_ep').show();
                     $('#bio_ep_bg').show();
                     $(window).off('scroll');

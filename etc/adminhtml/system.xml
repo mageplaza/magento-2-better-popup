@@ -109,7 +109,7 @@
                 </field>
                 <field id="include_pages_with_url" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Include Page with URL contains</label>
-                    <comment>Url path</comment>
+                    <comment>Enter 'url path' (separated by ';')</comment>
                     <depends>
                         <field id="betterpopup/where_to_show/which_page_to_show">3</field>
                     </depends>
@@ -118,10 +118,16 @@
                     <label>Exclude pages</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\IncludePages</source_model>
                     <comment>Handle name</comment>
+                    <depends>
+                        <field id="betterpopup/where_to_show/which_page_to_show">2</field>
+                    </depends>
                 </field>
                 <field id="exclude_pages_with_url" sortOrder="50" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Exclude Page with URL contains</label>
                     <comment>Url path</comment>
+                    <depends>
+                        <field id="betterpopup/where_to_show/which_page_to_show">2</field>
+                    </depends>
                 </field>
                 <field id="manually_insert" translate="label" type="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Insert manually this snippet to your page</label>
@@ -136,7 +142,7 @@
                 <field id="popup_appear" translate="label comment" type="select" sortOrder="10" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>When the popup appear?</label>
-                        <source_model>Mageplaza\BetterPopup\Model\Config\Source\Appear</source_model>
+                    <source_model>Mageplaza\BetterPopup\Model\Config\Source\Appear</source_model>
                 </field>
                 <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>After scroll down</label>
@@ -153,7 +159,7 @@
                 </field>
                 <field id="cookieExp" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Popup will show again after</label>
-                    <comment>Days. Leave empty for hiding forever</comment>
+                    <comment>Days. Leave empty will hiding for 30 days</comment>
                 </field>
                 <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Float Button</label>

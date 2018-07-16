@@ -26,30 +26,36 @@ use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
     $floatLocation = ($block->getLocationFloatButton() == ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
 ?>
 
-<script type="text/javascript">
-    bioEp.init({
-        <?php echo $block->BioEpConfig(); ?>
-    });
-</script>
+<?php if($block->checkIncludePages()): ?>
+    <script type="text/javascript">
+        bioEp.init({
+            <?php echo $block->BioEpConfig(); ?>
+        });
+    </script>
 
-<div id="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getDataPopup() ?>}}'>
-    <div id="bio_ep">
-        <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
-            <span>HOLD ON!</span>
-            <span>Get <b>10%</b> off immediately</span>
-            <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
-            <button href="#" type="submit" class="better-popup-btn-submit primary">Send me my coupon</button>
+    <div id="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getDataPopup() ?>}}'>
+        <div id="bio_ep">
+            <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
+                <span>HOLD ON!</span>
+                <span>Get <b>10%</b> off immediately</span>
+                <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
+                <button href="#" type="submit" class="better-popup-btn-submit primary">Send me my coupon</button>
+            </div>
         </div>
-    </div>
 
-	<?php if($block->isShowFloatButton()): ?>
-        <div id="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
-        <button class="click-trigger primary">Show Popup</button>
+        <?php if($block->isShowFloatButton()): ?>
+            <div id="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
+            <button class="click-trigger primary">Show Popup</button>
+        </div>
+        <?php endif; ?>
     </div>
-	<?php endif; ?>
-</div>
+<?php endif; ?>
 
 <style>
+    #mageplaza-betterpopup-block {
+        position: relative;
+    }
+
      #mp-better-popup-click-trigger {
          position: fixed;
          bottom: 0;
@@ -72,11 +78,13 @@ use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
      }
 
     #bio_ep {
-        background-color: #3d9bc7;
         text-align: center;
     }
     #bio_ep_content {
-        padding: 24px 0 0 0
+        padding: 24px 0 0 0;
+        position: absolute;
+        top: 30%;
+        width: 100%;
     }
 
     #bio_ep_content span:nth-child(1) {
