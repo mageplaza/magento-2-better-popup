@@ -220,16 +220,6 @@ class Popup extends AbstractProduct implements BlockInterface
 		return true;
 	}
 
-//	public function checkIncludePagesUrl()
-//	{
-//		$arrayPath = explode('/', $this->getRequest()->getRequestUri());
-//		$pagesUrl  = explode(';', $this->_helperData->getWhereToShowConfig('include_pages_with_url'));
-//
-//		\Zend_Debug::dump($arrayPath);
-//		\Zend_Debug::dump($pagesUrl);
-//		die('x');
-//	}
-
 	/**
 	 * Get All Config of Bio_ep
 	 *

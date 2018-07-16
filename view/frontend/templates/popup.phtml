@@ -18,12 +18,10 @@
  * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
-
-use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
 ?>
 
 <?php
-    $floatLocation = ($block->getLocationFloatButton() == ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
+    $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
 ?>
 
 <?php if($block->checkIncludePages()): ?>
@@ -35,11 +33,14 @@ use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
 
     <div id="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getDataPopup() ?>}}'>
         <div id="bio_ep">
-            <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
-                <span>HOLD ON!</span>
-                <span>Get <b>10%</b> off immediately</span>
-                <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
-                <button href="#" type="submit" class="better-popup-btn-submit primary">Send me my coupon</button>
+            <div class="mageplaza-betterpopup-content">
+                <div id="bio_ep_close">X</div>
+                <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
+                    <span>HOLD ON!</span>
+                    <span>Get <b>10%</b> off immediately</span>
+                    <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
+                    <button href="#" type="submit" class="better-popup-btn-submit primary">Send me my coupon</button>
+                </div>
             </div>
         </div>
 
@@ -81,10 +82,11 @@ use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
         text-align: center;
     }
     #bio_ep_content {
-        padding: 24px 0 0 0;
-        position: absolute;
-        top: 30%;
+        position: relative;
+        top: -5%;
         width: 100%;
+        display: table-cell;
+        vertical-align: middle;
     }
 
     #bio_ep_content span:nth-child(1) {
@@ -122,5 +124,12 @@ use Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection;
         border-radius: 5px;
         height: 35px;
     }
+
+    .mageplaza-betterpopup-content {
+        width: 100%;
+        height: 100%;
+        display: table;
+    }
+    
 </style>
 

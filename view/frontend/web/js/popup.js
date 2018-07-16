@@ -31,6 +31,7 @@ define([
 
         _create: function () {
             this._clickTrigger();
+            this._clickClose();
             if (this.options.dataPopup.isScroll) {
                 this._scrollToShow();
             }
@@ -38,9 +39,23 @@ define([
 
         _clickTrigger: function () {
             $('#mp-better-popup-click-trigger').click(function () {
+                var bgEl = $('#bio_ep_bg');
+                if (!bgEl.length) {
+                    $('body').append("<div id='bio_ep_bg'></div>");
+                }
+
                 $('#bio_ep').show();
                 $('#bio_ep_bg').show();
+                $('#bio_ep_close').show();
             });
+        },
+
+        _clickClose: function () {
+            $('#bio_ep_close').click(function () {
+                $('#bio_ep').hide();
+                $('#bio_ep_bg').hide();
+                $('#bio_ep_close').hide();
+            })
         },
 
         _scrollToShow: function () {
