@@ -20,19 +20,19 @@
  */
 ?>
 
-<?php
-    $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
-?>
-
 <?php if($block->checkPagesToShow()): ?>
+    <?php
+        $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
+    ?>
+    <?php
+        $config = $this->helper('Mageplaza\BetterPopup\Helper\Data');
+    ?>
     <script type="text/javascript">
-        bioEp.init({
-            <?php echo $block->BioEpConfig(); ?>
-        });
+        bioEp.init(<?php echo $block->BioEpConfig(); ?>);
     </script>
 
     <div id="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData() ?>}}'>
-        <div id="bio_ep">
+        <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>">
             <div class="mageplaza-betterpopup-content">
                 <div id="bio_ep_close">X</div>
                 <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
@@ -50,10 +50,21 @@
         </div>
         <?php endif; ?>
     </div>
+
+    <style>
+        <?php if($block->isFullScreen()): ?>
+            #bio_ep_bg {
+                background-color: <?php echo $this->getBackGroundColor(); ?>;
+                opacity: 1;
+            }
+            #bio_ep {
+                box-shadow: none;
+            }
+            <?php endif; ?>
+    </style>
 <?php endif; ?>
 
 <style>
-
     #mageplaza-betterpopup-block {
         position: relative;
     }

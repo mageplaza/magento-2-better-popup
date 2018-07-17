@@ -47,24 +47,14 @@ class Popup extends AbstractProduct implements BlockInterface
      * @param array $data
      */
     public function __construct(
-        HelperData $helperData,
         Context $context,
+        HelperData $helperData,
         array $data = []
     )
     {
-        parent::__construct($context, $data);
-
         $this->_helperData = $helperData;
-    }
 
-    /**
-     * Get Responsive Config
-     *
-     * @return array|mixed
-     */
-    public function getResponsive()
-    {
-        return $this->_helperData->getWhatToShowConfig('responsive');
+        parent::__construct($context, $data);
     }
 
     /**
@@ -105,6 +95,19 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getTextColor()
     {
         return $this->_helperData->getWhatToShowConfig('text_color');
+    }
+
+    /**
+     * Check FullScreen option
+     *
+     * @return bool
+     */
+    public function isFullScreen()
+    {
+        if ($this->_helperData->getWhatToShowConfig('responsive') == Responsive::FULLSCREEN_POPUP) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -159,10 +162,10 @@ class Popup extends AbstractProduct implements BlockInterface
     public function isShowOnDelay()
     {
         if ($this->getPopupAppear() == Appear::EXIT_INTENT) {
-            return 'false';
+            return true;
         }
 
-        return 'true';
+        return false;
     }
 
     /**
@@ -185,22 +188,6 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getPercentageScroll()
     {
         return $this->_helperData->getWhenToShowConfig('after_scroll');
-    }
-
-    /**
-     * Get Css for Popups
-     *
-     * @return string
-     */
-    public function getCss()
-    {
-        $css = "#bio_ep {background-color:" . $this->getBackGroundColor() . ";}";
-
-        if ($this->getResponsive() == Responsive::FULLSCREEN_POPUP) {
-            $css .= "#bio_ep_bg {background-color:" . $this->getBackGroundColor() . "; opacity: 1; }" . "#bio_ep {box-shadow: none;}";
-        }
-
-        return $css;
     }
 
     /**
@@ -227,12 +214,14 @@ class Popup extends AbstractProduct implements BlockInterface
         $currentPath = $this->getRequest()->getRequestUri();
         $pathsConfig = $this->_helperData->getWhereToShowConfig('include_pages_with_url');
 
-        if($pathsConfig){
+        if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
             $pathsUrl = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
-                if (strpos($currentPath, $path)) return true;
+                if (strpos($currentPath, $path)) {
+                    return true;
+                }
             }
         }
 
@@ -250,10 +239,7 @@ class Popup extends AbstractProduct implements BlockInterface
         $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
         $includePages = array_map('trim', $arrayPages);
 
-        if(in_array($fullActionName, $includePages))
-            return false;
-
-        return true;
+        return !in_array($fullActionName, $includePages);
     }
 
     /**
@@ -266,7 +252,7 @@ class Popup extends AbstractProduct implements BlockInterface
         $currentPath = $this->getRequest()->getRequestUri();
         $pathsConfig = $this->_helperData->getWhereToShowConfig('exclude_pages_with_url');
 
-        if($pathsConfig){
+        if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
             $pathsUrl = array_map('trim', $arrayPaths);
 
@@ -299,7 +285,6 @@ class Popup extends AbstractProduct implements BlockInterface
         return true;
     }
 
-
     /**
      * Get All Config of Bio_ep
      *
@@ -307,33 +292,29 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function BioEpConfig()
     {
-        return
-            'width:' . $this->getWidthPopup() . ',' .
-            'height:' . $this->getHeightPopup() . ',' .
-            "css:'" . $this->getCss() . "'," .
-            'cookieExp:' . $this->getCookieConfig() . ',' .
-            'delay:' . $this->getDelayConfig() . ',' .
-            'showOnDelay:' . $this->isShowOnDelay();
+        return HelperData::jsonEncode([
+            'width' => $this->getWidthPopup(),
+            'height' => $this->getHeightPopup(),
+            'cookieExp' => $this->getCookieConfig(),
+            'delay' => $this->getDelayConfig(),
+            'showOnDelay' => $this->isShowOnDelay() ? 'true' : 'false'
+        ]);
     }
 
+    /**
+     * Get Ajax Data
+     *
+     * @return string
+     */
     public function getAjaxData()
     {
         $params = [
-            'url'             => $this->getUrl('betterpopup/ajax/success'),
-        ];
-
-
-        return HelperData::jsonEncode($params);
-    }
-
-    public function getDataPopup()
-    {
-        $data = [
-            'isScroll' => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN ? true : false,
+            'url' => $this->getUrl('betterpopup/ajax/success'),
+            'isScroll' => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
             'percentage' => $this->getPercentageScroll()
         ];
-
-        return HelperData::jsonEncode($data);
+        
+        return HelperData::jsonEncode($params);
     }
 
 }

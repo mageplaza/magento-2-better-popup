@@ -76,6 +76,9 @@ define([
             });
         },
 
+        /**
+         * @private
+         */
         _scrollToShow: function () {
             var self = this;
 

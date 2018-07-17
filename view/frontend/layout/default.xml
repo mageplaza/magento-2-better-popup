@@ -20,15 +20,13 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 -->
-
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <link src="Mageplaza_BetterPopup::js/lib/bioep.min.js"/>
-        <css src="Mageplaza_BetterPopup::js/abc.scss"/>
     </head>
     <body>
         <referenceContainer name="after.body.start" label="Page Top">
-            <block template="popup.phtml" before="-" class="Mageplaza\BetterPopup\Block\Popup" name="mageplaza_betterpopup_script"/>
+            <block class="Mageplaza\BetterPopup\Block\Popup" template="popup.phtml" before="-" name="mageplaza_betterpopup_script"/>
         </referenceContainer>
     </body>
 </page>
