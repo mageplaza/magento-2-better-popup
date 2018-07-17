@@ -26,7 +26,7 @@
     </head>
     <body>
         <referenceContainer name="after.body.start" label="Page Top">
-            <block class="Mageplaza\BetterPopup\Block\Popup" template="popup.phtml" before="-" name="mageplaza_betterpopup_script"/>
+            <block class="Mageplaza\BetterPopup\Block\Popup" template="Mageplaza_BetterPopup::popup.phtml" before="-" name="mp_betterpopup" ifconfig="betterpopup/general/enable"/>
         </referenceContainer>
     </body>
 </page>

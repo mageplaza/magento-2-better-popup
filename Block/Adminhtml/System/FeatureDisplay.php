@@ -40,13 +40,13 @@ class FeatureDisplay extends Field
 		$html .= '<p>Use following code to show popup block in any place which you want.</p>';
 
 		$html .= '<strong>CMS Page/Static Block</strong><br />';
-		$html .= '<pre style="background-color: #f5f5dc"><code>{{block class="Mageplaza\BetterPopup\Block\Brand\Featured"}}</code></pre>';
+		$html .= '<pre style="background-color: #f5f5dc"><code>{{block class="Mageplaza\BetterPopup\Block\Popup" template="Mageplaza_BetterPopup::popup.phtml"}}</code></pre>';
 
 		$html .= '<strong>Template .phtml file</strong><br />';
-		$html .= '<pre style="background-color: #f5f5dc"><code>' . $this->_escaper->escapeHtml('<?php echo $block->getLayout()->createBlock("Mageplaza\BetterPopup\Block\Brand\Featured")->toHtml(); ?>') . '</code></pre>';
+		$html .= '<pre style="background-color: #f5f5dc"><code>' . $this->_escaper->escapeHtml('<?php echo $block->getLayout()->createBlock("Mageplaza\BetterPopup\Block\Popup")->setTemplate("popup.phtml")->toHtml();?>') . '</code></pre>';
 
 		$html .= '<strong>Layout file</strong><br />';
-		$html .= '<pre style="background-color: #f5f5dc"><code>' . $this->_escaper->escapeHtml('<block class="Mageplaza\BetterPopup\Block\Brand\Featured" name="featuredbrand" />') . '</code></pre>';
+		$html .= '<pre style="background-color: #f5f5dc"><code>' . $this->_escaper->escapeHtml('<block class="Mageplaza\BetterPopup\Block\Popup" template="Mageplaza_BetterPopup::popup.phtml" name="mp_betterpopup" />') . '</code></pre>';
 
 		$html .= '</div>';
 

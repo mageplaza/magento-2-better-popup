@@ -162,10 +162,10 @@ class Popup extends AbstractProduct implements BlockInterface
     public function isShowOnDelay()
     {
         if ($this->getPopupAppear() == Appear::EXIT_INTENT) {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -219,7 +219,7 @@ class Popup extends AbstractProduct implements BlockInterface
             $pathsUrl = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
-                if (strpos($currentPath, $path)) {
+                if (strpos($currentPath, $path) >= 0) {
                     return true;
                 }
             }
@@ -257,7 +257,9 @@ class Popup extends AbstractProduct implements BlockInterface
             $pathsUrl = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
-                if (strpos($currentPath, $path) >= 0) return false;
+                if (strpos($currentPath, $path) >= 0) {
+                    return false;
+                }
             }
         }
 
@@ -297,7 +299,7 @@ class Popup extends AbstractProduct implements BlockInterface
             'height' => $this->getHeightPopup(),
             'cookieExp' => $this->getCookieConfig(),
             'delay' => $this->getDelayConfig(),
-            'showOnDelay' => $this->isShowOnDelay() ? 'true' : 'false'
+            'showOnDelay' => $this->isShowOnDelay()
         ]);
     }
 
@@ -313,7 +315,7 @@ class Popup extends AbstractProduct implements BlockInterface
             'isScroll' => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
             'percentage' => $this->getPercentageScroll()
         ];
-        
+
         return HelperData::jsonEncode($params);
     }
 

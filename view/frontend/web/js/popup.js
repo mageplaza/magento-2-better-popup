@@ -33,6 +33,7 @@ define([
             this._clickTrigger();
             this._clickClose();
             this._clickSuccess();
+            this._duplicatedPopup();
             // if (this.options.dataPopup.isScroll) {
             //     this._scrollToShow();
             // }
@@ -76,9 +77,6 @@ define([
             });
         },
 
-        /**
-         * @private
-         */
         _scrollToShow: function () {
             var self = this;
 
@@ -95,8 +93,14 @@ define([
                     $(window).off('scroll');
                 }
             });
-        }
+        },
 
+        _duplicatedPopup: function () {
+            var popupElement = $('.mageplaza-betterpopup-block');
+            if (popupElement.length > 1) {
+                $('.mageplaza-betterpopup-block:gt(0)').remove();
+            }
+        }
     });
 
     return $.mageplaza.betterpopup_block;
