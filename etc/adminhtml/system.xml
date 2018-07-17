@@ -103,14 +103,14 @@
                     <label>Include pages</label>
                     <comment>Handle name</comment>
                     <depends>
-                        <field id="betterpopup/where_to_show/which_page_to_show">3</field>
+                        <field id="betterpopup/where_to_show/which_page_to_show">1</field>
                     </depends>
                 </field>
                 <field id="include_pages_with_url" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Include Page with URL contains</label>
                     <comment>Enter 'url path' (separated by ';')</comment>
                     <depends>
-                        <field id="betterpopup/where_to_show/which_page_to_show">3</field>
+                        <field id="betterpopup/where_to_show/which_page_to_show">1</field>
                     </depends>
                 </field>
                 <field id="exclude_pages" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -131,7 +131,7 @@
                     <label>Insert manually this snippet to your page</label>
                     <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\FeatureDisplay</frontend_model>
                     <depends>
-                        <field id="betterpopup/where_to_show/which_page_to_show">1</field>
+                        <field id="betterpopup/where_to_show/which_page_to_show">3</field>
                     </depends>
                 </field>
             </group>
