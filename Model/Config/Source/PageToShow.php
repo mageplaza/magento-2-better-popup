@@ -29,9 +29,9 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class PageToShow implements ArrayInterface
 {
-	const MANUALLY_INSERT = 1;
+    const SPECIFIC_PAGES = 1;
 	const ALL_PAGES = 2;
-	const SPECIFIC_PAGES = 3;
+    const MANUALLY_INSERT = 3;
 
 	/**
 	 * Return array of options as value-label pairs
@@ -41,9 +41,9 @@ class PageToShow implements ArrayInterface
 	public function toOptionArray()
 	{
 		return [
-			['value' => self::MANUALLY_INSERT, 'label' => __('Manually Insert')],
+            ['value' => self::SPECIFIC_PAGES, 'label' => __('Specific pages')],
 			['value' => self::ALL_PAGES, 'label' => __('All Pages')],
-			['value' => self::SPECIFIC_PAGES, 'label' => __('Specific pages')],
+            ['value' => self::MANUALLY_INSERT, 'label' => __('Manually Insert')],
 		];
 	}
 }

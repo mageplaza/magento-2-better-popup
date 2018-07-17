@@ -113,9 +113,8 @@
                         <field id="betterpopup/where_to_show/which_page_to_show">3</field>
                     </depends>
                 </field>
-                <field id="exclude_pages" translate="label comment" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="exclude_pages" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Exclude pages</label>
-                    <source_model>Mageplaza\BetterPopup\Model\Config\Source\IncludePages</source_model>
                     <comment>Handle name</comment>
                     <depends>
                         <field id="betterpopup/where_to_show/which_page_to_show">2</field>

@@ -32,9 +32,10 @@ define([
         _create: function () {
             this._clickTrigger();
             this._clickClose();
-            if (this.options.dataPopup.isScroll) {
-                this._scrollToShow();
-            }
+            this._clickSuccess();
+            // if (this.options.dataPopup.isScroll) {
+            //     this._scrollToShow();
+            // }
         },
 
         _clickTrigger: function () {
@@ -55,6 +56,24 @@ define([
                 $('#bio_ep').hide();
                 $('#bio_ep_bg').hide();
             })
+        },
+
+        _clickSuccess: function () {
+            var self = this,
+                bioContent = $('#bio_ep_content');
+            $('.better-popup-btn-submit').click(function () {
+
+                $.ajax({
+                    url: self.options.dataPopup.url,
+                    dataType: 'json',
+                    cache: false,
+                    success: function (result) {
+                        bioContent.empty;
+                        bioContent.html(result.success);
+                        bioContent.trigger('contentUpdated');
+                    }
+                });
+            });
         },
 
         _scrollToShow: function () {

@@ -1,0 +1,60 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+
+<p class="success-title">Thank you, you got the offer!</p>
+<div class="mp-popup-coupon-code">
+    <input type="text" id="mp-coupon-code" readonly="readonly" value="<?php echo $block->getCouponCode(); ?>"></input>
+    <button href="#" type="submit" class="btn-copy primary">Copy</button>
+</div>
+<small>Please use this coupon code when checking out</small>
+
+<style>
+    .success-title {
+        font-size: 22px;
+    }
+
+    .mp-popup-coupon-code {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    #mp-coupon-code {
+        text-align: center;
+        max-width: 100%;
+        border: 1px dashed #c1bebe;
+        background: 0 0;
+        font-size: 25px;
+        color: #FFF;
+        margin-top: 15px;
+        height: 50px;
+    }
+
+    .btn-copy {
+        width: 100%;
+        margin: 5px 0 15px 0;
+        color: #fff;
+        background-color: #f3941e;
+        border: none;
+        height: 35px;
+    }
+</style>
+

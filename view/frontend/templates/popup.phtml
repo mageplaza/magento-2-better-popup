@@ -24,14 +24,15 @@
     $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
 ?>
 
-<?php if($block->checkIncludePages() || $block->checkIncludePathUrl()): ?>
+<div class="title">move your mouse on</div>
+<?php if($block->checkPagesToShow()): ?>
     <script type="text/javascript">
         bioEp.init({
             <?php echo $block->BioEpConfig(); ?>
         });
     </script>
 
-    <div id="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getDataPopup() ?>}}'>
+    <div id="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData() ?>}}'>
         <div id="bio_ep">
             <div class="mageplaza-betterpopup-content">
                 <div id="bio_ep_close">X</div>
@@ -53,6 +54,7 @@
 <?php endif; ?>
 
 <style>
+
     #mageplaza-betterpopup-block {
         position: relative;
     }
