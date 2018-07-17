@@ -175,9 +175,9 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function getCookieConfig()
     {
-        $cookieDays = $this->_helperData->getWhenToShowConfig('cookieExp');
+        $cookieDays = (int)$this->_helperData->getWhenToShowConfig('cookieExp');
 
-        return ($cookieDays != null) ? $cookieDays : '30';
+        return ($cookieDays !== null) ? $cookieDays : 30;
     }
 
     /**
@@ -217,9 +217,8 @@ class Popup extends AbstractProduct implements BlockInterface
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
             $pathsUrl = array_map('trim', $arrayPaths);
-
             foreach ($pathsUrl as $path) {
-                if (strpos($currentPath, $path) >= 0) {
+                if (strpos($currentPath, $path) !== false) {
                     return true;
                 }
             }
@@ -257,7 +256,7 @@ class Popup extends AbstractProduct implements BlockInterface
             $pathsUrl = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
-                if (strpos($currentPath, $path) >= 0) {
+                if (strpos($currentPath, $path) !== false) {
                     return false;
                 }
             }
@@ -267,24 +266,60 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
+     * Check Include (page & path)
+     *
+     * @return bool
+     */
+    public function checkInclude()
+    {
+        return ($this->checkIncludePages() || $this->checkIncludePaths());
+    }
+
+    /**
+     * Check Exclude (page & path)
+     *
+     * @return bool
+     */
+    public function checkExclude()
+    {
+        return ($this->checkExcludePages() && $this->checkExcludePaths());
+    }
+
+    /**
+     * check Manually Insert Config
+     *
+     * @return bool
+     */
+    public function isManuallyInsert()
+    {
+        if ($this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::MANUALLY_INSERT && $this->checkExclude()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Check Pages to show popup
      *
      * @return bool
      */
     public function checkPagesToShow()
     {
-        $config = $this->_helperData->getWhereToShowConfig('which_page_to_show');
+        if ($this->_helperData->isEnabled()) {
+            $config = $this->_helperData->getWhereToShowConfig('which_page_to_show');
 
-        switch ($config) {
-            case PageToShow::SPECIFIC_PAGES :
-                return ($this->checkIncludePages() || $this->checkIncludePaths());
-            case PageToShow::ALL_PAGES :
-                return ($this->checkExcludePages() && $this->checkExcludePaths());
-            case PageToShow::MANUALLY_INSERT :
-                return true;
+            switch ($config) {
+                case PageToShow::SPECIFIC_PAGES :
+                    return ($this->checkInclude() && $this->checkExclude());
+                case PageToShow::ALL_PAGES :
+                    return $this->checkExcludePaths();
+                case PageToShow::MANUALLY_INSERT :
+                    return false;
+            }
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -299,7 +334,7 @@ class Popup extends AbstractProduct implements BlockInterface
             'height' => $this->getHeightPopup(),
             'cookieExp' => $this->getCookieConfig(),
             'delay' => $this->getDelayConfig(),
-            'showOnDelay' => $this->isShowOnDelay()
+            'showOnDelay' => $this->isShowOnDelay(),
         ]);
     }
 

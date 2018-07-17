@@ -19,10 +19,9 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 ?>
-
-<?php if($block->checkPagesToShow()): ?>
+<?php if($block->isManuallyInsert()): ?>
     <?php
-        $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
+    $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
     ?>
 
     <script type="text/javascript">
@@ -61,5 +60,4 @@
         </style>
     <?php endif; ?>
 <?php endif; ?>
-
 

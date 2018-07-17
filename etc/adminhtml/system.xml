@@ -28,7 +28,7 @@
             <resource>Mageplaza_BetterPopup::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
-                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to enable this module</comment>
@@ -113,16 +113,10 @@
                             <span>Separated by new line</span>
                         ]]>
                     </comment>
-                    <depends>
-                        <field id="which_page_to_show">2</field>
-                    </depends>
                 </field>
                 <field id="exclude_pages_with_url" sortOrder="50" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Exclude Page with URL contains</label>
                     <comment>Separated by new line</comment>
-                    <depends>
-                        <field id="which_page_to_show">2</field>
-                    </depends>
                 </field>
                 <field id="manually_insert" translate="label" type="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Insert manually this snippet to your page</label>
