@@ -40,6 +40,8 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     protected $_helperData;
 
+    protected $subscriber;
+
     /**
      * Popup constructor.
      * @param \Mageplaza\BetterPopup\Helper\Data $helperData
@@ -49,10 +51,12 @@ class Popup extends AbstractProduct implements BlockInterface
     public function __construct(
         Context $context,
         HelperData $helperData,
+        \Magento\Newsletter\Model\Subscriber $subscriber,
         array $data = []
     )
     {
         $this->_helperData = $helperData;
+        $this->subscriber = $subscriber;
 
         parent::__construct($context, $data);
     }
@@ -302,8 +306,10 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function isManuallyInsert()
     {
-        if ($this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::MANUALLY_INSERT && $this->checkExclude()) {
-            return true;
+        if ($this->_helperData->isEnabled()) {
+            if ($this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::MANUALLY_INSERT && $this->checkExclude()) {
+                return true;
+            }
         }
 
         return false;
@@ -323,29 +329,13 @@ class Popup extends AbstractProduct implements BlockInterface
                 case PageToShow::SPECIFIC_PAGES :
                     return ($this->checkInclude() && $this->checkExclude());
                 case PageToShow::ALL_PAGES :
-                    return $this->checkExcludePaths();
+                    return $this->checkExclude();
                 case PageToShow::MANUALLY_INSERT :
                     return false;
             }
         }
 
         return false;
-    }
-
-    /**
-     * Get All Config of Bio_ep
-     *
-     * @return string
-     */
-    public function BioEpConfig()
-    {
-        return HelperData::jsonEncode([
-            'width' => $this->getWidthPopup(),
-            'height' => $this->getHeightPopup(),
-            'cookieExp' => $this->getCookieConfig(),
-            'delay' => $this->getDelayConfig(),
-            'showOnDelay' => $this->isShowOnDelay(),
-        ]);
     }
 
     /**
@@ -356,12 +346,23 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getAjaxData()
     {
         $params = [
-            'url' => $this->getUrl('betterpopup/ajax/success'),
-            'isScroll' => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
-            'percentage' => $this->getPercentageScroll(),
+            'url'         => $this->getUrl('betterpopup/ajax/success'),
+            'isScroll'    => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
+            'percentage'  => $this->getPercentageScroll(),
+            'popupConfig' => [
+                'width'       => $this->getWidthPopup(),
+                'height'      => $this->getHeightPopup(),
+                'cookieExp'   => $this->getCookieConfig(),
+                'delay'       => $this->getDelayConfig(),
+                'showOnDelay' => $this->isShowOnDelay(),
+            ]
         ];
 
         return HelperData::jsonEncode($params);
+    }
+
+    public function test(){
+        $this->subscriber->subscribe('nknk@gmail.com');
     }
 
 }

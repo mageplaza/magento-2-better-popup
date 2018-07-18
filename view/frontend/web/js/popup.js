@@ -20,6 +20,7 @@
 
 define([
     'jquery',
+    'bioEp',
     'jquery/ui'
 ], function ($) {
     'use strict';
@@ -30,6 +31,7 @@ define([
         },
 
         _create: function () {
+            bioEp.init(this.options.dataPopup.popupConfig);
             this._clickTrigger();
             this._clickClose();
             this._clickSuccess();
@@ -74,18 +76,28 @@ define([
         _clickSuccess: function () {
             var self = this,
                 bioContent = $('#bio_ep_content');
-            $('.better-popup-btn-submit').click(function () {
 
-                $.ajax({
-                    url: self.options.dataPopup.url,
-                    dataType: 'json',
-                    cache: false,
-                    success: function (result) {
-                        bioContent.empty;
-                        bioContent.html(result.success);
-                        bioContent.trigger('contentUpdated');
+            $('.better-popup-btn-submit').click(function () {
+                var userEmail = $(".better-popup-input-email").val();
+
+                if (self.validateMailAddress(userEmail)) {
+                    $.ajax({
+                        url: self.options.dataPopup.url,
+                        dataType: 'json',
+                        cache: false,
+                        success: function (result) {
+                            bioContent.empty;
+                            bioContent.html(result.success);
+                            bioContent.trigger('contentUpdated');
+                        }
+                    });
+                } else {
+                    if(userEmail) {
+                        $("#status").text("Please enter a valid email address (Ex: johndoe@domain.com).");
+                    } else {
+                        $("#status").text("This is a required field.");
                     }
-                });
+                }
             });
         },
 
@@ -110,6 +122,18 @@ define([
                 }
             });
         },
+
+        /**
+         * Check format email
+         *
+         * @param userEmail
+         * @returns {boolean}
+         */
+        validateMailAddress: function(userEmail) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            return re.test(userEmail);
+        }
     });
 
     return $.mageplaza.betterpopup_block;

@@ -20,17 +20,15 @@
  */
 ?>
 
+<?php //$block->test(); ?>
+
 <?php if($block->checkPagesToShow()): ?>
     <?php
         $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
     ?>
 
-    <script type="text/javascript">
-        bioEp.init(<?php echo $block->BioEpConfig(); ?>);
-    </script>
-
     <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
-        <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>">
+        <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>; display:none">
             <div class="mageplaza-betterpopup-content">
                 <div id="bio_ep_close">X</div>
                 <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
@@ -40,7 +38,8 @@
                         <span>HOLD ON!</span>
                         <span>Get <b>10%</b> off immediately</span>
                         <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
-                        <button href="#" type="submit" class="better-popup-btn-submit primary"><?php echo __('Send me my coupon'); ?></button>
+                        <div id="status"></div>
+                        <button type="submit" class="better-popup-btn-submit primary"><?php echo __('Send me my coupon'); ?></button>
                     <?php endif; ?>
                 </div>
             </div>

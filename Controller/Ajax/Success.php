@@ -68,7 +68,7 @@ class Success extends Action
         $result = $this->resultJsonFactory->create();
         $resultLayout = $this->resultLayoutFactory->create();
         $blockHtml = $resultLayout->getLayout()->createBlock('Mageplaza\BetterPopup\Block\Success')
-            ->setTemplate('Mageplaza_BetterPopup::success.phtml')->toHtml();
+            ->setTemplate('Mageplaza_BetterPopup::popup/success.phtml')->toHtml();
         $result->setData(['success' => $blockHtml]);
 
         return $result;

@@ -20,6 +20,7 @@
 
 var config = {
     paths: {
-        mpPopup: 'Mageplaza_BetterPopup/js/popup'
+        mpPopup: 'Mageplaza_BetterPopup/js/popup',
+        bioEp: 'Mageplaza_BetterPopup/js/lib/bioep.min'
     }
 };
