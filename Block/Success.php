@@ -36,4 +36,9 @@ class Success extends Popup
     {
         return $this->_helperData->getWhatToShowConfig('popup_success/coupon_code');
     }
+
+    public function getPopupSuccessContent()
+    {
+        return $this->_helperData->getWhatToShowConfig('popup_success/html_success_content');
+    }
 }

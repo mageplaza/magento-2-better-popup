@@ -33,10 +33,14 @@
             <div class="mageplaza-betterpopup-content">
                 <div id="bio_ep_close">X</div>
                 <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
-                    <span>HOLD ON!</span>
-                    <span>Get <b>10%</b> off immediately</span>
-                    <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
-                    <button href="#" type="submit" class="better-popup-btn-submit primary"><?php echo __('Send me my coupon'); ?></button>
+                    <?php if($block->getPopupContent()): ?>
+                        <?php echo $block->getPopupContent(); ?>
+                    <?php else: ?>
+                        <span>HOLD ON!</span>
+                        <span>Get <b>10%</b> off immediately</span>
+                        <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
+                        <button href="#" type="submit" class="better-popup-btn-submit primary"><?php echo __('Send me my coupon'); ?></button>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

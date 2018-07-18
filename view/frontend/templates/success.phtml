@@ -20,11 +20,27 @@
  */
 ?>
 
-<p class="success-title">Thank you, you got the offer!</p>
-<div class="mp-popup-coupon-code">
-    <input type="text" id="mp-coupon-code" readonly="readonly" value="<?php echo $block->getCouponCode(); ?>" />
-    <button href="#" type="submit" class="btn-copy primary"><?php echo __('Copy'); ?></button>
-</div>
-<small><?php echo __('Please use this coupon code when checking out'); ?></small>
+<?php if($block->getPopupSuccessContent()): ?>
+    <?php echo $block->getPopupSuccessContent(); ?>
+<?php else: ?>
+    <p class="success-title">Thank you, you got the offer!</p>
+    <div class="mp-popup-coupon-code">
+        <input id="mp-coupon-code" type="text" readonly="readonly" value="<?php echo $block->getCouponCode(); ?>" />
+        <button class="btn-copy primary" type="submit"><?php echo __('Copy'); ?></button>
+    </div>
+    <small><?php echo __('Please use this coupon code when checking out'); ?></small>
 
-
+    <script>
+        require([
+            'jquery',
+        ], function ($) {
+            $('.btn-copy').click(function () {
+                var copyText = $('#mp-coupon-code');
+                copyText.select();
+                document.execCommand("copy");
+                $('.btn-copy').text('Copied');
+                copyText.blur();
+            })
+        });
+    </script>
+<?php endif; ?>

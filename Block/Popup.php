@@ -191,6 +191,16 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
+     * Get Popup content html config
+     *
+     * @return array|mixed
+     */
+    public function getPopupContent()
+    {
+        return $this->_helperData->getWhatToShowConfig('html_content');
+    }
+
+    /**
      * Check include pages are show Popup
      *
      * @return bool
@@ -348,7 +358,7 @@ class Popup extends AbstractProduct implements BlockInterface
         $params = [
             'url' => $this->getUrl('betterpopup/ajax/success'),
             'isScroll' => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
-            'percentage' => $this->getPercentageScroll()
+            'percentage' => $this->getPercentageScroll(),
         ];
 
         return HelperData::jsonEncode($params);

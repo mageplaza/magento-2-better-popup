@@ -38,6 +38,10 @@ define([
             // }
         },
 
+        /**
+         * Event click float button to show popup
+         * @private
+         */
         _clickTrigger: function () {
             $('#mp-better-popup-click-trigger').click(function () {
                 var bgEl = $('#bio_ep_bg');
@@ -51,13 +55,22 @@ define([
             });
         },
 
+        /**
+         * Event click close popup button
+         * @private
+         */
         _clickClose: function () {
             $('#bio_ep_close').click(function () {
                 $('#bio_ep').hide();
                 $('#bio_ep_bg').hide();
+                $('.btn-copy').text('Copy');
             })
         },
 
+        /**
+         * Event click success button
+         * @private
+         */
         _clickSuccess: function () {
             var self = this,
                 bioContent = $('#bio_ep_content');
@@ -76,6 +89,10 @@ define([
             });
         },
 
+        /**
+         * Scroll to show popup
+         * @private
+         */
         _scrollToShow: function () {
             var self = this;
 

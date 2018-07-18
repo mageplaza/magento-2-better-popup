@@ -73,7 +73,7 @@
                         <label>Show congratulation fireworks</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
-                    <field id="popup_success_content" sortOrder="90" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="html_success_content" sortOrder="90" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Content</label>
                         <comment>HTML content</comment>
                     </field>
