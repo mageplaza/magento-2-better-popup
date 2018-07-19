@@ -61,4 +61,34 @@ class Data extends AbstractHelper
 		return $this->getModuleConfig('when_to_show/' . $code, $storeId);
 	}
 
+    /**
+     * @param $code
+     * @param null $storeId
+     * @return mixed
+     */
+    public function getSendEmailConfig($code, $storeId = null)
+    {
+        return $this->getModuleConfig('send_email/' . $code, $storeId);
+    }
+
+    /**
+     * Is Send Email Config
+     *
+     * @return mixed
+     */
+	public function isSendEmail()
+    {
+        return $this->getSendEmailConfig('isSendEmail');
+    }
+
+    /**
+     * Get Email is received email
+     *
+     * @return mixed
+     */
+    public function getEmailTo()
+    {
+        return $this->getSendEmailConfig('to');
+    }
+
 }
