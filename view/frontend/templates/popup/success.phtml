@@ -23,13 +23,14 @@
 <?php if($block->getPopupSuccessContent()): ?>
     <?php echo $block->getPopupSuccessContent(); ?>
 <?php else: ?>
+<div id="popup-success-content">
     <p class="success-title">Thank you, you got the offer!</p>
     <div class="mp-popup-coupon-code">
         <input id="mp-coupon-code" type="text" readonly="readonly" value="<?php echo $block->getCouponCode(); ?>" />
         <button class="btn-copy primary" type="submit"><?php echo __('Copy'); ?></button>
     </div>
     <small><?php echo __('Please use this coupon code when checking out'); ?></small>
-
+</div>
     <script>
         require([
             'jquery',

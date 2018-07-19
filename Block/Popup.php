@@ -349,6 +349,7 @@ class Popup extends AbstractProduct implements BlockInterface
             'url'         => $this->getUrl('betterpopup/ajax/success'),
             'isScroll'    => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
             'percentage'  => $this->getPercentageScroll(),
+//            'success'     => $this->getHtmlPopupSuccess(),
             'popupConfig' => [
                 'width'       => $this->getWidthPopup(),
                 'height'      => $this->getHeightPopup(),
@@ -361,8 +362,14 @@ class Popup extends AbstractProduct implements BlockInterface
         return HelperData::jsonEncode($params);
     }
 
-    public function test(){
-        $this->subscriber->subscribe('nknk@gmail.com');
+    /**
+     * Get Url NewAction Newsletter
+     *
+     * @return string
+     */
+    public function getFormActionUrl()
+    {
+        return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
     }
 
 }

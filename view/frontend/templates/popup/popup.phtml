@@ -20,8 +20,6 @@
  */
 ?>
 
-<?php //$block->test(); ?>
-
 <?php if($block->checkPagesToShow()): ?>
     <?php
         $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
@@ -35,18 +33,35 @@
                     <?php if($block->getPopupContent()): ?>
                         <?php echo $block->getPopupContent(); ?>
                     <?php else: ?>
-                        <span>HOLD ON!</span>
+                        <span class="lable-hold-on"><?php echo __('HOLD ON!'); ?></span>
                         <span>Get <b>10%</b> off immediately</span>
-                        <input type="email" placeholder="Enter your Email" class="better-popup-input-email"/>
+                        <form class="form subscribe"
+                              novalidate
+                              action="<?php $block->escapeUrl($block->getFormActionUrl()) ?>"
+                              method="post"
+                              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                              id="mp-newsletter-validate-detail">
+                            <div class="field newsletter">
+                                <div class="control">
+                                    <input name="email" type="email" id="mp-newsletter" class="better-popup-input-email"
+                                           placeholder="<?= $block->escapeHtmlAttr(__('Enter your email address')) ?>"
+                                           data-validate="{required:true, 'validate-email':true}"/>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="action subscribe primary better-popup-btn-submit" title="<?php $block->escapeHtmlAttr(__('Send me my coupon')) ?>" type="submit">
+                                    <span class="success-lable"><?php $block->escapeHtml(__('Send me my coupon')) ?></span>
+                                </button>
+                            </div>
+                        </form>
                         <div id="status"></div>
-                        <button type="submit" class="better-popup-btn-submit primary"><?php echo __('Send me my coupon'); ?></button>
                     <?php endif; ?>
                 </div>
             </div>
         </div>
         <?php if($block->isShowFloatButton()): ?>
             <div id="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
-                <button class="click-trigger primary"><?php echo __('Show Popup') ?></button>
+                <button class="click-trigger primary"><?php echo __('Show Popup'); ?></button>
             </div>
         <?php endif; ?>
     </div>
