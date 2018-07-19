@@ -32,6 +32,7 @@ define([
 
         _create: function () {
             bioEp.init(this.options.dataPopup.popupConfig);
+            this._fullScreen();
             this._clickTrigger();
             this._clickClose();
             this._clickSuccess();
@@ -45,10 +46,13 @@ define([
          * @private
          */
         _clickTrigger: function () {
+            var self = this;
+
             $('#mp-better-popup-click-trigger').click(function () {
                 var bgEl = $('#bio_ep_bg');
                 if (!bgEl.length) {
                     $('body').append("<div id='bio_ep_bg'></div>");
+                    self._fullScreen();
                 }
 
                 $('#bio_ep').show();
@@ -126,6 +130,12 @@ define([
                 }
             });
         },
+
+        _fullScreen: function () {
+            if (this.options.dataPopup.fullScreen.isFullScreen) {
+                $('#bio_ep_bg').css({'background-color': this.options.dataPopup.fullScreen.bgColor , 'opacity': 1});
+            }
+        }
 
     });
 

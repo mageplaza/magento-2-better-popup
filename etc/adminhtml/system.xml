@@ -162,6 +162,13 @@
                     </depends>
                 </field>
             </group>
+            <group id="send_email" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Send Email</label>
+                <field id="send_email_to" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email To</label>
+                    <comment>Sends email subscriber number for store owner (after 7 days)</comment>
+                </field>
+            </group>
         </section>
     </system>
 </config>

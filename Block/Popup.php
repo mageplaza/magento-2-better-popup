@@ -338,6 +338,16 @@ class Popup extends AbstractProduct implements BlockInterface
         return false;
     }
 
+    public function getCss() {
+        $css = '';
+
+        if ($this->isFullScreen()) {
+            $css = " #bio_ep_bg { background-color:".  $this->getBackGroundColor() . ";opacity: 1; }";
+        }
+
+        return $css;
+    }
+
     /**
      * Get Ajax Data
      *
@@ -349,7 +359,10 @@ class Popup extends AbstractProduct implements BlockInterface
             'url'         => $this->getUrl('betterpopup/ajax/success'),
             'isScroll'    => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
             'percentage'  => $this->getPercentageScroll(),
-//            'success'     => $this->getHtmlPopupSuccess(),
+            'fullScreen'   => [
+                'isFullScreen' => $this->isFullScreen(),
+                'bgColor'      => $this->getBackGroundColor()
+            ],
             'popupConfig' => [
                 'width'       => $this->getWidthPopup(),
                 'height'      => $this->getHeightPopup(),

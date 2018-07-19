@@ -25,58 +25,49 @@
         $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
     ?>
 
-    <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
-        <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>; display:none">
-            <div class="mageplaza-betterpopup-content">
-                <div id="bio_ep_close">X</div>
-                <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
-                    <?php if($block->getPopupContent()): ?>
-                        <?php echo $block->getPopupContent(); ?>
-                    <?php else: ?>
-                        <span class="lable-hold-on"><?php echo __('HOLD ON!'); ?></span>
-                        <span>Get <b>10%</b> off immediately</span>
-                        <form class="form subscribe"
-                              novalidate
-                              action="<?php $block->escapeUrl($block->getFormActionUrl()) ?>"
-                              method="post"
-                              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
-                              id="mp-newsletter-validate-detail">
-                            <div class="field newsletter">
-                                <div class="control">
-                                    <input name="email" type="email" id="mp-newsletter" class="better-popup-input-email"
-                                           placeholder="<?= $block->escapeHtmlAttr(__('Enter your email address')) ?>"
-                                           data-validate="{required:true, 'validate-email':true}"/>
-                                </div>
+<div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
+    <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>; display:none">
+        <div class="mageplaza-betterpopup-content">
+            <div id="bio_ep_close">X</div>
+            <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
+                <?php if($block->getPopupContent()): ?>
+                    <?php echo $block->getPopupContent(); ?>
+                <?php else: ?>
+                    <span class="lable-hold-on"><?php echo __('HOLD ON!'); ?></span>
+                    <span>Get <b>10%</b> off immediately</span>
+                    <form class="form subscribe"
+                          novalidate
+                          action="<?php echo $block->getFormActionUrl() ?>"
+                          method="post"
+                          data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                          id="mp-newsletter-validate-detail">
+                        <div class="field newsletter">
+                            <div class="control">
+                                <input name="email" type="email" id="mp-newsletter" class="better-popup-input-email"
+                                       placeholder="<?php echo __('Enter your email address'); ?>"
+                                       data-validate="{required:true, 'validate-email':true}"/>
                             </div>
-                            <div class="actions">
-                                <button class="action subscribe primary better-popup-btn-submit" title="<?php $block->escapeHtmlAttr(__('Send me my coupon')) ?>" type="submit">
-                                    <span class="success-lable"><?php $block->escapeHtml(__('Send me my coupon')) ?></span>
-                                </button>
-                            </div>
-                        </form>
-                        <div id="status"></div>
-                    <?php endif; ?>
-                </div>
+                        </div>
+                        <div class="actions">
+                            <button class="action subscribe primary better-popup-btn-submit" title="<?php echo __('Send me my coupon') ?>" type="submit">
+                                <span class="success-lable"><?php echo __('Send me my coupon'); ?></span>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="status"></div>
+                <?php endif; ?>
             </div>
         </div>
-        <?php if($block->isShowFloatButton()): ?>
-            <div id="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
-                <button class="click-trigger primary"><?php echo __('Show Popup'); ?></button>
-            </div>
-        <?php endif; ?>
+        <div id="mp-powered">
+            <span class="lable-powered">Powered by Mageplaza</span>
+        </div>
     </div>
-
-    <?php if($block->isFullScreen()): ?>
-        <style>
-            #bio_ep_bg {
-                background-color: <?php echo $this->getBackGroundColor(); ?>;
-                opacity: 1;
-            }
-            #bio_ep {
-                box-shadow: none;
-            }
-        </style>
-    <?php endif; ?>
+    <?php if($block->isShowFloatButton()): ?>
+        <div id="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
+            <button class="click-trigger primary"><?php echo __('Show Popup'); ?></button>
+        </div>
+        <?php endif; ?>
+</div>
 <?php endif; ?>
 
 
