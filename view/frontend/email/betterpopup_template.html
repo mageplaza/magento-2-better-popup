@@ -20,4 +20,32 @@
  */
 -->
 
-<h1>TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT</h1>
+<!--@styles
+    ul {
+        width:500px;
+        margin-bottom:20px;
+        overflow:hidden;
+    }
+
+    li {
+        float:left;
+        display:inline;
+    }
+
+    .double li  { width:50.0%; }
+    .triple li  { width:33.3%; }
+    .quad li    { width:25.0%; }
+    .six li     { width:16.6%; }
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Better Popup results for - %store_name" store_name=$store.getFrontendName()}}</p>
+<p>{{trans "subscriber = %mp_subscriber" mp_subscriber=$mp_subscriber}}</p>
+<p>{{trans "unSubscriber = %mp_unSubscriber" mp_unSubscriber=$mp_unSubscriber}}</p>
+
+{{layout handle="popup_email_list" area="frontend"}}
+
+
+
+{{template config_path="design/email/footer_template"}}

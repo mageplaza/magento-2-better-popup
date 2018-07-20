@@ -51,6 +51,10 @@ class SendMail extends \Magento\Framework\App\Action\Action
      */
     protected $_escaper;
 
+    protected $_helperData;
+
+    protected $template;
+
     /**
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
@@ -60,13 +64,18 @@ class SendMail extends \Magento\Framework\App\Action\Action
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
+        \Mageplaza\BetterPopup\Helper\Data $helperData,
+        \Mageplaza\BetterPopup\Block\Email\Template $template,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Escaper $escaper
-    ) {
+    )
+    {
         parent::__construct($context);
+        $this->_helperData = $helperData;
+        $this->template = $template;
         $this->_transportBuilder = $transportBuilder;
         $this->inlineTranslation = $inlineTranslation;
         $this->scopeConfig = $scopeConfig;
@@ -82,30 +91,21 @@ class SendMail extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-//        $post = $this->getRequest()->getPostValue();
-//        if (!$post) {
-//            $this->_redirect('*/*/');
-//            return;
-//        }
-
         $this->inlineTranslation->suspend();
+        $subscriber = $this->template->getSubscriberCollection()->getSize();
+        $unSubscriber = $this->template->getunSubscriberCollection()->getSize();
+        $listSubscriber = $this->template->getListEmailSubscriber();
+
 
         try {
-//            $postObject = new \Magento\Framework\DataObject();
-//            $postObject->setData($post);
             $error = false;
-
-//            $sender = [
-//                'name' => $this->_escaper->escapeHtml($post['name']),
-//                'email' => $this->_escaper->escapeHtml($post['email']),
-//            ];
-
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
             $vars = [
-              'nk' => 'test'
+                'mp_subscriber' => $subscriber,
+                'mp_unSubscriber' => $unSubscriber,
             ];
             $transport = $this->_transportBuilder
-                ->setTemplateIdentifier('mageplaza_betterpopup_template') // this code we have mentioned in the email_templates.xml
+                ->setTemplateIdentifier('mageplaza_betterpopup_template')// this code we have mentioned in the email_templates.xml
                 ->setTemplateOptions(
                     [
                         'area' => \Magento\Framework\App\Area::AREA_FRONTEND, // this is using frontend area to get the template file
@@ -126,7 +126,7 @@ class SendMail extends \Magento\Framework\App\Action\Action
             }
         } catch (\Exception $e) {
             $this->inlineTranslation->resume();
-            $this->messageManager->addError(__('We can\'t process your request right now. Sorry, that\'s all we know.'.$e->getMessage())
+            $this->messageManager->addError(__('We can\'t process your request right now. Sorry, that\'s all we know.' . $e->getMessage())
             );
             $this->_redirect('*/*/');
             return;

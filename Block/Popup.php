@@ -28,6 +28,7 @@ use Mageplaza\BetterPopup\Helper\Data as HelperData;
 use Mageplaza\BetterPopup\Model\Config\Source\Appear;
 use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
 use Mageplaza\BetterPopup\Model\Config\Source\PageToShow;
+use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 
 /**
  * Class Popup
@@ -40,23 +41,27 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     protected $_helperData;
 
-    protected $subscriber;
+    /**
+     * @var \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory
+     */
+    protected $_subscriberCollectionFactory;
 
     /**
      * Popup constructor.
-     * @param \Mageplaza\BetterPopup\Helper\Data $helperData
-     * @param \Magento\Catalog\Block\Product\Context $context
+     * @param Context $context
+     * @param HelperData $helperData
+     * @param CollectionFactory $subscriberCollectionFactory
      * @param array $data
      */
     public function __construct(
         Context $context,
         HelperData $helperData,
-        \Magento\Newsletter\Model\Subscriber $subscriber,
+        CollectionFactory $subscriberCollectionFactory,
         array $data = []
     )
     {
         $this->_helperData = $helperData;
-        $this->subscriber = $subscriber;
+        $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
 
         parent::__construct($context, $data);
     }
@@ -338,11 +343,12 @@ class Popup extends AbstractProduct implements BlockInterface
         return false;
     }
 
-    public function getCss() {
+    public function getCss()
+    {
         $css = '';
 
         if ($this->isFullScreen()) {
-            $css = " #bio_ep_bg { background-color:".  $this->getBackGroundColor() . ";opacity: 1; }";
+            $css = " #bio_ep_bg { background-color:" . $this->getBackGroundColor() . ";opacity: 1; }";
         }
 
         return $css;
@@ -356,18 +362,18 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getAjaxData()
     {
         $params = [
-            'url'         => $this->getUrl('betterpopup/ajax/success'),
-            'isScroll'    => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
-            'percentage'  => $this->getPercentageScroll(),
-            'fullScreen'   => [
+            'url' => $this->getUrl('betterpopup/ajax/success'),
+            'isScroll' => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
+            'percentage' => $this->getPercentageScroll(),
+            'fullScreen' => [
                 'isFullScreen' => $this->isFullScreen(),
-                'bgColor'      => $this->getBackGroundColor()
+                'bgColor' => $this->getBackGroundColor()
             ],
             'popupConfig' => [
-                'width'       => $this->getWidthPopup(),
-                'height'      => $this->getHeightPopup(),
-                'cookieExp'   => $this->getCookieConfig(),
-                'delay'       => $this->getDelayConfig(),
+                'width' => $this->getWidthPopup(),
+                'height' => $this->getHeightPopup(),
+                'cookieExp' => $this->getCookieConfig(),
+                'delay' => $this->getDelayConfig(),
                 'showOnDelay' => $this->isShowOnDelay(),
             ]
         ];
@@ -383,6 +389,12 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getFormActionUrl()
     {
         return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
+    }
+
+    public function getStore(){
+        foreach ($this->_storeManager->getStores() as $store) {
+            \Zend_Debug::dump($store->getId());
+        }
     }
 
 }
