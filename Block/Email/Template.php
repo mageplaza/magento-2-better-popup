@@ -23,11 +23,12 @@ namespace Mageplaza\BetterPopup\Block\Email;
 
 use Magento\Catalog\Block\Product\AbstractProduct;
 use Magento\Widget\Block\BlockInterface;
+use Magento\Backend\Block\Template as AbstractTemplate;
 use Magento\Catalog\Block\Product\Context;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 
-class Template extends AbstractProduct implements BlockInterface
+class Template extends AbstractTemplate implements BlockInterface
 {
     /**
      * @var \Mageplaza\BetterPopup\Helper\Data
@@ -39,15 +40,32 @@ class Template extends AbstractProduct implements BlockInterface
      */
     protected $_subscriberCollectionFactory;
 
+    protected $date;
+
+    protected $_backendUrl;
+
+    protected $urlBuilder;
+
+    protected $backenHelper;
+
     public function __construct(
-        Context $context,
+        AbstractTemplate\Context $context,
         HelperData $helperData,
         CollectionFactory $subscriberCollectionFactory,
-        array $data = [])
+        \Magento\Framework\Stdlib\DateTime\DateTime $date,
+        \Magento\Backend\Model\UrlInterface $backendUrl,
+        \Magento\Framework\UrlInterface $urlBuilder,
+        \Magento\Backend\Helper\Data $backenHelper,
+        array $data = []
+    )
     {
         parent::__construct($context, $data);
         $this->_helperData = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
+        $this->date = $date;
+        $this->_backendUrl = $backendUrl;
+        $this->urlBuilder = $urlBuilder;
+        $this->backenHelper = $backenHelper;
     }
 
     /**
@@ -98,4 +116,19 @@ class Template extends AbstractProduct implements BlockInterface
 
         return $listEmail;
     }
+
+    public function getCurrentTime(){
+        $date = $this->date->gmtDate('Y-m-d');
+
+        return date('F d, Y', strtotime($date));
+    }
+
+    public function getFormActionUrl()
+    {
+        $url = $this->_backendUrl->getUrl('newsletter/subscriber/index');
+
+        return $url;
+
+    }
+
 }

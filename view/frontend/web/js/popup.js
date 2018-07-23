@@ -20,9 +20,10 @@
 
 define([
     'jquery',
+    'Mageplaza_BetterPopup/js/lib/fireworks',
     'bioEp',
     'jquery/ui'
-], function ($) {
+], function ($, firework) {
     'use strict';
 
     $.widget('mageplaza.betterpopup_block', {
@@ -36,9 +37,21 @@ define([
             this._clickTrigger();
             this._clickClose();
             this._clickSuccess();
-            // if (this.options.dataPopup.isScroll) {
-            //     this._scrollToShow();
-            // }
+            if (this.options.dataPopup.isScroll) {
+                this._scrollToShow();
+            }
+
+            $('#mp-test-mail').click(function (){
+                $.ajax({
+                    url: 'http://localhost.com/ce223/betterpopup/send/sendmail',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (result) {
+                        alert('Ok');
+                    }
+                });
+            })
+
         },
 
         /**
@@ -70,6 +83,7 @@ define([
                 $('#bio_ep').hide();
                 $('#bio_ep_bg').hide();
                 $('.btn-copy').text('Copy');
+                $('canvas#screen').hide();
             })
         },
 
@@ -79,13 +93,14 @@ define([
          */
         _clickSuccess: function () {
             var self = this,
-                bioContent = $('#bio_ep_content');
-            var form = $('#mp-newsletter-validate-detail');
+                bioContent = $('#bio_ep_content'),
+                form = $('#mp-newsletter-validate-detail');
             form.submit(function (e) {
                 if (form.validation('isValid')) {
                     var email = $("#mp-newsletter").val();
                     var url = form.attr('action');
 
+                    $('.popup-loader').show();
                     e.preventDefault();
                     $.ajax({
                         url: url,
@@ -101,6 +116,10 @@ define([
                                     bioContent.empty;
                                     bioContent.html(result.success);
                                     bioContent.trigger('contentUpdated');
+                                    if(self.options.dataPopup.isShowFireworks) {
+                                        $('canvas#screen').show();
+                                        firework(this);
+                                    }
                                 }
                             });
                         },

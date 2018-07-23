@@ -36,6 +36,7 @@ use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
  */
 class Popup extends AbstractProduct implements BlockInterface
 {
+    const LIMIT_TIME = 10000000;
     /**
      * @var \Mageplaza\BetterPopup\Helper\Data
      */
@@ -120,6 +121,20 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
+     * Check show fireworks config
+     *
+     * @return bool
+     */
+    public function isShowFireworks()
+    {
+        if ($this->_helperData->getWhatToShowConfig('popup_success/enabled_fireworks')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Is Enable Show Float Button
      *
      * @return array|mixed
@@ -158,6 +173,8 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         if ($this->getPopupAppear() == Appear::AFTER_X_SECONDS) {
             return $this->_helperData->getWhenToShowConfig('delay');
+        } else if ($this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN) {
+            return self::LIMIT_TIME;
         }
 
         return 0;
@@ -343,17 +360,6 @@ class Popup extends AbstractProduct implements BlockInterface
         return false;
     }
 
-    public function getCss()
-    {
-        $css = '';
-
-        if ($this->isFullScreen()) {
-            $css = " #bio_ep_bg { background-color:" . $this->getBackGroundColor() . ";opacity: 1; }";
-        }
-
-        return $css;
-    }
-
     /**
      * Get Ajax Data
      *
@@ -369,6 +375,7 @@ class Popup extends AbstractProduct implements BlockInterface
                 'isFullScreen' => $this->isFullScreen(),
                 'bgColor' => $this->getBackGroundColor()
             ],
+            'isShowFireworks' => $this->isShowFireworks(),
             'popupConfig' => [
                 'width' => $this->getWidthPopup(),
                 'height' => $this->getHeightPopup(),
@@ -389,12 +396,6 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getFormActionUrl()
     {
         return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
-    }
-
-    public function getStore(){
-        foreach ($this->_storeManager->getStores() as $store) {
-            \Zend_Debug::dump($store->getId());
-        }
     }
 
 }

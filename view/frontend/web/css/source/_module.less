@@ -29,7 +29,7 @@
 }
 
 .click-trigger {
-  background-color : #31B0D5;
+  background-color: #31B0D5;
   color: white;
   padding: 10px 25px;
   border-top-right-radius: 5px;
@@ -38,15 +38,27 @@
 }
 
 .click-trigger:hover {
-  background-color : #31B0D5;
+  background-color: #31B0D5;
   color: white;
   border: 1px solid #31B0D5;
+}
+
+div#bio_ep_close {
+  position: absolute;
+  right: 8px;
+  top: 0px;
+  z-index: 99;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #bio_ep {
   text-align: center;
   box-shadow: none !important;
 }
+
 #bio_ep_content {
   position: relative;
   top: -5%;
@@ -71,7 +83,7 @@ input.better-popup-input-email::placeholder {
 }
 
 .better-popup-btn-submit {
-  width:70%;
+  width: 70%;
   margin: 10px 0 0 0;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -136,10 +148,33 @@ span.lable-hold-on {
 }
 
 #mp-powered {
-  margin: 5px;
+  margin: 10px;
 }
 
 span.lable-powered {
   color: #fff;
-  font-size: 13px;
+  font-size: 11px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+canvas {
+  position: absolute;
+  z-index: 999;
+  opacity: 0.5;
+  display: none;
+  top: 0px;
+  left: 0px;
+}
+
+.popup-loader {
+  display: none;
+  position: absolute;
+  width: 100%;
+  padding-top: 15px;
+}
+
+img.loader {
+  width: 3%;
 }

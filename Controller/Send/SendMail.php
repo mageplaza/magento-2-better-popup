@@ -21,6 +21,8 @@
 
 namespace Mageplaza\BetterPopup\Controller\Send;
 
+use Psr\Log\LoggerInterface;
+
 class SendMail extends \Magento\Framework\App\Action\Action
 {
     /**
@@ -56,6 +58,11 @@ class SendMail extends \Magento\Framework\App\Action\Action
     protected $template;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
      * @param \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation
@@ -70,10 +77,12 @@ class SendMail extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Escaper $escaper
+        \Magento\Framework\Escaper $escaper,
+        LoggerInterface $logger
     )
     {
         parent::__construct($context);
+
         $this->_helperData = $helperData;
         $this->template = $template;
         $this->_transportBuilder = $transportBuilder;
@@ -81,6 +90,7 @@ class SendMail extends \Magento\Framework\App\Action\Action
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->_escaper = $escaper;
+        $this->logger = $logger;
     }
 
     /**
@@ -91,45 +101,34 @@ class SendMail extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-        $this->inlineTranslation->suspend();
         $subscriber = $this->template->getSubscriberCollection()->getSize();
         $unSubscriber = $this->template->getunSubscriberCollection()->getSize();
-        $listSubscriber = $this->template->getListEmailSubscriber();
+        $currentTime = $this->template->getCurrentTime();
+        $toEmail = $this->_helperData->getToEmail();
 
+        $vars = [
+            'mp_subscriber' => $subscriber,
+            'mp_unSubscriber' => $unSubscriber,
+            'currentTime' => $currentTime
+        ];
+        $transport = $this->_transportBuilder
+            ->setTemplateIdentifier('mageplaza_betterpopup_template')
+            ->setTemplateOptions(
+                [
+                    'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
+                    'store' => $this->storeManager->getStore()->getId()
+                ]
+            )
+            ->setFrom('general')
+            ->addTo($toEmail)
+            ->setTemplateVars($vars)
+            ->getTransport();
 
         try {
-            $error = false;
-            $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-            $vars = [
-                'mp_subscriber' => $subscriber,
-                'mp_unSubscriber' => $unSubscriber,
-            ];
-            $transport = $this->_transportBuilder
-                ->setTemplateIdentifier('mageplaza_betterpopup_template')// this code we have mentioned in the email_templates.xml
-                ->setTemplateOptions(
-                    [
-                        'area' => \Magento\Framework\App\Area::AREA_FRONTEND, // this is using frontend area to get the template file
-                        'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
-                    ]
-                )
-                ->setFrom('general')
-                ->addTo('ninhkx@mageplaza.com')
-                ->setTemplateVars($vars)
-                ->getTransport();
-
-            try {
-                $transport->sendMessage();
-                $success = true;
-            } catch (\Exception $e) {
-                $success = false;
-                $this->logger->error($e->getMessage());
-            }
+            $transport->sendMessage();
         } catch (\Exception $e) {
-            $this->inlineTranslation->resume();
-            $this->messageManager->addError(__('We can\'t process your request right now. Sorry, that\'s all we know.' . $e->getMessage())
-            );
-            $this->_redirect('*/*/');
-            return;
+            $this->logger->error($e->getMessage());
         }
+
     }
 }

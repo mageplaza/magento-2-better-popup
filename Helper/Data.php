@@ -86,7 +86,7 @@ class Data extends AbstractHelper
      *
      * @return mixed
      */
-    public function getEmailTo()
+    public function getToEmail()
     {
         return $this->getSendEmailConfig('to');
     }

@@ -20,25 +20,26 @@
  */
 ?>
 
-<p>List of new subscribers</p>
+<?php
+$listEmailSubscribers = array_reverse($block->getListEmailSubscriber());
+$i = 0;
+?>
 
-    <ul class="triple">
-        <?php foreach ($block->getListEmailSubscriber() as $item): ?>
-            <li><?php echo $item ?></li>
+<?php echo $block->getFormActionUrl(); ?>
+
+<div class="list-email-subscriber">
+    <span>List of new subscribers</span>
+
+    <ul class="list-email">
+        <?php foreach ($listEmailSubscribers as $item): ?>
+            <?php if($i<8): ?>
+                <li class="items"><a href="<?php echo $item ?>"><?php echo $item ?></a></li>
+                <?php $i++; ?>
+            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
+</div>
 
 
-<ul class="triple">
-    <li>ninhkx@mageplaza.01</li>
-    <li>ninhkx@mageplaza.02</li>
-    <li>ninhkx@mageplaza.03</li>
-    <li>ninhkx@mageplaza.04</li>
-    <li>ninhkx@mageplaza.05</li>
-    <li>ninhkx@mageplaza.06</li>
-    <li>ninhkx@mageplaza.07</li>
-    <li>ninhkx@mageplaza.08</li>
-    <li>ninhkx@mageplaza.09</li>
-    <li>ninhkx@mageplaza.10</li>
-</ul>
+
 

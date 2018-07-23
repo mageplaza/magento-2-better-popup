@@ -25,10 +25,13 @@
         $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
     ?>
 
+<canvas id="screen"></canvas>
 <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
     <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>; display:none">
         <div class="mageplaza-betterpopup-content">
-            <div id="bio_ep_close">X</div>
+            <div id="bio_ep_close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
             <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
                 <?php if($block->getPopupContent()): ?>
                     <?php echo $block->getPopupContent(); ?>
@@ -52,6 +55,9 @@
                             <button class="action subscribe primary better-popup-btn-submit" title="<?php echo __('Send me my coupon') ?>" type="submit">
                                 <span class="success-lable"><?php echo __('Send me my coupon'); ?></span>
                             </button>
+                            <div class="popup-loader">
+                                <img class="loader" src="<?php echo $block->getViewFileUrl('images/loader-1.gif'); ?>" alt="Loading...">
+                            </div>
                         </div>
                     </form>
                     <div id="status"></div>
@@ -61,13 +67,12 @@
         <div id="mp-powered">
             <span class="lable-powered">Powered by Mageplaza</span>
         </div>
-        <button id="mp-test-mail" type="submit">SEND MAIL</button>
+<!--        <button id="mp-test-mail" type="submit">SEND MAIL</button>-->
     </div>
     <?php if($block->isShowFloatButton()): ?>
         <div id="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
             <button class="click-trigger primary"><?php echo __('Show Popup'); ?></button>
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
 </div>
 <?php endif; ?>
-
