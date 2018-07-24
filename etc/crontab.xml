@@ -23,7 +23,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
         <job name="mageplaza_betterpopup_cron" instance="Mageplaza\BetterPopup\Cron\SendMail" method="execute">
-            <schedule>* * * * *</schedule>
+            <schedule>00 * * * 6</schedule>
         </job>
     </group>
 </config>

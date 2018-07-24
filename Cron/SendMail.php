@@ -22,10 +22,8 @@
 namespace Mageplaza\BetterPopup\Cron;
 
 use Mageplaza\BetterPopup\Helper\Data;
-use Mageplaza\BetterPopup\Block\Email\Template;
-use Magento\Framework\Mail\Template\TransportBuilder;
+use Mageplaza\BetterPopup\Controller\Adminhtml\Send\Send;
 use Magento\Store\Model\StoreManagerInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class SendMail
@@ -44,41 +42,25 @@ class SendMail
     protected $_helperData;
 
     /**
-     * @var \Mageplaza\BetterPopup\Block\Email\Template
+     * @var \Mageplaza\BetterPopup\Controller\Adminhtml\Send\Send
      */
-    protected $_template;
-
-    /**
-     * @var \Magento\Framework\Mail\Template\TransportBuilder
-     */
-    protected $_transportBuilder;
-
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    protected $logger;
+    protected $_send;
 
     /**
      * SendMail constructor.
      * @param Data $helperData
-     * @param Template $template
-     * @param TransportBuilder $transportBuilder
+     * @param Send $send
      * @param StoreManagerInterface $storeManager
-     * @param LoggerInterface $logger
      */
     public function __construct(
         Data $helperData,
-        Template $template,
-        TransportBuilder $transportBuilder,
-        StoreManagerInterface $storeManager,
-        LoggerInterface $logger
+        Send $send,
+        StoreManagerInterface $storeManager
     )
     {
         $this->_helperData = $helperData;
-        $this->_template = $template;
-        $this->_transportBuilder = $transportBuilder;
+        $this->_send = $send;
         $this->_storeManager = $storeManager;
-        $this->logger = $logger;
     }
 
     /**
@@ -88,45 +70,8 @@ class SendMail
     {
         foreach ($this->_storeManager->getStores() as $store) {
             if ($this->_helperData->isEnabled($store->getId()) && $this->_helperData->isSendEmail($store->getId())) {
-                $this->sendMail($store->getId());
+                $this->_send->sendMail($store->getId());
             }
-        }
-    }
-
-    /**
-     * Send Email
-     *
-     * @param $storeId
-     */
-    public function sendMail($storeId)
-    {
-        $subscriber = $this->_template->getSubscriberCollection()->getSize();
-        $unSubscriber = $this->_template->getunSubscriberCollection()->getSize();
-        $currentTime = $this->_template->getCurrentTime();
-        $toEmail = $this->_helperData->getToEmail();
-
-        $vars = [
-            'mp_subscriber' => $subscriber,
-            'mp_unSubscriber' => $unSubscriber,
-            'currentTime' => $currentTime
-        ];
-        $transport = $this->_transportBuilder
-            ->setTemplateIdentifier('mageplaza_betterpopup_template')
-            ->setTemplateOptions(
-                [
-                    'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                    'store' => $storeId
-                ]
-            )
-            ->setFrom('general')
-            ->addTo($toEmail)
-            ->setTemplateVars($vars)
-            ->getTransport();
-
-        try {
-            $transport->sendMessage();
-        } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
         }
     }
 }

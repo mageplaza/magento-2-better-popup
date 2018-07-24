@@ -125,10 +125,9 @@ class Template extends AbstractTemplate implements BlockInterface
 
     public function getFormActionUrl()
     {
-        $url = $this->_backendUrl->getUrl('newsletter/subscriber/index');
+        $url = $this->getUrl('newsletter/subscriber/index');
 
         return $url;
-
     }
 
 }

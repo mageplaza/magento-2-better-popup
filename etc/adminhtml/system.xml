@@ -171,7 +171,16 @@
                 </field>
                 <field id="to" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Send Email To</label>
-                    <comment>Sends email subscriber number for store owner (after 7 days)</comment>
+                    <comment>Automatically send email notifications to store owners every Saturday</comment>
+                    <depends>
+                        <field id="isSendEmail">1</field>
+                    </depends>
+                </field>
+                <field id="sent" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label></label>
+                    <button_label>Send Now</button_label>
+                    <button_url>adminhtml/send/send</button_url>
+                    <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\Config\Button</frontend_model>
                     <depends>
                         <field id="isSendEmail">1</field>
                     </depends>
