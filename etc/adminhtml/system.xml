@@ -36,8 +36,13 @@
             </group>
             <group id="what_to_show" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>What to Show</label>
-                <field id="html_content" sortOrder="10" type="textarea" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
+                <field id="template" translate="label comment button_label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Template</label>
+                    <button_label>Load Html</button_label>
+                    <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\Config\Template</frontend_model>
+                    <comment>Select a template, then click to Load Html.</comment>
+                </field>
+                <field id="html_content" sortOrder="10" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Content</label>
                     <comment>HTML content</comment>
                 </field>
@@ -69,16 +74,16 @@
                 </field>
                 <group id="popup_success" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Popup Success</label>
-                    <field id="enabled_fireworks" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Show congratulation fireworks</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <field id="coupon_code" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Coupon Code</label>
                     </field>
                     <field id="html_success_content" sortOrder="90" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Content</label>
                         <comment>HTML content</comment>
                     </field>
-                    <field id="coupon_code" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Coupon Code</label>
+                    <field id="enabled_fireworks" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show congratulation fireworks</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
             </group>
@@ -167,7 +172,9 @@
                 <field id="isSendEmail" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Send Email</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Select Yes to enable send email</comment>
+                    <comment>
+                        <![CDATA[Select Yes to enable send email. Install <a href="https://www.mageplaza.com/magento-2-smtp/" target="_blank">Mageplaza_Smtp</a> to avoid send to spam-box.]]>
+                    </comment>
                 </field>
                 <field id="to" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Send Email To</label>

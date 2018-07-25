@@ -37,8 +37,17 @@ class Success extends Popup
         return $this->_helperData->getWhatToShowConfig('popup_success/coupon_code');
     }
 
+    /**
+     * Get Html Popup success
+     *
+     * @return mixed
+     */
     public function getPopupSuccessContent()
     {
-        return $this->_helperData->getWhatToShowConfig('popup_success/html_success_content');
+        $htmlConfig = $this->_helperData->getWhatToShowConfig('popup_success/html_success_content');
+        $html = str_replace('{{coupon_code}}', $this->getCouponCode(), $htmlConfig);
+
+        return $html;
     }
+
 }

@@ -217,13 +217,20 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
-     * Get Popup content html config
+     * Get Html Content popup
      *
-     * @return array|mixed
+     * @return mixed
      */
     public function getPopupContent()
     {
-        return $this->_helperData->getWhatToShowConfig('html_content');
+        $htmlConfig = $this->_helperData->getWhatToShowConfig('html_content');
+
+        $search = ['{{form_url}}', '{{url_loader}}'];
+        $replace = [$this->getFormActionUrl(), $this->getViewFileUrl('images/loader-1.gif')];
+
+        $html = str_replace($search, $replace, $htmlConfig);
+
+        return $html;
     }
 
     /**

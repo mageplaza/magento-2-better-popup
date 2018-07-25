@@ -1,4 +1,3 @@
-<?php
 /**
  * Mageplaza
  *
@@ -18,23 +17,9 @@
  * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
-?>
 
-<div id="popup-success-content">
-    <?php echo $block->getPopupSuccessContent(); ?>
-</div>
-
-<script>
-    require([
-        'jquery',
-    ], function ($) {
-        $('.btn-copy').click(function () {
-            var copyText = $('#mp-coupon-code');
-            copyText.select();
-            document.execCommand("copy");
-            $('.btn-copy').text('Copied');
-            copyText.blur();
-        })
-    });
-</script>
-
+var config = {
+    paths: {
+        'mageplaza/templates': 'Mageplaza_BetterPopup/js/templates',
+    }
+};

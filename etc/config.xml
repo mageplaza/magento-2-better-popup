@@ -27,6 +27,35 @@
                 <enabled>1</enabled>
             </general>
             <what_to_show>
+                <template>1</template>
+                <html_content>
+                    <![CDATA[
+                        <span class="lable-hold-on">HOLD ON!</span>
+                        <span>Get <b>10%</b> off immediately</span>
+                        <form class="form subscribe"
+                              novalidate
+                              action="{{form_url}}"
+                              method="post"
+                              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                              id="mp-newsletter-validate-detail">
+                            <div class="field newsletter">
+                                <div class="control">
+                                    <input name="email" type="email" id="mp-newsletter" class="better-popup-input-email"
+                                           placeholder="Enter your email address"
+                                           data-validate="{required:true, 'validate-email':true}"/>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="action subscribe primary better-popup-btn-submit" title="Send me my coupon" type="submit">
+                                    <span class="success-lable">Send me my coupon</span>
+                                </button>
+                                <div class="popup-loader">
+                                    <img class="loader" src="{{url_loader}}" alt="Loading...">
+                                </div>
+                            </div>
+                        </form>
+                    ]]>
+                </html_content>
                 <responsive>1</responsive>
                 <width>400</width>
                 <height>300</height>
@@ -34,6 +63,16 @@
                 <text_color>#FFFFFF</text_color>
                 <popup_success>
                     <enabled_fireworks>0</enabled_fireworks>
+                    <html_success_content>
+                        <![CDATA[
+                            <p class="success-title">Thank you, you got the offer!</p>
+                            <div class="mp-popup-coupon-code">
+                                <input id="mp-coupon-code" type="text" readonly="readonly" value="{{coupon_code}}" />
+                                <button class="btn-copy primary" type="submit">Copy</button>
+                            </div>
+                            <small>Please use this coupon code when checking out</small>
+                        ]]>
+                    </html_success_content>
                     <coupon_code>HappyBeeketing</coupon_code>
                 </popup_success>
             </what_to_show>
