@@ -23,6 +23,7 @@ namespace Mageplaza\BetterPopup\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
+use Mageplaza\BetterPopup\Helper\Data as HelperData;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 
@@ -43,14 +44,21 @@ class Subscriber extends Template implements BlockInterface
     protected $_getDayDate;
 
     /**
+     * @var \Mageplaza\BetterPopup\Helper\Data
+     */
+    protected $_helperData;
+
+    /**
      * Subscriber constructor.
      * @param Template\Context $context
+     * @param HelperData $helperData
      * @param CollectionFactory $subscriberCollectionFactory
      * @param DateTime $getDayDate
      * @param array $data
      */
     public function __construct(
         Template\Context $context,
+        HelperData $helperData,
         CollectionFactory $subscriberCollectionFactory,
         DateTime $getDayDate,
         array $data = []
@@ -58,19 +66,21 @@ class Subscriber extends Template implements BlockInterface
     {
         parent::__construct($context, $data);
 
+        $this->_helperData = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
         $this->_getDayDate = $getDayDate;
     }
 
     /**
-     * Get Subscribers Collection in the week
-     *
+     * @param $from
+     * @param $to
      * @return \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection
      */
-    public function getSubscriberCollection($from, $to)
+    public function getSubscriberCollection($from, $to, $storeId)
     {
         $subscribersCollection = $this->_subscriberCollectionFactory->create()->useOnlySubscribed()
-            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to));
+            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to))
+            ->addStoreFilter($storeId);
 
         return $subscribersCollection;
     }
@@ -85,7 +95,7 @@ class Subscriber extends Template implements BlockInterface
         $form = $this->_getDayDate->date(null, '0:0:0');
         $to = $this->_getDayDate->date(null, '23:59:59');
 
-        $collection = $this->getSubscriberCollection($form, $to);
+        $collection = $this->getSubscriberCollection($form, $to, $this->_helperData->getStoreId());
 
         return $collection;
     }
@@ -95,12 +105,12 @@ class Subscriber extends Template implements BlockInterface
      *
      * @return \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection
      */
-    public function getSubscriberInWeek()
+    public function getSubscriberInWeek($storeId)
     {
         $to = date("Y-m-d h:i:s");
         $from = strtotime('-7 day', strtotime($to));
         $from = date('Y-m-d h:i:s', $from);
-        $collection = $this->getSubscriberCollection($from, $to);
+        $collection = $this->getSubscriberCollection($from, $to, $storeId);
 
         return $collection;
     }
@@ -115,7 +125,7 @@ class Subscriber extends Template implements BlockInterface
         $to = date("Y-m-d h:i:s");
         $from = strtotime('-30 day', strtotime($to));
         $from = date('Y-m-d h:i:s', $from);
-        $collection = $this->getSubscriberCollection($from, $to);
+        $collection = $this->getSubscriberCollection($from, $to, $this->_helperData->getStoreId());
 
         return $collection;
     }
@@ -125,14 +135,15 @@ class Subscriber extends Template implements BlockInterface
      *
      * @return \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection
      */
-    public function getUnSubscriberCollection()
+    public function getUnSubscriberCollection($storeId)
     {
         $to = date("Y-m-d h:i:s");
         $from = strtotime('-7 day', strtotime($to));
         $from = date('Y-m-d h:i:s', $from);
         $unSubscribersCollection = $this->_subscriberCollectionFactory->create()
             ->addFieldToFilter('subscriber_status', \Magento\Newsletter\Model\Subscriber::STATUS_UNSUBSCRIBED)
-            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to));
+            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to))
+            ->addStoreFilter($storeId);
 
         return $unSubscribersCollection;
     }

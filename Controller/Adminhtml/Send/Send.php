@@ -89,12 +89,13 @@ class Send extends Action
     public function execute()
     {
         $result['status'] = false;
-        $storeId = $this->_storeManager->getStore()->getStoreId();
         $toEmail = $this->_helperData->getToEmail();
 
         if($toEmail) {
             try {
-                $this->sendMail($storeId);
+                foreach($this->_storeManager->getStores() as $store){
+                    $this->sendMail($store);
+                }
 
                 $result['status'] = true;
                 $result['content'] = __('Sent successfully! Please check your email box.');
@@ -115,26 +116,28 @@ class Send extends Action
      *
      * @param $storeId
      */
-    public function sendMail($storeId)
+    public function sendMail($store)
     {
         $toEmail = $this->_helperData->getToEmail();
 
         if ($toEmail) {
-            $subscriber = $this->_template->getSubscriberInWeek()->getSize();
-            $unSubscriber = $this->_template->getunSubscriberCollection()->getSize();
+            $subscriber = $this->_template->getSubscriberInWeek($store->getId())->getSize();
+            $unSubscriber = $this->_template->getunSubscriberCollection($store->getId())->getSize();
             $currentTime = $this->_template->getCurrentTime();
+            $store_name = $store->getName();
 
             $vars = [
                 'mp_subscriber' => $subscriber,
                 'mp_unSubscriber' => $unSubscriber,
-                'currentTime' => $currentTime
+                'currentTime' => $currentTime,
+                'store_name' => $store_name
             ];
             $transport = $this->_transportBuilder
                 ->setTemplateIdentifier('mageplaza_betterpopup_template')
                 ->setTemplateOptions(
                     [
                         'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                        'store' => $storeId
+                        'store' => $store->getId()
                     ]
                 )
                 ->setFrom('general')

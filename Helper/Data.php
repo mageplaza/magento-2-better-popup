@@ -113,9 +113,9 @@ class Data extends AbstractHelper
      *
      * @return mixed
      */
-	public function isSendEmail()
+	public function isSendEmail($storeId = null)
     {
-        return $this->getSendEmailConfig('isSendEmail');
+        return $this->getSendEmailConfig('isSendEmail', $storeId);
     }
 
     /**
@@ -182,6 +182,16 @@ class Data extends AbstractHelper
     public function getDefaultTemplateHtml($templateId)
     {
         return $this->readFile($this->getTemplatePath($templateId));
+    }
+
+    /**
+     * Get Store Id
+     *
+     * @return int
+     */
+    public function getStoreId()
+    {
+        return $this->storeManager->getStore()->getId();
     }
 
 }

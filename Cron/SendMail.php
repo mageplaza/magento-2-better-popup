@@ -70,7 +70,7 @@ class SendMail
     {
         foreach ($this->_storeManager->getStores() as $store) {
             if ($this->_helperData->isEnabled($store->getId()) && $this->_helperData->isSendEmail($store->getId())) {
-                $this->_send->sendMail($store->getId());
+                $this->_send->sendMail($store);
             }
         }
     }

@@ -25,9 +25,9 @@ $listEmailSubscribers = array_reverse($block->getListEmailSubscriberWeek());
 $i = 0;
 ?>
 
+<?php if($listEmailSubscribers): ?>
 <div class="list-email-subscriber">
     <span>List of new subscribers</span>
-
     <ul class="list-email">
         <?php foreach ($listEmailSubscribers as $item): ?>
             <?php if($i<8): ?>
@@ -37,7 +37,9 @@ $i = 0;
         <?php endforeach; ?>
     </ul>
 </div>
-
+<?php else: ?>
+    <span>No one registers for a week</span>
+<?php endif;?>
 
 
 
