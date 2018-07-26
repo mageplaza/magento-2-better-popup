@@ -178,7 +178,12 @@
                 </field>
                 <field id="to" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Send Email To</label>
-                    <comment>Automatically send email notifications to store owners every Saturday</comment>
+                    <comment>
+                        <![CDATA[
+                        Please enter email, click then save config.<br>
+                        Automatically send email notifications to store owners every Saturday
+                        ]]>
+                    </comment>
                     <depends>
                         <field id="isSendEmail">1</field>
                     </depends>

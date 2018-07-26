@@ -21,95 +21,23 @@
 
 namespace Mageplaza\BetterPopup\Block\Email;
 
-use Magento\Catalog\Block\Product\AbstractProduct;
-use Magento\Widget\Block\BlockInterface;
-use Magento\Backend\Block\Template as AbstractTemplate;
-use Magento\Catalog\Block\Product\Context;
-use Mageplaza\BetterPopup\Helper\Data as HelperData;
-use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
+use Mageplaza\BetterPopup\Block\Subscriber;
 
-class Template extends AbstractTemplate implements BlockInterface
+/**
+ * Class Template
+ * @package Mageplaza\BetterPopup\Block\Email
+ */
+class Template extends Subscriber
 {
-    /**
-     * @var \Mageplaza\BetterPopup\Helper\Data
-     */
-    protected $_helperData;
-
-    /**
-     * @var \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory
-     */
-    protected $_subscriberCollectionFactory;
-
-    protected $date;
-
-    protected $_backendUrl;
-
-    protected $urlBuilder;
-
-    protected $backenHelper;
-
-    public function __construct(
-        AbstractTemplate\Context $context,
-        HelperData $helperData,
-        CollectionFactory $subscriberCollectionFactory,
-        \Magento\Framework\Stdlib\DateTime\DateTime $date,
-        \Magento\Backend\Model\UrlInterface $backendUrl,
-        \Magento\Framework\UrlInterface $urlBuilder,
-        \Magento\Backend\Helper\Data $backenHelper,
-        array $data = []
-    )
-    {
-        parent::__construct($context, $data);
-        $this->_helperData = $helperData;
-        $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
-        $this->date = $date;
-        $this->_backendUrl = $backendUrl;
-        $this->urlBuilder = $urlBuilder;
-        $this->backenHelper = $backenHelper;
-    }
-
-    /**
-     * Get Subscribers Collection in the week
-     *
-     * @return \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection
-     */
-    public function getSubscriberCollection()
-    {
-        $to = date("Y-m-d h:i:s");
-        $from = strtotime('-7 day', strtotime($to));
-        $from = date('Y-m-d h:i:s', $from);
-        $subscribersCollection = $this->_subscriberCollectionFactory->create()->useOnlySubscribed()
-            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to));
-
-        return $subscribersCollection;
-    }
-
-    /**
-     * Get Unsubscribers Collection in the week
-     *
-     * @return \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection
-     */
-    public function getUnSubscriberCollection()
-    {
-        $to = date("Y-m-d h:i:s");
-        $from = strtotime('-7 day', strtotime($to));
-        $from = date('Y-m-d h:i:s', $from);
-        $unSubscribersCollection = $this->_subscriberCollectionFactory->create()
-            ->addFieldToFilter('subscriber_status', \Magento\Newsletter\Model\Subscriber::STATUS_UNSUBSCRIBED)
-            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to));
-
-        return $unSubscribersCollection;
-    }
-
     /**
      * Get list email subscribers in the week
      *
      * @return array
      */
-    public function getListEmailSubscriber()
+    public function getListEmailSubscriberWeek()
     {
         $listEmail = [];
-        $subscribersCollection = $this->getSubscriberCollection();
+        $subscribersCollection = $this->getSubscriberInWeek();
         foreach ($subscribersCollection as $item) {
             $listEmail[] = $item->getData('subscriber_email');
         }
@@ -117,12 +45,21 @@ class Template extends AbstractTemplate implements BlockInterface
         return $listEmail;
     }
 
-    public function getCurrentTime(){
-        $date = $this->date->gmtDate('Y-m-d');
+    /**
+     * Get Format Current time (title email)
+     *
+     * @return false|string
+     */
+    public function getCurrentTime()
+    {
+        $date = $this->_getDayDate->gmtDate('Y-m-d');
 
         return date('F d, Y', strtotime($date));
     }
 
+    /**
+     * @return string
+     */
     public function getFormActionUrl()
     {
         $url = $this->getUrl('newsletter/subscriber/index');

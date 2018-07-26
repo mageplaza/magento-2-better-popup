@@ -120,7 +120,7 @@ class Send extends Action
         $toEmail = $this->_helperData->getToEmail();
 
         if ($toEmail) {
-            $subscriber = $this->_template->getSubscriberCollection()->getSize();
+            $subscriber = $this->_template->getSubscriberInWeek()->getSize();
             $unSubscriber = $this->_template->getunSubscriberCollection()->getSize();
             $currentTime = $this->_template->getCurrentTime();
 

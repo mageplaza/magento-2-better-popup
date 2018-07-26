@@ -18,26 +18,22 @@
  * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
-?>
 
-<?php
-$listEmailSubscribers = array_reverse($block->getListEmailSubscriberWeek());
-$i = 0;
-?>
+namespace Mageplaza\BetterPopup\Block\Dashboard;
 
-<div class="list-email-subscriber">
-    <span>List of new subscribers</span>
+use Magento\Backend\Block\Template;
+use Mageplaza\BetterPopup\Block\Subscriber;
 
-    <ul class="list-email">
-        <?php foreach ($listEmailSubscribers as $item): ?>
-            <?php if($i<8): ?>
-                <li class="items"><a href="<?php echo $item ?>"><?php echo $item ?></a></li>
-                <?php $i++; ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </ul>
-</div>
+class Newsletter extends Subscriber
+{
+    protected $_template = 'dashboard/newsletter.phtml';
 
+    /**
+     * @return \Magento\Framework\Phrase|string
+     */
+    public function getTitle()
+    {
+        return __('Newsletter');
+    }
 
-
-
+}
