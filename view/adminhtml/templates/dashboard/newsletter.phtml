@@ -20,8 +20,9 @@
  */
 ?>
 <?php
+    $storeId = $this->helper('Mageplaza\BetterPopup\Helper\Data')->getStoreId();
     $subscriberToday = $block->getSubscriberToday() ? $block->getSubscriberToday()->getSize() : 0;
-    $subscriberWeek = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek()->getSize() : 0;
+    $subscriberWeek = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek($storeId)->getSize() : 0;
     $subscriberMonth = $block->getSubscriberInMonth() ? $block->getSubscriberInMonth()->getSize() : 0;
 ?>
 

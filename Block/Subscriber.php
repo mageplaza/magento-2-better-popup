@@ -105,7 +105,7 @@ class Subscriber extends Template implements BlockInterface
      *
      * @return \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection
      */
-    public function getSubscriberInWeek($storeId)
+    public function getSubscriberInWeek($storeId = null)
     {
         $to = date("Y-m-d h:i:s");
         $from = strtotime('-7 day', strtotime($to));
