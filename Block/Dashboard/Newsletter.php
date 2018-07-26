@@ -21,7 +21,6 @@
 
 namespace Mageplaza\BetterPopup\Block\Dashboard;
 
-use Magento\Backend\Block\Template;
 use Mageplaza\BetterPopup\Block\Subscriber;
 
 class Newsletter extends Subscriber

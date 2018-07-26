@@ -36,7 +36,6 @@ use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
  */
 class Popup extends AbstractProduct implements BlockInterface
 {
-    const LIMIT_TIME = 10000000;
     /**
      * @var \Mageplaza\BetterPopup\Helper\Data
      */
@@ -173,8 +172,6 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         if ($this->getPopupAppear() == Appear::AFTER_X_SECONDS) {
             return $this->_helperData->getWhenToShowConfig('delay');
-        } else if ($this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN) {
-            return self::LIMIT_TIME;
         }
 
         return 0;

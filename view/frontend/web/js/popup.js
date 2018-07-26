@@ -32,26 +32,16 @@ define([
         },
 
         _create: function () {
-            bioEp.init(this.options.dataPopup.popupConfig);
+            if (this.options.dataPopup.isScroll) {
+                this._scrollToShow();
+            } else {
+                bioEp.init(this.options.dataPopup.popupConfig);
+            }
+
             this._fullScreen();
             this._clickTrigger();
             this._clickClose();
             this._clickSuccess();
-            if (this.options.dataPopup.isScroll) {
-                this._scrollToShow();
-            }
-
-            $('#mp-test-mail').click(function (){
-                $.ajax({
-                    url: 'http://localhost.com/ce223/betterpopup/send/sendmail',
-                    dataType: 'json',
-                    cache: false,
-                    success: function (result) {
-                        alert('Ok');
-                    }
-                });
-            })
-
         },
 
         /**
@@ -143,8 +133,7 @@ define([
                     optionScroll = self.options.dataPopup.percentage / 100;
 
                 if (scrollPercent > optionScroll) {
-                    $('#bio_ep').show();
-                    $('#bio_ep_bg').show();
+                    bioEp.init(self.options.dataPopup.popupConfig);
                     $(window).off('scroll');
                 }
             });
