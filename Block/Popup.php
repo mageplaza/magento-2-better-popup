@@ -46,6 +46,8 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     protected $_subscriberCollectionFactory;
 
+    protected $_assetRepo;
+
     /**
      * Popup constructor.
      * @param Context $context
@@ -57,11 +59,13 @@ class Popup extends AbstractProduct implements BlockInterface
         Context $context,
         HelperData $helperData,
         CollectionFactory $subscriberCollectionFactory,
+        \Magento\Framework\View\Asset\Repository $assetRepo,
         array $data = []
     )
     {
         $this->_helperData = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
+        $this->_assetRepo = $assetRepo;
 
         parent::__construct($context, $data);
     }
@@ -222,8 +226,15 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         $htmlConfig = $this->_helperData->getWhatToShowConfig('html_content');
 
-        $search = ['{{form_url}}', '{{url_loader}}'];
-        $replace = [$this->getFormActionUrl(), $this->getViewFileUrl('images/loader-1.gif')];
+        $search = [
+            '{{form_url}}',
+            '{{url_loader}}',
+            '{{email_icon_url}}'];
+        $replace = [
+            $this->getFormActionUrl(),
+            $this->getViewFileUrl('images/loader-1.gif'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/mail-icon.png')
+        ];
 
         $html = str_replace($search, $replace, $htmlConfig);
 
@@ -400,6 +411,10 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getFormActionUrl()
     {
         return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
+    }
+
+    public function abc() {
+        return $this->_assetRepo->getUrl("Mageplaza_BetterPopup::web/css/mail.png");
     }
 
 }

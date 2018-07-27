@@ -38,9 +38,9 @@
                 <label>What to Show</label>
                 <field id="template" translate="label comment button_label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Template</label>
-                    <button_label>Load Html</button_label>
+                    <button_label>Load HTML</button_label>
                     <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\Config\Template</frontend_model>
-                    <comment>Select a template, then click to Load Html.</comment>
+                    <comment>Select a template, then click to Load HTML.</comment>
                 </field>
                 <field id="html_content" sortOrder="10" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Content</label>
@@ -90,7 +90,7 @@
             <group id="where_to_show" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Where to Show</label>
                 <field id="which_page_to_show" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Which page to show</label>
+                    <label>Page(s) to show</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\PageToShow</source_model>
                 </field>
                 <field id="include_pages" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -112,16 +112,16 @@
                     </depends>
                 </field>
                 <field id="exclude_pages" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Exclude pages</label>
+                    <label>Exclude page(s)</label>
                     <comment><![CDATA[
                             <span>Example: <b>cms_index_index</b> (for homepage)</span><br />
-                            <span>Separated by new line</span>
+                            <span>Separated by a new line</span>
                         ]]>
                     </comment>
                 </field>
                 <field id="exclude_pages_with_url" sortOrder="50" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Exclude Page with URL contains</label>
-                    <comment>Separated by new line</comment>
+                    <label>Exclude Page(s) with URL contains</label>
+                    <comment>Separated by a new line</comment>
                 </field>
                 <field id="manually_insert" translate="label" type="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Insert manually this snippet to your page</label>
@@ -134,7 +134,7 @@
             <group id="when_to_show" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>When to Show</label>
                 <field id="popup_appear" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>When the popup appear?</label>
+                    <label>When the popup appear</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\Appear</source_model>
                 </field>
                 <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -151,8 +151,8 @@
                     </depends>
                 </field>
                 <field id="cookieExp" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Popup will show again after</label>
-                    <comment>Days. Leave empty will hiding for 30 days</comment>
+                    <label>Popup will be shown again after</label>
+                    <comment>days. Leave empty to redisplay the popup after 30 days</comment>
                 </field>
                 <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Float Button</label>
@@ -160,7 +160,7 @@
                     <comment>Click trigger to open</comment>
                 </field>
                 <field id="float_button_direction" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Float button direction</label>
+                    <label>Float button position</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection</source_model>
                     <depends>
                         <field id="show_float_button">1</field>
@@ -173,14 +173,14 @@
                     <label>Enable Send Email</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>
-                        <![CDATA[Select Yes to enable send email. Install <a href="https://www.mageplaza.com/magento-2-smtp/" target="_blank">Mageplaza_Smtp</a> to avoid send to spam-box.]]>
+                        <![CDATA[Select Yes to enable Send email function. Install <a href="https://www.mageplaza.com/magento-2-smtp/" target="_blank">Mageplaza_SMTP</a> to avoid sending to spam box.]]>
                     </comment>
                 </field>
                 <field id="to" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Send Email To</label>
                     <comment>
                         <![CDATA[
-                        Please enter email, click then save config.<br>
+                        Please enter email address, then click Save config.<br>
                         Automatically send email notifications to store owners every Saturday
                         ]]>
                     </comment>

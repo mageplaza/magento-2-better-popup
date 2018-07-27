@@ -1,0 +1,24 @@
+<div class="popup-label">
+    <span>Subscriber to our email list</span>
+</div>
+<div class="text-content">
+    <img class="mail-icon" src="{{email_icon_url}}">
+    <span class="text-content">
+        Register now and we'll email you a weekly taste of guides and updates on your favourite topic.
+    </span>
+</div>
+<form class="form subscribe mp-newsletter-validate-detail-template1" novalidate action= "{{form_url}}" method="post"
+    data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+    id="mp-newsletter-validate-detail">
+    <span class="enter-label">Enter your email below to subscribe:</span>
+    <input name="email" type="email" id="mp-newsletter" class="mp-newsletter-template1"
+           placeholder="Enter your email address"
+           data-validate="{required:true, 'validate-email':true}"/>
+    <button class="actions subscribe primary btn-subscribe-template1" title="Subscribe!" type="submit">
+        Subscribe!
+    </button>
+    <div class="popup-loader loader-template1">
+        <img class="loader" src="{{url_loader}}" alt="Loading...">
+    </div>
+    <p class="spam-note">(We hate spam. You can unsubscribe anytime)</p>
+</form>

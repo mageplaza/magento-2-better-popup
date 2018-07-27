@@ -32,7 +32,8 @@ define([
 
         ids: {
             popupHtmlElm: '#betterpopup_what_to_show_html_content',
-            successHtmlElm: '#betterpopup_what_to_show_popup_success_html_success_content'
+            successHtmlElm: '#betterpopup_what_to_show_popup_success_html_success_content',
+            popupBackground: '#betterpopup_what_to_show_background_color'
         },
 
         _create: function () {
@@ -41,7 +42,7 @@ define([
 
             elem.click(function (e) {
                 confirm({
-                    content: $t('Are you sure to load Html?'),
+                    content: $t('Are you sure to load HTML?'),
                     actions: {
                         /** @inheritdoc */
                         confirm: function () {
@@ -62,6 +63,7 @@ define([
                 if (data) {
                     $(this.ids.popupHtmlElm).val(data.popupHtml);
                     $(this.ids.successHtmlElm).val(data.successHtml);
+                    $(this.ids.popupBackground).val(data.background);
                 }
             }
         }

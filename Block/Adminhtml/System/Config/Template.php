@@ -78,17 +78,19 @@ class Template extends Field
             [
                 'label' => __('Default Template'),
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('default/popup'),
-                'successHtml' => $this->_helperData->getDefaultTemplateHtml('default/success')
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+                'background' => '#3d9bc7'
             ],
             [
                 'label' => __('Template 1'),
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('template1/popup'),
-                'successHtml' => $this->_helperData->getDefaultTemplateHtml('template1/success')
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+                'background' => '#fede4c'
             ],
             [
                 'label' => __('Template 2'),
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('template2/popup'),
-                'successHtml' => $this->_helperData->getDefaultTemplateHtml('template2/success')
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success')
             ]
         ];
 
