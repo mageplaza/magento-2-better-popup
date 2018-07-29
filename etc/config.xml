@@ -31,8 +31,10 @@
                 <html_content>
                     <![CDATA[
                         <div id="mp-popup-default-template">
-                            <span class="mp-popup-title-df">HOLD ON!</span>
-                            <span class="mp-popup-text-content-df">Get <b>10%</b> off immediately</span>
+                            <span class="mp-popup-title-df">Subscribe To Our Newsletter</span>
+                            <div class="mp-popup-text-content-df">
+                                <span>Subscribe to our email newsletter today to receive updates on the latest news, tutorials and special offers!</span>
+                            </div>
                             <form class="form subscribe  mp-newsletter-validate-detail-df" novalidate action="{{form_url}}" method="post"
                                   data-mage-init='{"validation": {"errorClass": "mage-error"}}'
                                   id="mp-newsletter-validate-detail">
@@ -41,13 +43,13 @@
                                        data-validate="{required:true, 'validate-email':true}"/>
 
                                 <button class="action subscribe primary better-popup-btn-submit" title="Send me my coupon" type="submit">
-                                    <span class="success-lable">Send me my coupon</span>
+                                    <span class="success-lable">Subscribe Now</span>
                                 </button>
                                 <div class="popup-loader">
                                     <img class="loader" src="{{url_loader}}" alt="Loading...">
                                 </div>
                             </form>
-                            <p class="spam-note-df">(We hate spam. You can unsubscribe anytime)</p>
+                            <p class="spam-note-df">We respect your privacy. Your information is safe and will never be shared.</p>
                         </div>
                     ]]>
                 </html_content>
