@@ -54,7 +54,7 @@
                     <label>Width</label>
                     <comment>In pixel</comment>
                     <depends>
-                        <field id="betterpopup/what_to_show/responsive">1</field>
+                        <field id="responsive">1</field>
                     </depends>
                 </field>
                 <field id="height" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">

@@ -94,7 +94,6 @@ class Subscriber extends Template implements BlockInterface
     {
         $form = $this->_getDayDate->date(null, '0:0:0');
         $to = $this->_getDayDate->date(null, '23:59:59');
-
         $collection = $this->getSubscriberCollection($form, $to, $this->_helperData->getStoreId());
 
         return $collection;
@@ -107,8 +106,10 @@ class Subscriber extends Template implements BlockInterface
      */
     public function getSubscriberInWeek($storeId = null)
     {
-        $to = date("Y-m-d h:i:s");
-        $from = strtotime('-7 day', strtotime($to));
+        $now = date("Y-m-d h:i:s");
+        $to = strtotime('+1 day', strtotime($now));
+        $to = date('Y-m-d h:i:s', $to);
+        $from = strtotime('-7 day', strtotime($now));
         $from = date('Y-m-d h:i:s', $from);
         $collection = $this->getSubscriberCollection($from, $to, $storeId);
 
@@ -122,8 +123,10 @@ class Subscriber extends Template implements BlockInterface
      */
     public function getSubscriberInMonth()
     {
-        $to = date("Y-m-d h:i:s");
-        $from = strtotime('-30 day', strtotime($to));
+        $now = date("Y-m-d h:i:s");
+        $to = strtotime('+1 day', strtotime($now));
+        $to = date('Y-m-d h:i:s', $to);
+        $from = strtotime('-30 day', strtotime($now));
         $from = date('Y-m-d h:i:s', $from);
         $collection = $this->getSubscriberCollection($from, $to, $this->_helperData->getStoreId());
 

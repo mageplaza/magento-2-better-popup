@@ -46,8 +46,6 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     protected $_subscriberCollectionFactory;
 
-    protected $_assetRepo;
-
     /**
      * Popup constructor.
      * @param Context $context
@@ -59,13 +57,11 @@ class Popup extends AbstractProduct implements BlockInterface
         Context $context,
         HelperData $helperData,
         CollectionFactory $subscriberCollectionFactory,
-        \Magento\Framework\View\Asset\Repository $assetRepo,
         array $data = []
     )
     {
         $this->_helperData = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
-        $this->_assetRepo = $assetRepo;
 
         parent::__construct($context, $data);
     }
@@ -182,17 +178,17 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
-     * is Show on Delay
+     * is Exit Intent Config
      *
      * @return string
      */
-    public function isShowOnDelay()
+    public function isExitIntent()
     {
         if ($this->getPopupAppear() == Appear::EXIT_INTENT) {
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -390,13 +386,14 @@ class Popup extends AbstractProduct implements BlockInterface
                 'isFullScreen' => $this->isFullScreen(),
                 'bgColor' => $this->getBackGroundColor()
             ],
+            'isExitIntent' => $this->isExitIntent(),
             'isShowFireworks' => $this->isShowFireworks(),
             'popupConfig' => [
                 'width' => $this->getWidthPopup(),
                 'height' => $this->getHeightPopup(),
                 'cookieExp' => $this->getCookieConfig(),
                 'delay' => $this->getDelayConfig(),
-                'showOnDelay' => $this->isShowOnDelay(),
+                'showOnDelay' => true,
             ]
         ];
 
@@ -411,10 +408,6 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getFormActionUrl()
     {
         return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
-    }
-
-    public function abc() {
-        return $this->_assetRepo->getUrl("Mageplaza_BetterPopup::web/css/mail.png");
     }
 
 }

@@ -21,39 +21,17 @@
 ?>
 <?php if($block->isManuallyInsert()): ?>
     <?php
-    $floatLocation = ($block->getLocationFloatButton() == Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection::FLOAT_LEFT) ? 'left: 70px' : 'right:70px';
+    $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px';
     ?>
+    <canvas id="screen"></canvas>
     <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block" data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
         <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>; display:none">
             <div class="mageplaza-betterpopup-content">
-                <div id="bio_ep_close">X</div>
+                <div id="bio_ep_close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
                 <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
-                    <?php if($block->getPopupContent()): ?>
-                        <?php echo $block->getPopupContent(); ?>
-                    <?php else: ?>
-                        <span class="lable-hold-on"><?php echo __('HOLD ON!'); ?></span>
-                        <span>Get <b>10%</b> off immediately</span>
-                        <form class="form subscribe"
-                              novalidate
-                              action="<?php echo $block->getFormActionUrl() ?>"
-                              method="post"
-                              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
-                              id="mp-newsletter-validate-detail">
-                            <div class="field newsletter">
-                                <div class="control">
-                                    <input name="email" type="email" id="mp-newsletter" class="better-popup-input-email"
-                                           placeholder="<?php echo __('Enter your email address'); ?>"
-                                           data-validate="{required:true, 'validate-email':true}"/>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="action subscribe primary better-popup-btn-submit" title="<?php echo __('Send me my coupon') ?>" type="submit">
-                                    <span class="success-lable"><?php echo __('Send me my coupon'); ?></span>
-                                </button>
-                            </div>
-                        </form>
-                        <div id="status"></div>
-                    <?php endif; ?>
+                    <?php echo $block->getPopupContent(); ?>
                 </div>
             </div>
             <div id="mp-powered">

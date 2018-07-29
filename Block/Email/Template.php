@@ -57,14 +57,4 @@ class Template extends Subscriber
         return date('F d, Y', strtotime($date));
     }
 
-    /**
-     * @return string
-     */
-    public function getFormActionUrl()
-    {
-        $url = $this->getUrl('newsletter/subscriber/index');
-
-        return $url;
-    }
-
 }

@@ -32,10 +32,16 @@ define([
         },
 
         _create: function () {
+            var self = this;
+
             if (this.options.dataPopup.isScroll) {
                 this._scrollToShow();
+            } else if (this.options.dataPopup.isExitIntent) {
+                $(document).mouseleave(function () {
+                    bioEp.init(self.options.dataPopup.popupConfig);
+                });
             } else {
-                bioEp.init(this.options.dataPopup.popupConfig);
+                bioEp.init(self.options.dataPopup.popupConfig);
             }
 
             this._fullScreen();
@@ -61,6 +67,7 @@ define([
                 $('#bio_ep').show();
                 $('#bio_ep_bg').show();
                 $('#bio_ep_close').show();
+                $('#mp-newsletter-error').hide();
             });
         },
 
@@ -84,6 +91,7 @@ define([
         _clickSuccess: function () {
             var self = this,
                 bioContent = $('#bio_ep_content'),
+                template1 = $('.mp-newsletter-validate-detail-template1').length, // check: on template 1
                 form = $('#mp-newsletter-validate-detail');
             form.submit(function (e) {
                 if (form.validation('isValid')) {
@@ -106,14 +114,20 @@ define([
                                     bioContent.empty;
                                     bioContent.html(result.success);
                                     bioContent.trigger('contentUpdated');
-                                    if(self.options.dataPopup.isShowFireworks) {
+                                    if (self.options.dataPopup.isShowFireworks) {
                                         $('canvas#screen').show();
                                         firework(this);
+                                    }
+                                    if (template1) {
+                                        $('#bio_ep_content').css('color', '#3d3d3e');
+                                        $('#mp-coupon-code').css('color', '#3d3d3e');
                                     }
                                 }
                             });
                         },
                     });
+                } else if (template1 == 0) {
+                    $('#mp-newsletter-error').css('position', 'unset');
                 }
             });
         },
@@ -141,7 +155,7 @@ define([
 
         _fullScreen: function () {
             if (this.options.dataPopup.fullScreen.isFullScreen) {
-                $('#bio_ep_bg').css({'background-color': this.options.dataPopup.fullScreen.bgColor , 'opacity': 1});
+                $('#bio_ep_bg').css({'background-color': this.options.dataPopup.fullScreen.bgColor, 'opacity': 1});
             }
         }
 

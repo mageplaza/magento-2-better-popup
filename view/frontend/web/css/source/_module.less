@@ -161,7 +161,7 @@ span.lable-powered {
 
 canvas {
   position: fixed;
-  z-index: 999;
+  z-index: 10002;
   opacity: 0.5;
   display: none;
   top: 0px;
@@ -200,6 +200,10 @@ img.mail-icon {
   margin: -25px 50px 0px 50px;
 }
 
+.text-content {
+  margin-bottom: 80px;
+}
+
 span.text-content {
   color: #3d3d3e;
   margin-top: -35px !important;
@@ -215,13 +219,12 @@ form.mp-newsletter-validate-detail-template1 {
 
 .enter-label {
   float: left;
-  margin: 20px 0px 5px 40px;
+  margin: 20px 0px 5px 50px;
 }
 
 .mp-newsletter-template1 {
   width: 70% !important;
   height: 25px !important;
-  margin-bottom: 25px;
 }
 
 .btn-subscribe-template1 {
@@ -240,8 +243,14 @@ form.mp-newsletter-validate-detail-template1 {
 .spam-note {
   font-size: 1rem;
   margin-bottom: 3px;
+  padding-top: 25px;
 }
 
 .popup-loader.loader-template1 {
-  margin-top: -35px;
+  margin-top: -10px;
+}
+
+div#mp-newsletter-error {
+  position: absolute;
+  width: 100%;
 }
