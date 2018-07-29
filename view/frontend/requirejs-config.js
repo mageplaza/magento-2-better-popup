@@ -21,6 +21,7 @@
 var config = {
     paths: {
         mpPopup: 'Mageplaza_BetterPopup/js/popup',
-        bioEp: 'Mageplaza_BetterPopup/js/lib/bioep.min'
+        bioEp: 'Mageplaza_BetterPopup/js/lib/bioep.min',
+        fireworks: 'Mageplaza_BetterPopup/js/lib/fireworks.min'
     }
 };

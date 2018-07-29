@@ -80,7 +80,7 @@ class Template extends Field
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('default/popup'),
                 'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
                 'background' => '#3d9bc7',
-                'textColor' => '#FFFFF',
+                'textColor' => '#FFFFFF',
                 'width' => '650',
                 'height' => '350'
             ],
@@ -89,7 +89,7 @@ class Template extends Field
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('template1/popup'),
                 'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
                 'background' => '#fede4c',
-                'textColor' => '#FFFFF',
+                'textColor' => '#000000',
                 'width' => '650',
                 'height' => '350'
             ],

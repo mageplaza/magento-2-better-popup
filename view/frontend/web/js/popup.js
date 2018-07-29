@@ -20,7 +20,7 @@
 
 define([
     'jquery',
-    'Mageplaza_BetterPopup/js/lib/fireworks',
+    'fireworks',
     'bioEp',
     'jquery/ui'
 ], function ($, firework) {
@@ -68,6 +68,7 @@ define([
                 $('#bio_ep_bg').show();
                 $('#bio_ep_close').show();
                 $('#mp-newsletter-error').hide();
+                $('#mp-newsletter').css('border-color','#c2c2c2');
             });
         },
 
@@ -91,11 +92,12 @@ define([
         _clickSuccess: function () {
             var self = this,
                 bioContent = $('#bio_ep_content'),
-                template1 = $('.mp-newsletter-validate-detail-template1').length, // check: on template 1
-                template2 = $('#mp-popup-template2'), //check on template 2
+                defaultTemplate = $('#mp-popup-default-template').length, //check on default template
+                template1 = $('#mp-popup-template1').length, // check on template 1
+                template2 = $('#mp-popup-template2').length, // check on template 2
                 form = $('#mp-newsletter-validate-detail');
 
-            if (template2) {
+            if (template1 || template2) {
                 $('#bio_ep_close').css('color','#000');
             }
 
@@ -132,6 +134,11 @@ define([
                             });
                         },
                     });
+                } else if (defaultTemplate) {
+                    var mgsError = $('#mp-newsletter-error'),
+                        btnSubmit = $('.better-popup-btn-submit');
+
+                    btnSubmit.after(mgsError);
                 }
             });
         },
