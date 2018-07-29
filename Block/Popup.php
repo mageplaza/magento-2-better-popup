@@ -225,11 +225,14 @@ class Popup extends AbstractProduct implements BlockInterface
         $search = [
             '{{form_url}}',
             '{{url_loader}}',
-            '{{email_icon_url}}'];
+            '{{email_icon_url}}',
+            '{{bg_tmp2}}'
+        ];
         $replace = [
             $this->getFormActionUrl(),
             $this->getViewFileUrl('images/loader-1.gif'),
-            $this->getViewFileUrl('Mageplaza_BetterPopup::images/mail-icon.png')
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/mail-icon.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/bg-tmp2.png')
         ];
 
         $html = str_replace($search, $replace, $htmlConfig);

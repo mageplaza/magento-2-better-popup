@@ -34,6 +34,7 @@ define([
             popupHtmlElm: '#betterpopup_what_to_show_html_content',
             successHtmlElm: '#betterpopup_what_to_show_popup_success_html_success_content',
             popupBackground: '#betterpopup_what_to_show_background_color',
+            popupTextColor: '#betterpopup_what_to_show_text_color',
             popupWidth: '#betterpopup_what_to_show_width',
             popupHeight: '#betterpopup_what_to_show_height'
         },
@@ -66,8 +67,9 @@ define([
                     $(this.ids.popupHtmlElm).val(data.popupHtml);
                     $(this.ids.successHtmlElm).val(data.successHtml);
                     $(this.ids.popupBackground).val(data.background);
-                    $(this.ids.popupWidth).val(650);
-                    $(this.ids.popupHeight).val(350);
+                    $(this.ids.popupTextColor).val(data.textColor);
+                    $(this.ids.popupWidth).val(data.width);
+                    $(this.ids.popupHeight).val(data.height);
                 }
             }
         }

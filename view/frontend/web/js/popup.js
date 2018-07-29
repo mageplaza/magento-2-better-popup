@@ -92,7 +92,13 @@ define([
             var self = this,
                 bioContent = $('#bio_ep_content'),
                 template1 = $('.mp-newsletter-validate-detail-template1').length, // check: on template 1
+                template2 = $('#mp-popup-template2'), //check on template 2
                 form = $('#mp-newsletter-validate-detail');
+
+            if (template2) {
+                $('#bio_ep_close').css('color','#000');
+            }
+
             form.submit(function (e) {
                 if (form.validation('isValid')) {
                     var email = $("#mp-newsletter").val();
@@ -118,7 +124,7 @@ define([
                                         $('canvas#screen').show();
                                         firework(this);
                                     }
-                                    if (template1) {
+                                    if (template1 || template2) {
                                         $('#bio_ep_content').css('color', '#3d3d3e');
                                         $('#mp-coupon-code').css('color', '#3d3d3e');
                                     }
@@ -126,8 +132,6 @@ define([
                             });
                         },
                     });
-                } else if (template1 == 0) {
-                    $('#mp-newsletter-error').css('position', 'unset');
                 }
             });
         },

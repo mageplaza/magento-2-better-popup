@@ -79,18 +79,28 @@ class Template extends Field
                 'label' => __('Default Template'),
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('default/popup'),
                 'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
-                'background' => '#3d9bc7'
+                'background' => '#3d9bc7',
+                'textColor' => '#FFFFF',
+                'width' => '650',
+                'height' => '350'
             ],
             [
                 'label' => __('Template 1'),
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('template1/popup'),
                 'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
-                'background' => '#fede4c'
+                'background' => '#fede4c',
+                'textColor' => '#FFFFF',
+                'width' => '650',
+                'height' => '350'
             ],
             [
                 'label' => __('Template 2'),
                 'popupHtml' => $this->_helperData->getDefaultTemplateHtml('template2/popup'),
-                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success')
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+                'background' => '#fbf5ee',
+                'textColor' => '#43275d',
+                'width' => '650',
+                'height' => '500'
             ]
         ];
 
