@@ -57,7 +57,7 @@ define([
         _clickTrigger: function () {
             var self = this;
 
-            $('#mp-better-popup-click-trigger').click(function () {
+            $('.mp-better-popup-click-trigger').click(function () {
                 var bgEl = $('#bio_ep_bg');
                 if (!bgEl.length) {
                     $('body').append("<div id='bio_ep_bg'></div>");
