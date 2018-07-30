@@ -32,7 +32,7 @@ class Newsletter extends Subscriber
      */
     public function getTitle()
     {
-        return __('Newsletter');
+        return __('Subscribers');
     }
 
 }

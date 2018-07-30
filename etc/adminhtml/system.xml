@@ -94,10 +94,10 @@
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\PageToShow</source_model>
                 </field>
                 <field id="include_pages" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Include pages</label>
+                    <label>Include page(s)</label>
                     <comment><![CDATA[
                             <span>Example: <b>cms_index_index</b> (for homepage)</span><br />
-                            <span>Separated by new line</span>
+                            <span>Separated by a new line</span>
                         ]]>
                     </comment>
                     <depends>
@@ -105,14 +105,15 @@
                     </depends>
                 </field>
                 <field id="include_pages_with_url" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Include Page with URL contains</label>
-                    <comment>Separated by new line</comment>
+                    <label>Include Page(s) with URL contains</label>
+                    <comment>Separated by a new line</comment>
                     <depends>
                         <field id="which_page_to_show">1</field>
                     </depends>
                 </field>
                 <field id="exclude_pages" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Exclude page(s)</label>
+                    <backend_model>Mageplaza\BetterPopup\Model\Config\Backend\Validate</backend_model>
                     <comment><![CDATA[
                             <span>Example: <b>cms_index_index</b> (for homepage)</span><br />
                             <span>Separated by a new line</span>

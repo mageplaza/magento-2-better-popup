@@ -100,7 +100,7 @@ class Template extends Field
                 'background' => '#fbf5ee',
                 'textColor' => '#43275d',
                 'width' => '650',
-                'height' => '500'
+                'height' => '450'
             ]
         ];
 

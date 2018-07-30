@@ -67,6 +67,7 @@ define([
                 $('#bio_ep').show();
                 $('#bio_ep_bg').show();
                 $('#bio_ep_close').show();
+                bioEp.init(self.options.dataPopup.popupConfig);
                 $('#mp-newsletter-error').hide();
                 $('#mp-newsletter').css('border-color','#c2c2c2');
             });
