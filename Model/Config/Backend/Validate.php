@@ -21,6 +21,10 @@
 
 namespace Mageplaza\BetterPopup\Model\Config\Backend;
 
+/**
+ * Class Validate
+ * @package Mageplaza\BetterPopup\Model\Config\Backend
+ */
 class Validate extends \Magento\Config\Model\Config\Backend\Serialized
 {
     /**

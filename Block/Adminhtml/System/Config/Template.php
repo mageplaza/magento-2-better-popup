@@ -32,8 +32,14 @@ use Mageplaza\BetterPopup\Helper\Data;
  */
 class Template extends Field
 {
+	/**
+	 * Template
+	 */
     protected $_template = 'Mageplaza_BetterPopup::system/config/template.phtml';
 
+	/**
+	 * @var \Mageplaza\BetterPopup\Helper\Data
+	 */
     protected $_helperData;
 
     public function __construct(

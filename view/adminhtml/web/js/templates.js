@@ -43,6 +43,7 @@ define([
             var self = this,
                 elem = self.element.next();
 
+            self._setSelect();
             elem.click(function (e) {
                 confirm({
                     content: $t('Are you sure to load HTML?'),
@@ -57,6 +58,10 @@ define([
             });
         },
 
+        /**
+         * load config when select template
+         * @private
+         */
         _autoFill: function () {
             var dataInfo = this.options.jsonDataInfo,
                 value = parseInt(this.element.val());
@@ -71,6 +76,23 @@ define([
                     $(this.ids.popupWidth).val(data.width);
                     $(this.ids.popupHeight).val(data.height);
                 }
+            }
+        },
+
+        /**
+         * Set select when load page
+         * @private
+         */
+        _setSelect: function () {
+            var select = $('#mageplaza_betterpopup_templates'),
+                textContent = $('#betterpopup_what_to_show_html_content').text();
+
+            if (textContent.indexOf('mp-popup-template1') != -1) {
+                select.val(1);
+            } else if (textContent.indexOf('mp-popup-template2') != -1) {
+                select.val(2);
+            } else {
+                select.val(0);
             }
         }
     });
