@@ -29,6 +29,10 @@ use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class Send
+ * @package Mageplaza\BetterPopup\Controller\Adminhtml\Send
+ */
 class Send extends Action
 {
     /**
@@ -114,7 +118,7 @@ class Send extends Action
     /**
      * Send Mail
      *
-     * @param $storeId
+     * @param $store
      */
     public function sendMail($store)
     {

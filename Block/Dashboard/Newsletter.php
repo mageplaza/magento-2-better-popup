@@ -23,8 +23,15 @@ namespace Mageplaza\BetterPopup\Block\Dashboard;
 
 use Mageplaza\BetterPopup\Block\Subscriber;
 
+/**
+ * Class Newsletter
+ * @package Mageplaza\BetterPopup\Block\Dashboard
+ */
 class Newsletter extends Subscriber
 {
+	/**
+	 * path of template
+	 */
     protected $_template = 'dashboard/newsletter.phtml';
 
     /**
