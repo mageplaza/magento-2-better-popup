@@ -14,7 +14,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -148,7 +148,7 @@ define([
                                     }
                                 }
                             });
-                        },
+                        }
                     });
                 } else if (defaultTemplate) {
                     var mgsError = $('#mp-newsletter-error'),

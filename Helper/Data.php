@@ -15,18 +15,18 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\BetterPopup\Helper;
 
+use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Filesystem;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData as AbstractHelper;
-use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Filesystem;
 
 /**
  * Class Data
@@ -34,7 +34,7 @@ use Magento\Framework\Filesystem;
  */
 class Data extends AbstractHelper
 {
-	const CONFIG_MODULE_PATH = 'betterpopup';
+    const CONFIG_MODULE_PATH = 'betterpopup';
 
     /**
      * @var DirectoryList
@@ -54,8 +54,8 @@ class Data extends AbstractHelper
      * @param Filesystem $filesystem
      * @param DirectoryList $directoryList
      */
-	public function __construct(
-	    Context $context,
+    public function __construct(
+        Context $context,
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager,
         Filesystem $filesystem,
@@ -69,34 +69,34 @@ class Data extends AbstractHelper
     }
 
     /**
-	 * @param $code
-	 * @param null $storeId
-	 * @return array|mixed
-	 */
-	public function getWhatToShowConfig($code, $storeId = null)
-	{
-		return $this->getModuleConfig('what_to_show/' . $code, $storeId);
-	}
+     * @param $code
+     * @param null $storeId
+     * @return array|mixed
+     */
+    public function getWhatToShowConfig($code, $storeId = null)
+    {
+        return $this->getModuleConfig('what_to_show/' . $code, $storeId);
+    }
 
-	/**
-	 * @param $code
-	 * @param null $storeId
-	 * @return array|mixed
-	 */
-	public function getWhereToShowConfig($code, $storeId = null)
-	{
-		return $this->getModuleConfig('where_to_show/' . $code, $storeId);
-	}
+    /**
+     * @param $code
+     * @param null $storeId
+     * @return array|mixed
+     */
+    public function getWhereToShowConfig($code, $storeId = null)
+    {
+        return $this->getModuleConfig('where_to_show/' . $code, $storeId);
+    }
 
-	/**
-	 * @param $code
-	 * @param null $storeId
-	 * @return array|mixed
-	 */
-	public function getWhenToShowConfig($code, $storeId = null)
-	{
-		return $this->getModuleConfig('when_to_show/' . $code, $storeId);
-	}
+    /**
+     * @param $code
+     * @param null $storeId
+     * @return array|mixed
+     */
+    public function getWhenToShowConfig($code, $storeId = null)
+    {
+        return $this->getModuleConfig('when_to_show/' . $code, $storeId);
+    }
 
     /**
      * @param $code
@@ -113,7 +113,7 @@ class Data extends AbstractHelper
      *
      * @return mixed
      */
-	public function isSendEmail($storeId = null)
+    public function isSendEmail($storeId = null)
     {
         return $this->getSendEmailConfig('isSendEmail', $storeId);
     }
@@ -193,5 +193,4 @@ class Data extends AbstractHelper
     {
         return $this->storeManager->getStore()->getId();
     }
-
 }

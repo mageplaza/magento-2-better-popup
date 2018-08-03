@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -23,10 +23,10 @@ namespace Mageplaza\BetterPopup\Controller\Adminhtml\Send;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Mageplaza\BetterPopup\Helper\Data as HelperData;
-use Mageplaza\BetterPopup\Block\Email\Template;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Store\Model\StoreManagerInterface;
+use Mageplaza\BetterPopup\Block\Email\Template;
+use Mageplaza\BetterPopup\Helper\Data as HelperData;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -95,9 +95,9 @@ class Send extends Action
         $result['status'] = false;
         $toEmail = $this->_helperData->getToEmail();
 
-        if($toEmail) {
+        if ($toEmail) {
             try {
-                foreach($this->_storeManager->getStores() as $store){
+                foreach ($this->_storeManager->getStores() as $store) {
                     $this->sendMail($store);
                 }
 
@@ -131,19 +131,17 @@ class Send extends Action
             $store_name = $store->getName();
 
             $vars = [
-                'mp_subscriber' => $subscriber,
+                'mp_subscriber'   => $subscriber,
                 'mp_unSubscriber' => $unSubscriber,
-                'currentTime' => $currentTime,
-                'store_name' => $store_name
+                'currentTime'     => $currentTime,
+                'store_name'      => $store_name
             ];
             $transport = $this->_transportBuilder
                 ->setTemplateIdentifier('mageplaza_betterpopup_template')
-                ->setTemplateOptions(
-                    [
-                        'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                        'store' => $store->getId()
-                    ]
-                )
+                ->setTemplateOptions([
+                    'area'  => \Magento\Framework\App\Area::AREA_FRONTEND,
+                    'store' => $store->getId()
+                ])
                 ->setFrom('general')
                 ->addTo($toEmail)
                 ->setTemplateVars($vars)
@@ -156,5 +154,4 @@ class Send extends Action
             }
         }
     }
-
 }

@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -29,21 +29,21 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class PageToShow implements ArrayInterface
 {
-    const SPECIFIC_PAGES = 1;
-	const ALL_PAGES = 2;
+    const SPECIFIC_PAGES  = 1;
+    const ALL_PAGES       = 2;
     const MANUALLY_INSERT = 3;
 
-	/**
-	 * Return array of options as value-label pairs
-	 *
-	 * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
-	 */
-	public function toOptionArray()
-	{
-		return [
+    /**
+     * Return array of options as value-label pairs
+     *
+     * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
+     */
+    public function toOptionArray()
+    {
+        return [
             ['value' => self::SPECIFIC_PAGES, 'label' => __('Specific pages')],
-			['value' => self::ALL_PAGES, 'label' => __('All Pages')],
+            ['value' => self::ALL_PAGES, 'label' => __('All Pages')],
             ['value' => self::MANUALLY_INSERT, 'label' => __('Manually Insert')],
-		];
-	}
+        ];
+    }
 }

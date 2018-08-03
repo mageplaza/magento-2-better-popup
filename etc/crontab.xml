@@ -15,7 +15,7 @@
  * version in the future.
  *
  * @category    Mageplaza
- * @package     Mageplaza_AbandonedCart
+ * @package     Mageplaza_BetterPopup
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
@@ -23,7 +23,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
         <job name="mageplaza_betterpopup_cron" instance="Mageplaza\BetterPopup\Cron\SendMail" method="execute">
-            <schedule>00 * * * 6</schedule>
+            <schedule>0 * * * 6</schedule>
         </job>
     </group>
 </config>

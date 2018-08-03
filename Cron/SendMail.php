@@ -15,15 +15,15 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\BetterPopup\Cron;
 
-use Mageplaza\BetterPopup\Helper\Data;
-use Mageplaza\BetterPopup\Controller\Adminhtml\Send\Send;
 use Magento\Store\Model\StoreManagerInterface;
+use Mageplaza\BetterPopup\Controller\Adminhtml\Send\Send;
+use Mageplaza\BetterPopup\Helper\Data;
 
 /**
  * Class SendMail

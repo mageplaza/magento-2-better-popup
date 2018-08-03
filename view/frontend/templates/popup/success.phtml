@@ -15,19 +15,15 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 ?>
-
 <div id="popup-success-content">
     <?php echo $block->getPopupSuccessContent(); ?>
 </div>
-
 <script>
-    require([
-        'jquery',
-    ], function ($) {
+    require(['jquery'], function ($) {
         $('.btn-copy').click(function () {
             var copyText = $('#mp-coupon-code');
             copyText.select();

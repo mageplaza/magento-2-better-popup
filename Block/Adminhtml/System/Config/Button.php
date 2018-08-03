@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -24,6 +24,10 @@ namespace Mageplaza\BetterPopup\Block\Adminhtml\System\Config;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 
+/**
+ * Class Button
+ * @package Mageplaza\BetterPopup\Block\Adminhtml\System\Config
+ */
 class Button extends Field
 {
     /**
@@ -56,12 +60,11 @@ class Button extends Field
         $this->addData(
             [
                 'button_label' => $originalData['button_label'],
-                'button_url' => $this->getUrl($originalData['button_url'], ['_current' => true]),
-                'html_id' => $element->getHtmlId(),
+                'button_url'   => $this->getUrl($originalData['button_url'], ['_current' => true]),
+                'html_id'      => $element->getHtmlId(),
             ]
         );
 
         return $this->_toHtml();
     }
-
 }

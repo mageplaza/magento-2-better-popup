@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -29,9 +29,9 @@ use Mageplaza\BetterPopup\Block\Subscriber;
  */
 class Newsletter extends Subscriber
 {
-	/**
-	 * path of template
-	 */
+    /**
+     * path of template
+     */
     protected $_template = 'dashboard/newsletter.phtml';
 
     /**
@@ -41,5 +41,4 @@ class Newsletter extends Subscriber
     {
         return __('Subscribers');
     }
-
 }

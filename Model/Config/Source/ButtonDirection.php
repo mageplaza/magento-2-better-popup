@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -29,19 +29,19 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class ButtonDirection implements ArrayInterface
 {
-	const FLOAT_LEFT = 1;
-	const FLOAT_RIGHT = 2;
+    const FLOAT_LEFT  = 1;
+    const FLOAT_RIGHT = 2;
 
-	/**
-	 * Return array of options as value-label pairs
-	 *
-	 * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
-	 */
-	public function toOptionArray()
-	{
-		return [
-			['value' => self::FLOAT_LEFT, 'label' => __('Left')],
-			['value' => self::FLOAT_RIGHT, 'label' => __('Right')],
-		];
-	}
+    /**
+     * Return array of options as value-label pairs
+     *
+     * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
+     */
+    public function toOptionArray()
+    {
+        return [
+            ['value' => self::FLOAT_LEFT, 'label' => __('Left')],
+            ['value' => self::FLOAT_RIGHT, 'label' => __('Right')],
+        ];
+    }
 }

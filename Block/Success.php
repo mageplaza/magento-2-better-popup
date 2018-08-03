@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -27,6 +27,11 @@ namespace Mageplaza\BetterPopup\Block;
  */
 class Success extends Popup
 {
+    /**
+     * @var string
+     */
+    protected $_template = 'Mageplaza_BetterPopup::popup/success.phtml';
+
     /**
      * Get Coupon code
      *
@@ -49,5 +54,4 @@ class Success extends Popup
 
         return $html;
     }
-
 }

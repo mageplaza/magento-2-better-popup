@@ -15,31 +15,27 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
-?>
 
-<?php
 $listEmailSubscribers = array_reverse($block->getListEmailSubscriberWeek());
-$i = 0;
-?>
-
-<?php if($listEmailSubscribers): ?>
-<div class="list-email-subscriber">
-    <span>List of new subscriber(s)</span>
-    <ul class="list-email">
-        <?php foreach ($listEmailSubscribers as $item): ?>
-            <?php if($i<8): ?>
-                <li class="items"><a href="<?php echo $item ?>"><?php echo $item ?></a></li>
-                <?php $i++; ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </ul>
-</div>
+if ($listEmailSubscribers): ?>
+    <div class="list-email-subscriber">
+        <span>List of new subscriber(s)</span>
+        <ul class="list-email">
+            <?php $i = 0; ?>
+            <?php foreach ($listEmailSubscribers as $item): ?>
+                <?php if ($i < 8): ?>
+                    <li class="items"><a href="<?php echo $item ?>"><?php echo $item ?></a></li>
+                    <?php $i++; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 <?php else: ?>
     <span>No one registers for a week</span>
-<?php endif;?>
+<?php endif; ?>
 
 
 

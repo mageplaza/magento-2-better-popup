@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -25,9 +25,9 @@ use Magento\Customer\Api\AccountManagementInterface as CustomerAccountManagement
 use Magento\Customer\Model\Session;
 use Magento\Customer\Model\Url as CustomerUrl;
 use Magento\Framework\App\Action\Context;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Newsletter\Model\SubscriberFactory;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Newsletter\Model\SubscriberFactory;
+use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Helper\Data;
 
 /**
@@ -94,27 +94,16 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateGuestSubscription();
                 $this->validateEmailAvailable($email);
 
-                $status = $this->_subscriberFactory->create()->subscribe($email);
-                if ($status == \Magento\Newsletter\Model\Subscriber::STATUS_NOT_ACTIVE) {
-                    $response = [
-                        'status' => 'OK',
-                        'msg' => 'The confirmation request has been sent.',
-                    ];
-                } else {
-                    $response = [
-                        'status' => 'OK',
-                        'msg' => 'Thank you for your subscription.',
-                    ];
-                }
+                $this->_subscriberFactory->create()->subscribe($email);
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $response = [
-                    'status' => 'ERROR',
-                    'msg' => __('There was a problem with the subscription: %1', $e->getMessage()),
+                    'success' => true,
+                    'msg'    => __('There was a problem with the subscription: %1', $e->getMessage()),
                 ];
             } catch (\Exception $e) {
                 $response = [
                     'status' => 'ERROR',
-                    'msg' => __('Something went wrong with the subscription.'),
+                    'msg'    => __('Something went wrong with the subscription.'),
                 ];
             }
         }

@@ -15,20 +15,20 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\BetterPopup\Block;
 
 use Magento\Catalog\Block\Product\AbstractProduct;
-use Magento\Widget\Block\BlockInterface;
 use Magento\Catalog\Block\Product\Context;
+use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
+use Magento\Widget\Block\BlockInterface;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
 use Mageplaza\BetterPopup\Model\Config\Source\Appear;
-use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
 use Mageplaza\BetterPopup\Model\Config\Source\PageToShow;
-use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
+use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
 
 /**
  * Class Popup
@@ -116,6 +116,7 @@ class Popup extends AbstractProduct implements BlockInterface
         if ($this->_helperData->getWhatToShowConfig('responsive') == Responsive::FULLSCREEN_POPUP) {
             return true;
         }
+
         return false;
     }
 
@@ -342,13 +343,9 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function isManuallyInsert()
     {
-        if ($this->_helperData->isEnabled()) {
-            if ($this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::MANUALLY_INSERT && $this->checkExclude()) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->_helperData->isEnabled()
+            && $this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::MANUALLY_INSERT
+            && $this->checkExclude();
     }
 
     /**
@@ -382,20 +379,20 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getAjaxData()
     {
         $params = [
-            'url' => $this->getUrl('betterpopup/ajax/success'),
-            'isScroll' => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
-            'percentage' => $this->getPercentageScroll(),
-            'fullScreen' => [
+            'url'             => $this->getUrl('betterpopup/ajax/success'),
+            'isScroll'        => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
+            'percentage'      => $this->getPercentageScroll(),
+            'fullScreen'      => [
                 'isFullScreen' => $this->isFullScreen(),
-                'bgColor' => $this->getBackGroundColor()
+                'bgColor'      => $this->getBackGroundColor()
             ],
-            'isExitIntent' => $this->isExitIntent(),
+            'isExitIntent'    => $this->isExitIntent(),
             'isShowFireworks' => $this->isShowFireworks(),
-            'popupConfig' => [
-                'width' => $this->getWidthPopup(),
-                'height' => $this->getHeightPopup(),
-                'cookieExp' => $this->getCookieConfig(),
-                'delay' => $this->getDelayConfig(),
+            'popupConfig'     => [
+                'width'       => $this->getWidthPopup(),
+                'height'      => $this->getHeightPopup(),
+                'cookieExp'   => $this->getCookieConfig(),
+                'delay'       => $this->getDelayConfig(),
                 'showOnDelay' => true,
             ]
         ];
@@ -412,5 +409,4 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
     }
-
 }

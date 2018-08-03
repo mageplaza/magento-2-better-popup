@@ -14,12 +14,12 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 var config = {
     paths: {
-        'mageplaza/templates': 'Mageplaza_BetterPopup/js/templates',
+        'mageplaza/templates': 'Mageplaza_BetterPopup/js/templates'
     }
 };

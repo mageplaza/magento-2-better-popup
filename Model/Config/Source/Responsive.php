@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -29,19 +29,19 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class Responsive implements ArrayInterface
 {
-	const CENTER_POPUP = 1;
-	const FULLSCREEN_POPUP = 2;
+    const CENTER_POPUP     = 1;
+    const FULLSCREEN_POPUP = 2;
 
-	/**
-	 * Return array of options as value-label pairs
-	 *
-	 * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
-	 */
-	public function toOptionArray()
-	{
-		return [
-			['value' => self::CENTER_POPUP, 'label' => __('Center Popup')],
-			['value' => self::FULLSCREEN_POPUP, 'label' => __('FullScreen Popup')],
-		];
-	}
+    /**
+     * Return array of options as value-label pairs
+     *
+     * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
+     */
+    public function toOptionArray()
+    {
+        return [
+            ['value' => self::CENTER_POPUP, 'label' => __('Center Popup')],
+            ['value' => self::FULLSCREEN_POPUP, 'label' => __('FullScreen Popup')],
+        ];
+    }
 }

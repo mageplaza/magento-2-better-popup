@@ -14,7 +14,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 define([
@@ -29,7 +29,6 @@ define([
         options: {
             jsonDataInfo: {}
         },
-
         ids: {
             popupHtmlElm: '#betterpopup_what_to_show_html_content',
             successHtmlElm: '#betterpopup_what_to_show_popup_success_html_success_content',
@@ -87,9 +86,9 @@ define([
             var select = $('#mageplaza_betterpopup_templates'),
                 textContent = $('#betterpopup_what_to_show_html_content').text();
 
-            if (textContent.indexOf('mp-popup-template1') != -1) {
+            if (textContent.indexOf('mp-popup-template1') !== -1) {
                 select.val(1);
-            } else if (textContent.indexOf('mp-popup-template2') != -1) {
+            } else if (textContent.indexOf('mp-popup-template2') !== -1) {
                 select.val(2);
             } else {
                 select.val(0);

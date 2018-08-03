@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -26,13 +26,12 @@
         <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
     </button>
 </div>
-
 <script type="text/javascript">
     require([
         'jquery',
         'Magento_Ui/js/modal/alert',
-        "mage/translate",
-    ], function ($,alert) {
+        "mage/translate"
+    ], function ($, alert, $t) {
         $('#betterpopup_send_email_sent').click(function () {
             $.ajax({
                 url: "<?php echo $block->getUrl('mpbetterpopup/send/send', ['form_key' => $block->getFormKey(), '_current' => true]); ?>",
@@ -40,10 +39,9 @@
                 showLoader: true,
                 success: function (result) {
                     alert({
-                        title: result.status ? 'Success' : 'Error',
+                        title: result.status ? $t('Success') : $t('Error'),
                         content: result.content ? result.content : result
                     });
-
                 }
             });
         })

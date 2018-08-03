@@ -15,17 +15,17 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\BetterPopup\Block;
 
+use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\View\Element\Template;
+use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
-use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
-use Magento\Framework\Stdlib\DateTime\DateTime;
 
 /**
  * Class Subscriber
@@ -79,7 +79,7 @@ class Subscriber extends Template implements BlockInterface
     public function getSubscriberCollection($from, $to, $storeId)
     {
         $subscribersCollection = $this->_subscriberCollectionFactory->create()->useOnlySubscribed()
-            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to))
+            ->addFieldToFilter('change_status_at', ['from' => $from, 'to' => $to])
             ->addStoreFilter($storeId);
 
         return $subscribersCollection;
@@ -145,10 +145,9 @@ class Subscriber extends Template implements BlockInterface
         $from = date('Y-m-d h:i:s', $from);
         $unSubscribersCollection = $this->_subscriberCollectionFactory->create()
             ->addFieldToFilter('subscriber_status', \Magento\Newsletter\Model\Subscriber::STATUS_UNSUBSCRIBED)
-            ->addFieldToFilter('change_status_at', array('from' => $from, 'to' => $to))
+            ->addFieldToFilter('change_status_at', ['from' => $from, 'to' => $to])
             ->addStoreFilter($storeId);
 
         return $unSubscribersCollection;
     }
-
 }

@@ -15,17 +15,15 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
-?>
-<?php
-    $storeId = $this->helper('Mageplaza\BetterPopup\Helper\Data')->getStoreId();
-    $subscriberToday = $block->getSubscriberToday() ? $block->getSubscriberToday()->getSize() : 0;
-    $subscriberWeek = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek($storeId)->getSize() : 0;
-    $subscriberMonth = $block->getSubscriberInMonth() ? $block->getSubscriberInMonth()->getSize() : 0;
-?>
 
+$storeId = $this->helper('Mageplaza\BetterPopup\Helper\Data')->getStoreId();
+$subscriberToday = $block->getSubscriberToday() ? $block->getSubscriberToday()->getSize() : 0;
+$subscriberWeek = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek($storeId)->getSize() : 0;
+$subscriberMonth = $block->getSubscriberInMonth() ? $block->getSubscriberInMonth()->getSize() : 0;
+?>
 <div class="dashboard-item-container">
     <div class="dashboard-item-title"><?php echo __("Subscribers") ?></div>
     <div class="dashboard-item-content">

@@ -15,14 +15,14 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_BetterPopup
- * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\BetterPopup\Controller\Ajax;
 
-use Magento\Framework\App\Action\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\View\Result\LayoutFactory;
 
@@ -67,8 +67,9 @@ class Success extends Action
     {
         $result = $this->resultJsonFactory->create();
         $resultLayout = $this->resultLayoutFactory->create();
-        $blockHtml = $resultLayout->getLayout()->createBlock('Mageplaza\BetterPopup\Block\Success')
-            ->setTemplate('Mageplaza_BetterPopup::popup/success.phtml')->toHtml();
+        $blockHtml = $resultLayout->getLayout()
+            ->createBlock('Mageplaza\BetterPopup\Block\Success')
+            ->toHtml();
         $result->setData(['success' => $blockHtml]);
 
         return $result;
