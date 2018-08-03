@@ -1,6 +1,6 @@
-# magento-2-better-popup
+# Magento 2 Better Popup / Newsletter Popup / Exit Intent FREE module
 
-Pop-ups work amazingly for the improvement of customer retention. This is the reason why **Magento 2 Better Popup** is developed. The module is expected to cut down the number of abandoning visitors of a store, and to help convert them to actual customers or subscribers. 
+Magento 2 Better Popup / Newsletter Popup cuts down the number of abandoning visitors of a store, and to help convert them to actual customers or subscribers. 
 Exit-intent technology plays the fundamental role in building better pop-ups, visitors who are about to leave your websites will be kept staying for a little longer by a subscription invitation or a discount offer.
 
 ## 1. Documentation
