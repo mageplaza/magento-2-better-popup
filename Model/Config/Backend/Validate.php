@@ -21,18 +21,18 @@
 
 namespace Mageplaza\BetterPopup\Model\Config\Backend;
 
-use Magento\Config\Model\Config\Backend\Serialized;
+use Magento\Framework\App\Config\Value;
 
 /**
  * Class Validate
  * @package Mageplaza\BetterPopup\Model\Config\Backend
  */
-class Validate extends Serialized
+class Validate extends Value
 {
     /**
      * Check value not null Exclude and Include
      *
-     * @return Serialized
+     * @return Value
      * @throws \Exception
      */
     public function beforeSave()
