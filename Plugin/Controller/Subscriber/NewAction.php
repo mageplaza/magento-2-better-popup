@@ -81,7 +81,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
      */
     public function aroundExecute($subject, $proceed)
     {
-        if (!$this->_helperData->isEnabled()) {
+        if (!$this->_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
             return $proceed();
         }
 
@@ -95,6 +95,9 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateEmailAvailable($email);
 
                 $this->_subscriberFactory->create()->subscribe($email);
+                if ($this->_helperData->versionCompare('2.2.0')) {
+                    $this->_subscriberFactory->create()->loadByEmail($email)->setChangeStatusAt(date("Y-m-d h:i:s"))->save();
+                }
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $response = [
                     'success' => true,
