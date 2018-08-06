@@ -135,7 +135,7 @@
             <group id="when_to_show" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>When to Show</label>
                 <field id="popup_appear" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>When the popup appear</label>
+                    <label>When the popup appears</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\Appear</source_model>
                 </field>
                 <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -146,7 +146,7 @@
                     </depends>
                 </field>
                 <field id="delay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>After x secounds</label>
+                    <label>After X secounds</label>
                     <depends>
                         <field id="popup_appear">3</field>
                     </depends>
@@ -156,12 +156,12 @@
                     <comment>days. Leave empty to redisplay the popup after 30 days</comment>
                 </field>
                 <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show Float Button</label>
+                    <label>Show floating button</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Click trigger to open</comment>
                 </field>
                 <field id="float_button_direction" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Float button position</label>
+                    <label>Floating button position</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection</source_model>
                     <depends>
                         <field id="show_float_button">1</field>

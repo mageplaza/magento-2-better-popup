@@ -44,8 +44,8 @@ class Appear implements ArrayInterface
         return [
             ['value' => self::EXIT_INTENT, 'label' => __('Exit Intent')],
             ['value' => self::AFTER_PAGE_LOADED, 'label' => __('After page loaded')],
-            ['value' => self::AFTER_X_SECONDS, 'label' => __('After x seconds')],
-            ['value' => self::AFTER_SCROLL_DOWN, 'label' => __('After scroll down x%')],
+            ['value' => self::AFTER_X_SECONDS, 'label' => __('After X seconds')],
+            ['value' => self::AFTER_SCROLL_DOWN, 'label' => __('After scrolling down X% of page')],
         ];
     }
 }

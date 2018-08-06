@@ -28,7 +28,7 @@ define([
 
     $.widget('mageplaza.betterpopup_block', {
         options: {
-            dataPopup: {}
+            dataPopup: {},
         },
 
         _create: function () {
@@ -40,10 +40,20 @@ define([
 
         _showPopup: function () {
             var self = this,
-                popupElem = $('.mageplaza-betterpopup-block').length;
-
+                popupElem = $('.mageplaza-betterpopup-block').length,
+                triggerElem = $('.mp-better-popup-click-trigger');
             this._createStyleTag();
             this._removeDuplicatePopup();
+
+            //Check show trigger
+            if(this.options.dataPopup.afterSeconds.isAfterSeconds) {
+                setTimeout(function(){
+                    triggerElem.show();
+                }, this.options.dataPopup.afterSeconds.delay * 1000);
+            } else {
+                triggerElem.show();
+            }
+
             if (popupElem <= 1) {
                 if (this.options.dataPopup.isScroll) {  // show when scroll
                     self._scrollToShow();
@@ -58,6 +68,7 @@ define([
                     bioEp.init(self.options.dataPopup.popupConfig);
                     self._fullScreen();
                 }
+
             }
         },
 

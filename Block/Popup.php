@@ -381,6 +381,10 @@ class Popup extends AbstractProduct implements BlockInterface
         $params = [
             'url'             => $this->getUrl('betterpopup/ajax/success'),
             'isScroll'        => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
+            'afterSeconds'    => [
+                'isAfterSeconds' => $this->getPopupAppear() == Appear::AFTER_X_SECONDS,
+                'delay'          => $this->getDelayConfig()
+            ],
             'percentage'      => $this->getPercentageScroll(),
             'fullScreen'      => [
                 'isFullScreen' => $this->isFullScreen(),

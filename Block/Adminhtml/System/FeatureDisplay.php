@@ -37,7 +37,7 @@ class FeatureDisplay extends Field
     protected function _getElementHtml(AbstractElement $element)
     {
         $html = '<div class="control-value" style="padding-top: 8px">';
-        $html .= '<p>Use following code to show popup block in any place which you want.</p>';
+        $html .= '<p>Use the following code to show the popup block in any place you want</p>';
 
         $html .= '<strong>CMS Page/Static Block</strong><br />';
         $html .= '<pre style="background-color: #f5f5dc"><code>{{block class="Mageplaza\BetterPopup\Block\Popup" 
