@@ -3,6 +3,8 @@
 Magento 2 Better Popup / Newsletter Popup cuts down the number of abandoning visitors of a store, and to help convert them to actual customers or subscribers. 
 Exit-intent technology plays the fundamental role in building better pop-ups, visitors who are about to leave your websites will be kept staying for a little longer by a subscription invitation or a discount offer.
 
+![magento 2 exit intent](https://i.imgur.com/K5mpJM0.gif)
+
 ## 1. Documentation
 
 - [Installation guide](https://www.mageplaza.com/install-magento-2-extension/)
