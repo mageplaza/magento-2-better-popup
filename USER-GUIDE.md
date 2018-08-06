@@ -2,7 +2,7 @@
 
 - Installation guide: https://www.mageplaza.com/install-magento-2-extension/#solution-1-ready-to-paste
 - User Guide: https://docs.mageplaza.com/better-popup/
-- Product page: https://www.mageplaza.com/magento-2-better-popup-extension/
+- Product page: https://www.mageplaza.com/magento-2-better-popup/
 - FAQs: https://www.mageplaza.com/faqs/
 - Get Support: https://mageplaza.freshdesk.com/ or support@mageplaza.com
 - Changelog: https://www.mageplaza.com/changelog/m2-better-popup.txt
