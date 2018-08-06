@@ -39,9 +39,10 @@ if ($block->checkPagesToShow()):
             </div>
         </div>
         <?php if ($block->isShowFloatButton()): ?>
-            <div class="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
+            <div class="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>; display: none">
                 <button class="click-trigger primary"><?php echo __('Show Popup'); ?></button>
             </div>
         <?php endif; ?>
     </div>
 <?php endif; ?>
+
