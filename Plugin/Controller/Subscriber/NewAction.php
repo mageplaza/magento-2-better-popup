@@ -95,7 +95,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateEmailAvailable($email);
 
                 $this->_subscriberFactory->create()->subscribe($email);
-                if ($this->_helperData->versionCompare('2.2.0')) {
+                if (!$this->_helperData->versionCompare('2.2.0')) {
                     $this->_subscriberFactory->create()->loadByEmail($email)->setChangeStatusAt(date("Y-m-d h:i:s"))->save();
                 }
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
@@ -106,7 +106,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
             } catch (\Exception $e) {
                 $response = [
                     'status' => 'ERROR',
-                    'msg'    => __('Something went wrong with the subscription.'),
+                    'msg'    => __('Something went wrong with the subscription: %1', $e->getMessage()),
                 ];
             }
         }
