@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <betterpopup>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <what_to_show>
+                <template>1</template>
+                <html_content>
+                    <![CDATA[
+                        <div id="mp-popup-default-template">
+                            <span class="mp-popup-title-df">Subscribe To Our Newsletter</span>
+                            <div class="mp-popup-text-content-df">
+                                <span>Subscribe to our email newsletter today to receive updates on the latest news, tutorials and special offers!</span>
+                            </div>
+                            <form class="form subscribe  mp-newsletter-validate-detail-df" novalidate action="{{form_url}}" method="post"
+                                  data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                                  id="mp-newsletter-validate-detail">
+                                <input name="email" type="email" id="mp-newsletter" class="better-popup-input-email"
+                                       placeholder="Enter your email address"
+                                       data-validate="{required:true, 'validate-email':true}"/>
+
+                                <button class="action subscribe primary better-popup-btn-submit" title="Send me my coupon" type="submit">
+                                    <span class="success-lable">Subscribe Now</span>
+                                </button>
+                                <div class="popup-loader">
+                                    <img class="loader" src="{{url_loader}}" alt="Loading...">
+                                </div>
+                            </form>
+                            <p class="spam-note-df">We respect your privacy. Your information is safe and will never be shared.</p>
+                        </div>
+                    ]]>
+                </html_content>
+                <responsive>1</responsive>
+                <width>650</width>
+                <height>350</height>
+                <background_color>#3d9bc7</background_color>
+                <text_color>#FFFFFF</text_color>
+                <popup_success>
+                    <enabled_fireworks>0</enabled_fireworks>
+                    <html_success_content>
+                        <![CDATA[
+                            <p class="success-title">Thank you, you got the offer!</p>
+                            <div class="mp-popup-coupon-code">
+                                <input id="mp-coupon-code" type="text" readonly="readonly" value="{{coupon_code}}" />
+                                <button class="btn-copy primary" type="submit">Copy</button>
+                            </div>
+                            <small>Please use this coupon code when checking out</small>
+                        ]]>
+                    </html_success_content>
+                    <coupon_code>HappyMarketing</coupon_code>
+                </popup_success>
+            </what_to_show>
+            <where_to_show>
+                <which_page_to_show>2</which_page_to_show>
+            </where_to_show>
+            <when_to_show>
+                <popup_appear>1</popup_appear>
+                <after_scroll>50</after_scroll>
+                <delay>5</delay>
+                <cookieExp>0</cookieExp>
+                <show_float_button>0</show_float_button>
+            </when_to_show>
+        </betterpopup>
+    </default>
+</config>

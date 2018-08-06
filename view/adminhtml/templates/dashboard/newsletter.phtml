@@ -1,0 +1,47 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+$storeId = $this->helper('Mageplaza\BetterPopup\Helper\Data')->getStoreId();
+$subscriberToday = $block->getSubscriberToday() ? $block->getSubscriberToday()->getSize() : 0;
+$subscriberWeek = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek($storeId)->getSize() : 0;
+$subscriberMonth = $block->getSubscriberInMonth() ? $block->getSubscriberInMonth()->getSize() : 0;
+?>
+<div class="dashboard-item-container">
+    <div class="dashboard-item-title"><?php echo __("Subscribers") ?></div>
+    <div class="dashboard-item-content">
+        <table class="dashboard-data">
+            <thead>
+                <tr>
+                    <th><span><?php echo __('Today'); ?></span></th>
+                    <th><span><?php echo __('Week'); ?></span></th>
+                    <th><span><?php echo __('Month'); ?></span></th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+                <tr>
+                    <td><span><?php echo $subscriberToday ?></span></td>
+                    <td><span><?php echo $subscriberWeek ?></span></td>
+                    <td><span><?php echo $subscriberMonth ?></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

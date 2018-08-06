@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="betterpopup" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Better Popup</label>
+            <tab>mageplaza</tab>
+            <resource>Mageplaza_BetterPopup::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to enable this module</comment>
+                </field>
+            </group>
+            <group id="what_to_show" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>What to Show</label>
+                <field id="template" translate="label comment button_label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Template</label>
+                    <button_label>Load HTML</button_label>
+                    <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\Config\Template</frontend_model>
+                    <comment>Select a template, then click to Load HTML.</comment>
+                </field>
+                <field id="html_content" sortOrder="10" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content</label>
+                    <comment>HTML content</comment>
+                </field>
+                <field id="responsive" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Responsive design</label>
+                    <source_model>Mageplaza\BetterPopup\Model\Config\Source\Responsive</source_model>
+                </field>
+                <field id="width" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width</label>
+                    <comment>In pixel</comment>
+                    <depends>
+                        <field id="responsive">1</field>
+                    </depends>
+                </field>
+                <field id="height" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Height</label>
+                    <comment>In pixel</comment>
+                    <depends>
+                        <field id="responsive">1</field>
+                    </depends>
+                </field>
+                <field id="background_color" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background color</label>
+                    <validate>jscolor {hash:true,refine:false}</validate>
+                </field>
+                <field id="text_color" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text color</label>
+                    <validate>jscolor {hash:true,refine:false}</validate>
+                </field>
+                <group id="popup_success" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Success</label>
+                    <field id="coupon_code" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Coupon Code</label>
+                    </field>
+                    <field id="html_success_content" sortOrder="90" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Content</label>
+                        <comment>HTML content</comment>
+                    </field>
+                    <field id="enabled_fireworks" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show congratulation fireworks</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+            </group>
+            <group id="where_to_show" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Where to Show</label>
+                <field id="which_page_to_show" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page(s) to show</label>
+                    <source_model>Mageplaza\BetterPopup\Model\Config\Source\PageToShow</source_model>
+                </field>
+                <field id="include_pages" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include page(s)</label>
+                    <backend_model>Mageplaza\BetterPopup\Model\Config\Backend\Validate</backend_model>
+                    <comment><![CDATA[
+                            <span>Example: <b>cms_index_index</b> (for homepage)</span><br />
+                            <span>Separated by a new line</span>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="which_page_to_show">1</field>
+                    </depends>
+                </field>
+                <field id="include_pages_with_url" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include Page(s) with URL contains</label>
+                    <comment>Separated by a new line</comment>
+                    <depends>
+                        <field id="which_page_to_show">1</field>
+                    </depends>
+                </field>
+                <field id="exclude_pages" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude page(s)</label>
+                    <comment><![CDATA[
+                            <span>Example: <b>cms_index_index</b> (for homepage)</span><br />
+                            <span>Separated by a new line</span>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="exclude_pages_with_url" sortOrder="50" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude Page(s) with URL contains</label>
+                    <comment>Separated by a new line</comment>
+                </field>
+                <field id="manually_insert" translate="label" type="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Insert manually this snippet to your page</label>
+                    <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\FeatureDisplay</frontend_model>
+                    <depends>
+                        <field id="which_page_to_show">3</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="when_to_show" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>When to Show</label>
+                <field id="popup_appear" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>When the popup appear</label>
+                    <source_model>Mageplaza\BetterPopup\Model\Config\Source\Appear</source_model>
+                </field>
+                <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>After scroll down</label>
+                    <comment>Percentage</comment>
+                    <depends>
+                        <field id="popup_appear">4</field>
+                    </depends>
+                </field>
+                <field id="delay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>After x secounds</label>
+                    <depends>
+                        <field id="popup_appear">3</field>
+                    </depends>
+                </field>
+                <field id="cookieExp" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup will be shown again after</label>
+                    <comment>days. Leave empty to redisplay the popup after 30 days</comment>
+                </field>
+                <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Float Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Click trigger to open</comment>
+                </field>
+                <field id="float_button_direction" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Float button position</label>
+                    <source_model>Mageplaza\BetterPopup\Model\Config\Source\ButtonDirection</source_model>
+                    <depends>
+                        <field id="show_float_button">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="send_email" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Send Email</label>
+                <field id="isSendEmail" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Send Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Select Yes to enable Send email function. Install <a href="https://www.mageplaza.com/magento-2-smtp/" target="_blank">Mageplaza_SMTP</a> to avoid sending to spam box.]]>
+                    </comment>
+                </field>
+                <field id="to" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email To</label>
+                    <comment>
+                        <![CDATA[
+                        Please enter email address, then click Save config.<br>
+                        Automatically send email notifications to store owners every Saturday
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="isSendEmail">1</field>
+                    </depends>
+                </field>
+                <field id="sent" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label></label>
+                    <button_label>Send Now</button_label>
+                    <button_url>adminhtml/send/send</button_url>
+                    <frontend_model>Mageplaza\BetterPopup\Block\Adminhtml\System\Config\Button</frontend_model>
+                    <depends>
+                        <field id="isSendEmail">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

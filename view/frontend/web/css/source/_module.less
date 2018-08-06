@@ -1,0 +1,344 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+#mageplaza-betterpopup-block {
+  position: relative;
+}
+
+.mp-better-popup-click-trigger {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+}
+
+.click-trigger {
+  background-color: #31B0D5;
+  color: white;
+  padding: 10px 25px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-color: #46b8da;
+}
+
+.click-trigger:hover {
+  background-color: #31B0D5;
+  color: white;
+  border: 1px solid #31B0D5;
+}
+
+div#bio_ep_close {
+  position: absolute;
+  right: 8px;
+  top: 0px;
+  z-index: 99;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#bio_ep {
+  text-align: center;
+  box-shadow: none !important;
+}
+
+.child-label {
+  display: block;
+  font-size: 25px;
+  margin: 20px;
+}
+
+#bio_ep_content {
+  position: relative;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.better-popup-input-email {
+  width: 70% !important;
+  height: 35px !important;
+}
+
+input.better-popup-input-email::placeholder {
+  opacity: 0.5;
+}
+
+.better-popup-btn-submit {
+  width: 70%;
+  margin: 10px 0 0 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 35px;
+}
+
+.mageplaza-betterpopup-content {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.success-title {
+  font-size: 22px;
+}
+
+.mp-popup-coupon-code {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#mp-coupon-code {
+  text-align: center;
+  max-width: 100%;
+  border: 1px dashed #c1bebe;
+  background: 0 0;
+  font-size: 25px;
+  color: #FFF;
+  margin-top: 15px;
+  height: 50px;
+}
+
+button.btn-copy.primary {
+  width: 100%;
+  margin: 5px 0 15px 0;
+  color: #fff;
+  background-color: #006bb4;
+  border: none;
+  height: 35px;
+}
+
+button.btn-copy.primary:hover {
+  background: #006bb4;
+  border: 1px solid #006bb4;
+  color: #ffffff;
+}
+
+#status {
+  color: #e02b27;
+  visibility: visible;
+  font-size: 13px !important;
+}
+
+span.success-lable {
+  border: none !important;
+  font-size: 16px !important;
+}
+
+#mp-powered {
+  margin: 10px;
+}
+
+span.lable-powered {
+  color: #fff;
+  font-size: 11px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+canvas {
+  position: fixed;
+  z-index: 10002;
+  opacity: 0.5;
+  display: none;
+  top: 0px;
+  left: 0px;
+}
+
+.popup-loader {
+  display: none;
+  position: absolute;
+  width: 100%;
+  padding-top: 15px;
+}
+
+img.loader {
+  width: 3%;
+}
+
+//css default template
+
+#mp-popup-default-template {
+  margin-bottom: 20px;
+}
+
+.mp-popup-title-df {
+  width: 100%;
+  display: block;
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.mp-popup-text-content-df {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 2rem;
+}
+
+.mp-newsletter-validate-detail-df {
+  margin-top: 20px;
+}
+
+p.spam-note-df {
+  font-size: 1.1rem;
+  position: absolute;
+  width: 100%;
+  bottom: 5px;
+}
+
+//css template 1
+
+#mp-popup-template1 {
+  width: 100%;
+  height: 100%;
+}
+
+.mp-popup-title-tmp1 {
+  background: #3b3b3c;
+  color: #FFF;
+  width: 100%;
+  display: block;
+  font-size: 3rem;
+  margin-top: 60px;
+}
+
+.mp-popup-text-content-tmp1 {
+  margin-top: 10px;
+  font-size: 2rem;
+}
+
+.mp-popup-title-tmp1 span {
+  margin-left: 200px;
+}
+
+.mp-newsletter-validate-detail-template1 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: #3b3b3c;
+}
+
+span.enter-label {
+  color: #fff;
+  font-size: 1.4rem;
+  float: left;
+  padding: 10px 0px 5px 55px;
+}
+
+p.spam-note-tmp1 {
+  font-size: 1rem;
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  color: #FFF;
+}
+
+img.mail-icon {
+  width: 150px;
+  transform: rotate(-30deg);
+  float: left;
+  margin: -25px 50px 0px 50px;
+}
+
+.mp-newsletter-template1 {
+  width: 70% !important;
+  height: 25px !important;
+}
+
+.btn-subscribe-template1 {
+  margin-bottom: 3px;
+  line-height: 5px;
+  background: #88c753;
+  border: none;
+  height: 25px;
+}
+
+.btn-subscribe-template1:hover {
+  background: #88c753;
+  border: none;
+}
+
+.popup-loader.loader-template1 {
+  margin-top: -10px;
+}
+
+div#mp-newsletter-error {
+  position: absolute;
+  width: 100%;
+}
+
+//css Template 2
+#mp-popup-template2 {
+  width: 100%;
+  height: 100%;
+}
+
+span.mp-popup-title-tmp2 {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #43265e;
+  height: 20%;
+  padding-top: 35px;
+}
+
+.mp-newsletter-validate-detail-template2 {
+  height: 30%;
+}
+
+span.mp-popup-text-content-tmp2 {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #43265e;
+  height: 30%;
+}
+
+.mp-newsletter-template2 {
+  width: 70% !important;
+  height: 40px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.popup-btn-subscribe-template2 {
+  padding-top: 25px;
+}
+
+.btn-subscribe-template2 {
+  background: #5ecbac;
+  border: none;
+  width: 50%;
+  height: 40px;
+}
+
+.btn-subscribe-template2:hover {
+  background: #5ecbac;
+  border: none;
+}
+
+p.spam-note-tmp2 {
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
