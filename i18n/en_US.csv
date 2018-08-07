@@ -1,0 +1,65 @@
+"Default Template","Default Template"
+"Template 1","Template 1"
+"Template 2","Template 2"
+Subscribers,Subscribers
+"Sent successfully! Please check your email box.","Sent successfully! Please check your email box."
+"There is an error occurred while sending email. Please try again later.","There is an error occurred while sending email. Please try again later."
+"Please enter email and save config","Please enter email and save config"
+"Exit Intent","Exit Intent"
+"After page loaded","After page loaded"
+"After X seconds","After X seconds"
+"After scrolling down X% of page","After scrolling down X% of page"
+Left,Left
+Right,Right
+"Specific pages","Specific pages"
+"All Pages","All Pages"
+"Manually Insert","Manually Insert"
+"Center Popup","Center Popup"
+"FullScreen Popup","FullScreen Popup"
+"There was a problem with the subscription: %1","There was a problem with the subscription: %1"
+"Something went wrong with the subscription: %1","Something went wrong with the subscription: %1"
+Today,Today
+Week,Week
+Month,Month
+"Show Popup","Show Popup"
+"Better Popup results for %currentTime - %store_name","Better Popup results for %currentTime - %store_name"
+"Your results for %currentTime","Your results for %currentTime"
+%mp_subscriber,%mp_subscriber
+%mp_unSubscriber,%mp_unSubscriber
+Success,Success
+Error,Error
+"Are you sure to load HTML?","Are you sure to load HTML?"
+"Better Popup","Better Popup"
+"General Configuration","General Configuration"
+Enable,Enable
+"Select Yes to enable this module","Select Yes to enable this module"
+"What to Show","What to Show"
+Template,Template
+"Select a template, then click to Load HTML.","Select a template, then click to Load HTML."
+"Load HTML","Load HTML"
+"Responsive design","Responsive design"
+Width,Width
+Height,Height
+"Background color","Background color"
+"Text color","Text color"
+"Popup Success","Popup Success"
+"Coupon Code","Coupon Code"
+"Show congratulation fireworks","Show congratulation fireworks"
+"Where to Show","Where to Show"
+"Page(s) to show","Page(s) to show"
+"Include page(s)","Include page(s)"
+"<span>Example: <b>cms_index_index</b> (for homepage)</span><br /><span>Separated by a new line</span>","<span>Example: <b>cms_index_index</b> (for homepage)</span><br /><span>Separated by a new line</span>"
+"Exclude page(s)","Exclude page(s)"
+"Insert manually this snippet to your page","Insert manually this snippet to your page"
+"When to Show","When to Show"
+"When the popup appears","When the popup appears"
+"After scroll down","After scroll down"
+"Popup will be shown again after","Popup will be shown again after"
+"Show floating button","Show floating button"
+"Click trigger to open","Click trigger to open"
+"Floating button position","Floating button position"
+"Send Email","Send Email"
+"Enable Send Email","Enable Send Email"
+"Select Yes to enable Send email function. Install <a href=""https://www.mageplaza.com/magento-2-smtp/"" target=""_blank"">Mageplaza_SMTP</a> to avoid sending to spam box.","Select Yes to enable Send email function. Install <a href=""https://www.mageplaza.com/magento-2-smtp/"" target=""_blank"">Mageplaza_SMTP</a> to avoid sending to spam box."
+"Send Email To","Send Email To"
+"Please enter email address, then click Save config.<br>Automatically send email notifications to store owners every Saturday","Please enter email address, then click Save config.<br>Automatically send email notifications to store owners every Saturday"
