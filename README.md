@@ -200,15 +200,16 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 
 #### Where to show
 
-![where to show](https://i.imgur.com/tBkxOtA.png)
+![where to show](https://i.imgur.com/sYDTXhP.png)
 
 **Which page to show**
 
-- **Which page to show**:
-    * Select All Pages to display popups on all pages
-    * Select Manually Insert to display popups on only pages with a specific snippet
+![where to show](https://i.imgur.com/5gKcBQt.png)
 
-![which page to show](https://i.imgur.com/Fn8GjNc.png)
+   * **Which page to show = All Pages**: Select All Pages to display popups on all pages
+   * **Which page to show = Manually Insert**: Select Manually Insert to display popups on only pages with a specific snippet
+
+![which page to show](https://i.imgur.com/MOJl7ia.png)
 
 - **Insert manually this snippet to your page**: Display the code so that admins can copy and insert into the pages they wish to display the popup
     * **Insert manually this snippet to your page**
@@ -218,32 +219,34 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 
     * **Which page to show = Specific Page**: Display the popup on some selected pages
 
-![which page to show](https://i.imgur.com/5cvG2Oy.png)
+![which page to show](https://i.imgur.com/lfx1NTq.png)
 
 - **Include Pages**: Enter one or some pages to display the popup. If there are more than one popup, separate them by commas
     * **Include Page with URL contains**: The popup will be displayed on the page which contain the URL which is entered. Separate several URLs by downlines
     * **Exclude Pages**: Enter one or some pages which you don’t want to show the popup. Separate pages with commas
     * **Exclude page with URL contains**: The popup will not allowed to show up on pages which contain URL paths entered. Separate URLs with downlines.
 
-`Note`: The priority of Exclude section is greater than the Include section.
+``Note``: The priority of Exclude section is greater than the Include section.
 
 #### When to show
 
-![when to show](https://i.imgur.com/EUx0Q9Z.png)
+![when to show](https://i.imgur.com/QCwqQKi.png)
 
 **When the popup appears?**
+
+![when the popup appears](https://i.imgur.com/mkqpIRB.png)
 
 - Select Exit Intent to display popups when one moves the mouse out of the current page
 - Select After page load to display popups after the page is loaded
     * Select After X seconds to display popups after X seconds one visits the page
     
-    ![after x seconds](https://i.imgur.com/5Y6EgD0.png)
+    ![after x seconds](https://i.imgur.com/ZxONFiO.png)
     
 - After X seconds: Enter the number of seconds that a popup is displayed after a visit. After this amount of time since one stays on a page, the popup will appear.
 
 - Select After Scroll down X% to display popups after one scrolls X% of a page.
 
-![after scroll down](https://i.imgur.com/cGzCABg.png)
+![after scroll down](https://i.imgur.com/afgzM4h.png)
 
 - After scroll down: Enter the percentage of page which is scrolled before the popup shows up. The popup will appear after one scrolls down X% of the page
 - The popup will show again later
@@ -260,7 +263,7 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 
 **Send Email**
 
-![send email](https://i.imgur.com/u0egrJ4.png)
+![send email](https://i.imgur.com/lDUjy6X.png)
 
 - **Enable Send Email**: Select Yes to enable the send email functionality. 
 - **Send Email To**:
