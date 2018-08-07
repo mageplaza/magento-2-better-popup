@@ -1,6 +1,7 @@
 # Magento 2 Newsletter Popup / Exit Intent FREE Module
 
 **Magento 2 Exit Intent / Newsletter Popup** cuts down the number of abandoning visitors of a store, and to help convert them to actual customers or subscribers. 
+
 **Exit-intent technology** plays the fundamental role in building better pop-ups, visitors who are about to leave your websites will be kept staying for a little longer by a subscription invitation or a discount offer.
 
 ![magento 2 exit intent](https://i.imgur.com/K5mpJM0.gif)
@@ -15,35 +16,35 @@
 
 ## 2. FAQs
 
-Q: I got error: Mageplaza_Core has been already defined
+**Q: I got error: Mageplaza_Core has been already defined**
 
 A: Read solution [here](https://github.com/mageplaza/module-core/issues/3)
 
-Q: On which pages of my website can Better Popup be displayed?
+**Q: On which pages of my website can Better Popup be displayed?**
 
 A: On any pages you want. Basically, there is no restriction for where a popup is shown. Admins can select particular pages to display popups or include/exclude page URLs to define the where a popup can be shown.
 
-Q: How does a pop-up look?
+**Q: How does a pop-up look?**
 
 A: It can be a center window or can be a full-screen pop-up
 
-Q: When a pop-up is shown, what a visitor can do with it?
+**Q: When a pop-up is shown, what a visitor can do with it?**
 
 A: A visitor can exit the popup then keep surfing the page, or leave an email address on the box. He/she can also quit the page without exiting the pop-up.
 
-Q: How do I keep track of the number of new subscribers?
+**Q: How do I keep track of the number of new subscribers?**
 
 A: A weekly report on the number of new subscribers with their email addresses is sent every Saturday. In the report, eight of the most recent subscribers’ emails will be featured.
 
-Q: Is it possible to see the figures of my subscribers on the admin dashboard?
+**Q: Is it possible to see the figures of my subscribers on the admin dashboard?**
 
 A: To see a full report on dashboard, you can integrate the [free Reports extension by Mageplaza](https://www.mageplaza.com/magento-2-reports-extension/).
 
-Q: Are the popup templates customizable?
+**Q: Are the popup templates customizable?**
 
 A: Yes. You can design a pop-up from backend. HTML is supported here. If you want, pre-made templates can also be used or redesigned
 
-Q: I’m afraid that showing popups continuously will make our visitors annoyed. 
+**Q: I’m afraid that showing popups continuously will make our visitors annoyed.** 
 
 A: You can set the time to re-display a popup
 
