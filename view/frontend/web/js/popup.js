@@ -36,6 +36,14 @@ define([
             this._clickTrigger();
             this._clickClose();
             this._clickSuccess();
+            if (this._checkUpdateTemplate()) {
+                $('#mp-powered').hide();
+                if ($('#mp-popup-template5').length) {
+                    $('#bio_ep_close').css({'top':'-100px'});
+                    $('#bio_ep_close img').attr('src',this.options.dataPopup.srcCloseIconWhite);
+                }
+            }
+
         },
 
         _showPopup: function () {
@@ -122,6 +130,8 @@ define([
                 defaultTemplate = $('#mp-popup-default-template').length, //check on default template
                 template1 = $('#mp-popup-template1').length, // check on template 1
                 template2 = $('#mp-popup-template2').length, // check on template 2
+                template4 = $('#mp-popup-template4').length, // check on template 4
+                template5 = $('#mp-popup-template5').length, // check on template 5
                 form = $('#mp-newsletter-validate-detail');
 
             if (template1 || template2) {
@@ -134,6 +144,9 @@ define([
                     var url = form.attr('action');
 
                     $('.popup-loader').show();
+                    if (template4) {
+                        $('.popup-loader').css({'left':'200px'});
+                    }
                     e.preventDefault();
                     $.ajax({
                         url: url,
@@ -153,9 +166,12 @@ define([
                                         $('canvas#screen').show();
                                         firework(this);
                                     }
-                                    if (template1 || template2) {
+                                    if (template1 || template2 || template4 || template5) {
                                         $('#bio_ep_content').css('color', '#3d3d3e');
                                         $('#mp-coupon-code').css('color', '#3d3d3e');
+                                    }
+                                    if (template5) {
+                                        $('#bio_ep_close').css({'top':'0px'});
                                     }
                                 }
                             });
@@ -166,6 +182,20 @@ define([
                         btnSubmit = $('.better-popup-btn-submit');
 
                     btnSubmit.after(mgsError);
+                }
+
+                //css for error message
+                if (!self._checkUpdateTemplate()) {
+                    $('#mp-newsletter-error').css({"position": "absolute", "width":"100%"});
+                }
+
+                if (template4) {
+                    $('#mp-newsletter-error').css({"position": "absolute", "bottom":"25px", "left":"35px"});
+                }
+
+                if (template5) {
+                    $('.tmp5-msg-error').html('');
+                    $("#mp-newsletter-error").appendTo(".tmp5-msg-error");
                 }
             });
         },
@@ -222,6 +252,14 @@ define([
 
             style.type = 'text/css';
             head.appendChild(style);
+        },
+
+        _checkUpdateTemplate: function () {
+            if ($('#mp-popup-template3').length || $('#mp-popup-template4').length || $('#mp-popup-template5').length) {
+                return true;
+            }
+
+            return false;
         }
     });
 

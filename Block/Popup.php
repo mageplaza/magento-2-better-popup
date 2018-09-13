@@ -227,13 +227,27 @@ class Popup extends AbstractProduct implements BlockInterface
             '{{form_url}}',
             '{{url_loader}}',
             '{{email_icon_url}}',
-            '{{bg_tmp2}}'
+            '{{bg_tmp2}}',
+			'{{img_tmp3}}',
+			'{{tmp3_icon_button}}',
+			'{{bg_tmp4}}',
+			'{{img_tmp4}}',
+			'{{img_content_tmp5}}',
+			'{{img_cap_tmp5}}',
+			'{{img_email_tmp5}}'
         ];
         $replace = [
             $this->getFormActionUrl(),
             $this->getViewFileUrl('images/loader-1.gif'),
             $this->getViewFileUrl('Mageplaza_BetterPopup::images/mail-icon.png'),
-            $this->getViewFileUrl('Mageplaza_BetterPopup::images/bg-tmp2.png')
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/bg-tmp2.png'),
+			$this->getViewFileUrl('Mageplaza_BetterPopup::images/template3/img-content.png'),
+			$this->getViewFileUrl('Mageplaza_BetterPopup::images/template3/button-icon.png'),
+			$this->getViewFileUrl('Mageplaza_BetterPopup::images/template4/bg.png'),
+			$this->getViewFileUrl('Mageplaza_BetterPopup::images/template4/img-content.png'),
+			$this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-content.png'),
+			$this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-cap.png'),
+			$this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-email.png')
         ];
 
         $html = str_replace($search, $replace, $htmlConfig);
@@ -398,7 +412,8 @@ class Popup extends AbstractProduct implements BlockInterface
                 'cookieExp'   => $this->getCookieConfig(),
                 'delay'       => $this->getDelayConfig(),
                 'showOnDelay' => true,
-            ]
+            ],
+			'srcCloseIconWhite' => $this->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close-white.png')
         ];
 
         return HelperData::jsonEncode($params);

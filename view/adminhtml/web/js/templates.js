@@ -30,6 +30,7 @@ define([
             jsonDataInfo: {}
         },
         ids: {
+            popupFullScreen: '#betterpopup_what_to_show_responsive',
             popupHtmlElm: '#betterpopup_what_to_show_html_content',
             successHtmlElm: '#betterpopup_what_to_show_popup_success_html_success_content',
             popupBackground: '#betterpopup_what_to_show_background_color',
@@ -74,6 +75,11 @@ define([
                     $(this.ids.popupTextColor).val(data.textColor);
                     $(this.ids.popupWidth).val(data.width);
                     $(this.ids.popupHeight).val(data.height);
+                    if (value == 3 || value == 4 || value == 5 || value == 6) {
+                        this._setReadOnly();
+                    } else {
+                        this._removeReadOnly();
+                    }
                 }
             }
         },
@@ -90,9 +96,36 @@ define([
                 select.val(1);
             } else if (textContent.indexOf('mp-popup-template2') !== -1) {
                 select.val(2);
+            } else if (textContent.indexOf('mp-popup-template3') !== -1) {
+                select.val(3);
+                this._setReadOnly();
+            } else if (textContent.indexOf('mp-popup-template4')!== -1) {
+                select.val(4);
+                this._setReadOnly();
+            } else if (textContent.indexOf('mp-popup-template5')!== -1) {
+                select.val(5);
+                this._setReadOnly();
+            } else if (textContent.indexOf('mp-popup-template6')!== -1) {
+                select.val(6);
+                this._setReadOnly();
             } else {
                 select.val(0);
             }
+        },
+
+        _setReadOnly: function () {
+            $(this.ids.popupFullScreen).val(1);
+            $(this.ids.popupFullScreen).attr("disabled", true);
+            $(this.ids.popupWidth).prop('readonly', true);
+            $(this.ids.popupHeight).prop('readonly', true);
+            $(this.ids.popupBackground).prop('readonly', true);
+        },
+
+        _removeReadOnly: function () {
+            $(this.ids.popupFullScreen).removeAttr("disabled");
+            $(this.ids.popupWidth).prop('readonly', false);
+            $(this.ids.popupHeight).prop('readonly', false);
+            $(this.ids.popupBackground).prop('readonly', false);
         }
     });
 

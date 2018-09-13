@@ -113,7 +113,43 @@ class Template extends Field
                 'textColor'   => '#43275d',
                 'width'       => '650',
                 'height'      => '450'
-            ]
+            ],
+			[
+				'label'       => __('Template 3'),
+				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template3/popup'),
+				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+				'background'  => '#3d9bc7',
+				'textColor'   => '#000000',
+				'width'       => '800',
+				'height'      => '321'
+			],
+			[
+				'label'       => __('Template 4'),
+				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template4/popup'),
+				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+				'background'  => '#fbf5ee',
+				'textColor'   => '#000000',
+				'width'       => '605',
+				'height'      => '330'
+			],
+			[
+				'label'       => __('Template 5'),
+				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template5/popup'),
+				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+				'background'  => '#31B0D5',
+				'textColor'   => '#000000',
+				'width'       => '359',
+				'height'      => '260'
+			],
+			[
+				'label'       => __('Template 6'),
+				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template6/popup'),
+				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+				'background'  => '#31B0D5',
+				'textColor'   => '#000000',
+				'width'       => '800',
+				'height'      => '250'
+			]
         ];
 
         return $options;
