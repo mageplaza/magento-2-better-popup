@@ -40,7 +40,7 @@ if ($block->checkPagesToShow()):
         </div>
         <?php if ($block->isShowFloatButton()): ?>
             <div class="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>; display: none">
-                <button class="click-trigger primary"><?php echo __('Show Popup'); ?></button>
+                <button class="click-trigger primary"><?php echo $block->getFloatLabel(); ?></button>
             </div>
         <?php endif; ?>
     </div>

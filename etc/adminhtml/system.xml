@@ -167,6 +167,13 @@
                         <field id="show_float_button">1</field>
                     </depends>
                 </field>
+                <field id="float_button_label" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button label</label>
+                    <comment>Default: Subscribe</comment>
+                    <depends>
+                        <field id="show_float_button">1</field>
+                    </depends>
+                </field>
             </group>
             <group id="send_email" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Send Email</label>

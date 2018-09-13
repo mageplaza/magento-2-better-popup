@@ -82,6 +82,7 @@
                 <delay>5</delay>
                 <cookieExp>0</cookieExp>
                 <show_float_button>0</show_float_button>
+                <float_button_label>Subscribe</float_button_label>
             </when_to_show>
         </betterpopup>
     </default>
