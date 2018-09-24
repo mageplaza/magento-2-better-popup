@@ -52,8 +52,8 @@ class Template extends Subscriber
      */
     public function getCurrentTime()
     {
-        $date = $this->_getDayDate->gmtDate('Y-m-d');
+        $date = $this->_getDayDate->gmtDate('Y-M-d');
 
-        return date('F d, Y', strtotime($date));
+        return date('d M Y', strtotime($date));
     }
 }
