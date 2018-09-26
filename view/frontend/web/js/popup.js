@@ -255,7 +255,7 @@ define([
         },
 
         _checkUpdateTemplate: function () {
-            if ($('#mp-popup-template3').length || $('#mp-popup-template4').length || $('#mp-popup-template5').length) {
+            if ($('#mp-popup-template3').length || $('#mp-popup-template4').length || $('#mp-popup-template5').length || $('#mp-popup-template6').length) {
                 return true;
             }
 
