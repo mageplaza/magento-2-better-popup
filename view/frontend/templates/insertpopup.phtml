@@ -19,8 +19,8 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-if ($block->isManuallyInsert()): ?>
-    <?php $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
+if ($block->isManuallyInsert()):
+    $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
     <canvas id="screen"></canvas>
     <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block"
          data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
@@ -43,5 +43,10 @@ if ($block->isManuallyInsert()): ?>
             </div>
         <?php endif; ?>
     </div>
+    <style>
+        .mppopup-text {
+            color: <?php echo $block->getTextColor(); ?>
+        }
+    </style>
 <?php endif; ?>
 
