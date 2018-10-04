@@ -127,16 +127,11 @@ define([
         _clickSuccess: function () {
             var self = this,
                 bioContent = $('#bio_ep_content'),
-                defaultTemplate = $('#mp-popup-default-template').length, //check on default template
-                template1 = $('#mp-popup-template1').length, // check on template 1
-                template2 = $('#mp-popup-template2').length, // check on template 2
                 template4 = $('#mp-popup-template4').length, // check on template 4
                 template5 = $('#mp-popup-template5').length, // check on template 5
                 form = $('#mp-newsletter-validate-detail');
 
-            if (template1 || template2) {
-                $('#bio_ep_close').css('color', '#000');
-            }
+
 
             form.submit(function (e) {
                 if (form.validation('isValid')) {
@@ -166,7 +161,7 @@ define([
                                         $('canvas#screen').show();
                                         firework(this);
                                     }
-                                    if (template1 || template2 || template4 || template5) {
+                                    if (template4 || template5) {
                                         $('#bio_ep_content').css('color', '#3d3d3e');
                                         $('#mp-coupon-code').css('color', '#3d3d3e');
                                     }
@@ -177,11 +172,6 @@ define([
                             });
                         }
                     });
-                } else if (defaultTemplate) {
-                    var mgsError = $('#mp-newsletter-error'),
-                        btnSubmit = $('.better-popup-btn-submit');
-
-                    btnSubmit.after(mgsError);
                 }
 
                 //css for error message
