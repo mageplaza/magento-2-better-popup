@@ -4,6 +4,10 @@
 
 **Exit-intent technology** plays the fundamental role in building better pop-ups, visitors who are about to leave your websites will be kept staying for a little longer by a subscription invitation or a discount offer.
 
+[![Latest Stable Version](https://poser.pugx.org/mageplaza/module-better-popup/v/stable)](https://packagist.org/packages/mageplaza/module-better-popup)
+[![Total Downloads](https://poser.pugx.org/mageplaza/module-better-popup/downloads)](https://packagist.org/packages/mageplaza/module-better-popup)
+
+
 ![magento 2 exit intent](https://i.imgur.com/K5mpJM0.gif)
 
 ## 1. Documentation
