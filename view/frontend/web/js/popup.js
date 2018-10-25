@@ -74,14 +74,17 @@ define([
                     });
                 } else {
                     bioEp.init(self.options.dataPopup.popupConfig);
-                    if ($('#mp-popup-template3').length) {
-                        $('#bio_ep').css({"width": "800px", "height": "321px"});
-                    } else if ($('#mp-popup-template4').length) {
-                        $('#bio_ep').css({"width": "605px", "height": "330px"});
-                    } else if ($('#mp-popup-template5').length) {
-                        $('#bio_ep').css({"width": "359px", "height": "260px"});
-                    } else if ($('#mp-popup-template6').length) {
-                        $('#bio_ep').css({"width": "800px", "height": "250px"});
+
+                    if(this.options.dataPopup.fullScreen.isFullScreen) {
+                        if ($('#mp-popup-template3').length) {
+                            $('#bio_ep').css({"width": "800px", "height": "321px"});
+                        } else if ($('#mp-popup-template4').length) {
+                            $('#bio_ep').css({"width": "605px", "height": "330px"});
+                        } else if ($('#mp-popup-template5').length) {
+                            $('#bio_ep').css({"width": "359px", "height": "260px"});
+                        } else if ($('#mp-popup-template6').length) {
+                            $('#bio_ep').css({"width": "800px", "height": "250px"});
+                        }
                     }
                     self._fullScreen();
                 }
