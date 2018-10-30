@@ -37,15 +37,15 @@ class FeatureDisplay extends Field
     protected function _getElementHtml(AbstractElement $element)
     {
         $html = '<div class="control-value" style="padding-top: 8px">';
-        $html .= '<span><p>Use the following code to show the popup block in any place you want</p></span>';
+        $html .= '<span><p>' . __('Use the following code to show the popup block in any place you want') . '</p></span>';
 
-        $html .= '<strong>CMS Page/Static Block</strong><br />';
+        $html .= '<strong>' . __('CMS Page/Static Block') . '</strong><br />';
         $html .= '<span style="font-size: 10px"><pre style="background-color: #f5f5dc"><code>{{block class="Mageplaza\BetterPopup\Block\Popup" template="Mageplaza_BetterPopup::insertpopup.phtml"}}</code></pre></span>';
 
-        $html .= '<strong>Template .phtml file</strong><br />';
+        $html .= '<strong>' . __('Template .phtml file') . '</strong><br />';
         $html .= '<span style="font-size: 10px"><pre style="background-color: #f5f5dc"><code>' . $this->_escaper->escapeHtml('<?php echo $block->getLayout()->createBlock("Mageplaza\BetterPopup\Block\Popup")->setTemplate("insertpopup.phtml")->toHtml();?>') . '</code></pre></span>';
 
-        $html .= '<strong>Layout file</strong><br />';
+        $html .= '<strong>' . __('Layout file') . '</strong><br />';
         $html .= '<span style="font-size: 10px"><pre style="background-color: #f5f5dc"><code>' . $this->_escaper->escapeHtml('<block class="Mageplaza\BetterPopup\Block\Popup" template="Mageplaza_BetterPopup::insertpopup.phtml" name="mp_betterpopup_insert" />') . '</code></pre></span>';
 
         $html .= '</div>';

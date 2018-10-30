@@ -36,7 +36,7 @@ class Template extends Subscriber
      */
     public function getListEmailSubscriberWeek()
     {
-        $listEmail = [];
+        $listEmail             = [];
         $subscribersCollection = $this->getSubscriberInWeek($this->_helperData->getStoreId());
         foreach ($subscribersCollection as $item) {
             $listEmail[] = $item->getData('subscriber_email');
@@ -52,8 +52,8 @@ class Template extends Subscriber
      */
     public function getCurrentTime()
     {
-        $date = $this->_getDayDate->gmtDate('Y-m-d');
+        $date = $this->_getDayDate->gmtDate('Y-M-d');
 
-        return date('F d, Y', strtotime($date));
+        return date('d M Y', strtotime($date));
     }
 }

@@ -30,6 +30,7 @@ define([
             jsonDataInfo: {}
         },
         ids: {
+            popupFullScreen: '#betterpopup_what_to_show_responsive',
             popupHtmlElm: '#betterpopup_what_to_show_html_content',
             successHtmlElm: '#betterpopup_what_to_show_popup_success_html_success_content',
             popupBackground: '#betterpopup_what_to_show_background_color',
@@ -86,10 +87,12 @@ define([
             var select = $('#mageplaza_betterpopup_templates'),
                 textContent = $('#betterpopup_what_to_show_html_content').text();
 
-            if (textContent.indexOf('mp-popup-template1') !== -1) {
+            if (textContent.indexOf('mp-popup-template4') !== -1) {
                 select.val(1);
-            } else if (textContent.indexOf('mp-popup-template2') !== -1) {
+            } else if (textContent.indexOf('mp-popup-template5') !== -1) {
                 select.val(2);
+            } else if (textContent.indexOf('mp-popup-template6') !== -1) {
+                select.val(3);
             } else {
                 select.val(0);
             }

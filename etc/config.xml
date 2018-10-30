@@ -30,32 +30,37 @@
                 <template>1</template>
                 <html_content>
                     <![CDATA[
-                        <div id="mp-popup-default-template">
-                            <span class="mp-popup-title-df">Subscribe To Our Newsletter</span>
-                            <div class="mp-popup-text-content-df">
-                                <span>Subscribe to our email newsletter today to receive updates on the latest news, tutorials and special offers!</span>
-                            </div>
-                            <form class="form subscribe  mp-newsletter-validate-detail-df" novalidate action="{{form_url}}" method="post"
-                                  data-mage-init='{"validation": {"errorClass": "mage-error"}}'
-                                  id="mp-newsletter-validate-detail">
-                                <input name="email" type="email" id="mp-newsletter" class="better-popup-input-email"
-                                       placeholder="Enter your email address"
-                                       data-validate="{required:true, 'validate-email':true}"/>
-
-                                <button class="action subscribe primary better-popup-btn-submit" title="Send me my coupon" type="submit">
-                                    <span class="success-lable">Subscribe Now</span>
-                                </button>
-                                <div class="popup-loader">
-                                    <img class="loader" src="{{url_loader}}" alt="Loading...">
-                                </div>
-                            </form>
-                            <p class="spam-note-df">We respect your privacy. Your information is safe and will never be shared.</p>
-                        </div>
+<div id="mp-popup-template3">
+    <div class="tmp3-img-content">
+        <img src="{{img_tmp3}}"/>
+    </div>
+    <div class="tmp3-text-content">
+        <div class="tmp3-title">Subscribe</div>
+        <div class="tmp3-sub-title">TO OUR NEWSLETTER</div>
+        <div class="tmp3-text mppopup-text">Subsribe to our email newsletter today to receive update on the latest news, tutorials and special offers!</div>
+        <form class="form subscribe tmp3-form" novalidate action="{{form_url}}" method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="mp-newsletter-validate-detail">
+            <div class="tmp3_field_newsletter">
+                <input name="email" type="email" id="mp-newsletter" class="tmp3-input"
+                       placeholder="Enter your email to subscribe"
+                       data-validate="{required:true, 'validate-email':true}">
+            </div>
+            <button class="action subscribe primary tmp3-button" title="Send" type="submit">
+                <img src="{{tmp3_icon_button}}"/>
+            </button>
+            <div class="popup-loader">
+                <img class="loader" src="{{url_loader}}" alt="Loading...">
+            </div>
+        </form>
+    </div>
+    <span class="tmp3-lable-powered">Powered by Mageplaza</span>
+</div>
                     ]]>
                 </html_content>
                 <responsive>1</responsive>
-                <width>650</width>
-                <height>350</height>
+                <width>800</width>
+                <height>321</height>
                 <background_color>#3d9bc7</background_color>
                 <text_color>#FFFFFF</text_color>
                 <popup_success>
@@ -82,6 +87,7 @@
                 <delay>5</delay>
                 <cookieExp>0</cookieExp>
                 <show_float_button>0</show_float_button>
+                <float_button_label>Subscribe</float_button_label>
             </when_to_show>
         </betterpopup>
     </default>

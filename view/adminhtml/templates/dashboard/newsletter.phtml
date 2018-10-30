@@ -19,9 +19,9 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-$storeId = $this->helper('Mageplaza\BetterPopup\Helper\Data')->getStoreId();
+$storeId         = $this->helper('Mageplaza\BetterPopup\Helper\Data')->getStoreId();
 $subscriberToday = $block->getSubscriberToday() ? $block->getSubscriberToday()->getSize() : 0;
-$subscriberWeek = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek($storeId)->getSize() : 0;
+$subscriberWeek  = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek($storeId)->getSize() : 0;
 $subscriberMonth = $block->getSubscriberInMonth() ? $block->getSubscriberInMonth()->getSize() : 0;
 ?>
 <div class="dashboard-item-container">
@@ -29,18 +29,18 @@ $subscriberMonth = $block->getSubscriberInMonth() ? $block->getSubscriberInMonth
     <div class="dashboard-item-content">
         <table class="dashboard-data">
             <thead>
-                <tr>
-                    <th><span><?php echo __('Today'); ?></span></th>
-                    <th><span><?php echo __('Week'); ?></span></th>
-                    <th><span><?php echo __('Month'); ?></span></th>
-                </tr>
+            <tr>
+                <th><span><?php echo __('Today'); ?></span></th>
+                <th><span><?php echo __('Week'); ?></span></th>
+                <th><span><?php echo __('Month'); ?></span></th>
+            </tr>
             </thead>
             <tbody style="text-align: center;">
-                <tr>
-                    <td><span><?php echo $subscriberToday ?></span></td>
-                    <td><span><?php echo $subscriberWeek ?></span></td>
-                    <td><span><?php echo $subscriberMonth ?></span></td>
-                </tr>
+            <tr>
+                <td><span><?php echo $subscriberToday ?></span></td>
+                <td><span><?php echo $subscriberWeek ?></span></td>
+                <td><span><?php echo $subscriberMonth ?></span></td>
+            </tr>
             </tbody>
         </table>
     </div>

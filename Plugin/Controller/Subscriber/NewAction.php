@@ -69,7 +69,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
     )
     {
         $this->resultJsonFactory = $resultJsonFactory;
-        $this->_helperData = $helperData;
+        $this->_helperData       = $helperData;
 
         parent::__construct($context, $subscriberFactory, $customerSession, $storeManager, $customerUrl, $customerAccountManagement);
     }
@@ -101,7 +101,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $response = [
                     'success' => true,
-                    'msg'    => __('There was a problem with the subscription: %1', $e->getMessage()),
+                    'msg'     => __('There was a problem with the subscription: %1', $e->getMessage()),
                 ];
             } catch (\Exception $e) {
                 $response = [

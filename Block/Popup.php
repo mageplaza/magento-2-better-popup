@@ -60,7 +60,7 @@ class Popup extends AbstractProduct implements BlockInterface
         array $data = []
     )
     {
-        $this->_helperData = $helperData;
+        $this->_helperData                  = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
 
         parent::__construct($context, $data);
@@ -155,6 +155,18 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
+     * Get Float button label
+     *
+     * @return \Magento\Framework\Phrase
+     */
+    public function getFloatLabel()
+    {
+        $label = $this->_helperData->getWhenToShowConfig('float_button_label');
+
+        return $label ?: __('Subscribe');
+    }
+
+    /**
      * Get Config Popup Appear
      *
      * @return array|mixed
@@ -223,17 +235,31 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         $htmlConfig = $this->_helperData->getWhatToShowConfig('html_content');
 
-        $search = [
+        $search  = [
             '{{form_url}}',
             '{{url_loader}}',
             '{{email_icon_url}}',
-            '{{bg_tmp2}}'
+            '{{bg_tmp2}}',
+            '{{img_tmp3}}',
+            '{{tmp3_icon_button}}',
+            '{{bg_tmp4}}',
+            '{{img_tmp4}}',
+            '{{img_content_tmp5}}',
+            '{{img_cap_tmp5}}',
+            '{{img_email_tmp5}}'
         ];
         $replace = [
             $this->getFormActionUrl(),
             $this->getViewFileUrl('images/loader-1.gif'),
             $this->getViewFileUrl('Mageplaza_BetterPopup::images/mail-icon.png'),
-            $this->getViewFileUrl('Mageplaza_BetterPopup::images/bg-tmp2.png')
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/bg-tmp2.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template3/img-content.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template3/button-icon.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template4/bg.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template4/img-content.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-content.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-cap.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-email.png')
         ];
 
         $html = str_replace($search, $replace, $htmlConfig);
@@ -249,8 +275,8 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkIncludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
-        $includePages = array_map('trim', $arrayPages);
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
+        $includePages   = array_map('trim', $arrayPages);
 
         return in_array($fullActionName, $includePages);
     }
@@ -267,7 +293,7 @@ class Popup extends AbstractProduct implements BlockInterface
 
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl = array_map('trim', $arrayPaths);
+            $pathsUrl   = array_map('trim', $arrayPaths);
             foreach ($pathsUrl as $path) {
                 if (strpos($currentPath, $path) !== false) {
                     return true;
@@ -286,8 +312,8 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkExcludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
-        $includePages = array_map('trim', $arrayPages);
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
+        $includePages   = array_map('trim', $arrayPages);
 
         return !in_array($fullActionName, $includePages);
     }
@@ -304,7 +330,7 @@ class Popup extends AbstractProduct implements BlockInterface
 
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl = array_map('trim', $arrayPaths);
+            $pathsUrl   = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
                 if (strpos($currentPath, $path) !== false) {
@@ -379,26 +405,27 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getAjaxData()
     {
         $params = [
-            'url'             => $this->getUrl('betterpopup/ajax/success'),
-            'isScroll'        => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
-            'afterSeconds'    => [
+            'url'               => $this->getUrl('betterpopup/ajax/success'),
+            'isScroll'          => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
+            'afterSeconds'      => [
                 'isAfterSeconds' => $this->getPopupAppear() == Appear::AFTER_X_SECONDS,
                 'delay'          => $this->getDelayConfig()
             ],
-            'percentage'      => $this->getPercentageScroll(),
-            'fullScreen'      => [
+            'percentage'        => $this->getPercentageScroll(),
+            'fullScreen'        => [
                 'isFullScreen' => $this->isFullScreen(),
                 'bgColor'      => $this->getBackGroundColor()
             ],
-            'isExitIntent'    => $this->isExitIntent(),
-            'isShowFireworks' => $this->isShowFireworks(),
-            'popupConfig'     => [
+            'isExitIntent'      => $this->isExitIntent(),
+            'isShowFireworks'   => $this->isShowFireworks(),
+            'popupConfig'       => [
                 'width'       => $this->getWidthPopup(),
                 'height'      => $this->getHeightPopup(),
                 'cookieExp'   => $this->getCookieConfig(),
                 'delay'       => $this->getDelayConfig(),
                 'showOnDelay' => true,
-            ]
+            ],
+            'srcCloseIconWhite' => $this->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close-white.png')
         ];
 
         return HelperData::jsonEncode($params);

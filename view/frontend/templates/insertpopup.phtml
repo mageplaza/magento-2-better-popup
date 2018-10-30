@@ -19,15 +19,15 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-if ($block->isManuallyInsert()): ?>
-    <?php $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
+if ($block->isManuallyInsert()):
+    $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
     <canvas id="screen"></canvas>
     <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block"
          data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
         <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>; display:none">
             <div class="mageplaza-betterpopup-content">
                 <div id="bio_ep_close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <img src="<?php echo $block->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close.png'); ?>"/>
                 </div>
                 <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
                     <?php echo $block->getPopupContent(); ?>
@@ -38,10 +38,15 @@ if ($block->isManuallyInsert()): ?>
             </div>
         </div>
         <?php if ($block->isShowFloatButton()): ?>
-            <div class="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>">
-                <button class="click-trigger primary"><?php echo __('Show Popup'); ?></button>
+            <div class="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>; display: none">
+                <button class="click-trigger primary"><?php echo $block->getFloatLabel(); ?></button>
             </div>
         <?php endif; ?>
     </div>
+    <style>
+        .mppopup-text {
+            color: <?php echo $block->getTextColor(); ?>
+        }
+    </style>
 <?php endif; ?>
 

@@ -1,0 +1,24 @@
+<div id="mp-popup-template5">
+    <img src="{{img_content_tmp5}}" class="tmp5-img-content">
+    <img src="{{img_cap_tmp5}}" class="tmp5-img-cap">
+    <div class="tmp5-text-content">
+        <div class="tmp5-title">Subscribe</div>
+        <div class="tmp5-sub-title">TO OUR NEWSLETTER</div>
+        <div class="tmp5-text mppopup-text">Subsribe to our email newsletter today to receive update on the latest news, tutorials and special offers!</div>
+    </div>
+    <form class="form subscribe tmp5-form" novalidate action="{{form_url}}" method="post"
+          data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+          id="mp-newsletter-validate-detail">
+        <img src="{{img_email_tmp5}}" class="tmp5-img-email">
+        <div class="tmp5_field_newsletter">
+            <input name="email" type="email" id="mp-newsletter" class="tmp5-input" placeholder="Enter your email"
+                   data-validate="{required:true, 'validate-email':true}">
+        </div>
+        <button class="action subscribe primary tmp5-button" title="Send" type="submit">SUBSCRIBE NOW</button>
+        <div class="popup-loader">
+            <img class="loader" src="{{url_loader}}" alt="Loading...">
+        </div>
+    </form>
+    <div class="tmp5-msg-error"></div>
+    <span class="tmp5-lable-powered">Powered by Mageplaza</span>
+</div>
