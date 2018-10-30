@@ -62,7 +62,7 @@ class Data extends AbstractHelper
         DirectoryList $directoryList
     )
     {
-        $this->_fileSystem = $filesystem;
+        $this->_fileSystem    = $filesystem;
         $this->_directoryList = $directoryList;
 
         parent::__construct($context, $objectManager, $storeManager);

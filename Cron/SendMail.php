@@ -58,8 +58,8 @@ class SendMail
         StoreManagerInterface $storeManager
     )
     {
-        $this->_helperData = $helperData;
-        $this->_send = $send;
+        $this->_helperData   = $helperData;
+        $this->_send         = $send;
         $this->_storeManager = $storeManager;
     }
 

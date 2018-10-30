@@ -55,7 +55,7 @@ class Success extends Action
     )
     {
         $this->resultLayoutFactory = $resultLayoutFactory;
-        $this->resultJsonFactory = $resultJsonFactory;
+        $this->resultJsonFactory   = $resultJsonFactory;
 
         parent::__construct($context);
     }
@@ -65,9 +65,9 @@ class Success extends Action
      */
     public function execute()
     {
-        $result = $this->resultJsonFactory->create();
+        $result       = $this->resultJsonFactory->create();
         $resultLayout = $this->resultLayoutFactory->create();
-        $blockHtml = $resultLayout->getLayout()
+        $blockHtml    = $resultLayout->getLayout()
             ->createBlock('Mageplaza\BetterPopup\Block\Success')
             ->toHtml();
         $result->setData(['success' => $blockHtml]);

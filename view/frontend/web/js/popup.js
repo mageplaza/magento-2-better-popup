@@ -28,7 +28,7 @@ define([
 
     $.widget('mageplaza.betterpopup_block', {
         options: {
-            dataPopup: {},
+            dataPopup: {}
         },
 
         _create: function () {
@@ -39,8 +39,8 @@ define([
             if (this._checkUpdateTemplate()) {
                 $('#mp-powered').hide();
                 if ($('#mp-popup-template5').length) {
-                    $('#bio_ep_close').css({'top':'-100px'});
-                    $('#bio_ep_close img').attr('src',this.options.dataPopup.srcCloseIconWhite);
+                    $('#bio_ep_close').css({'top': '-100px'});
+                    $('#bio_ep_close img').attr('src', this.options.dataPopup.srcCloseIconWhite);
                 }
             }
 
@@ -54,8 +54,8 @@ define([
             this._removeDuplicatePopup();
 
             //Check show trigger
-            if(this.options.dataPopup.afterSeconds.isAfterSeconds) {
-                setTimeout(function(){
+            if (this.options.dataPopup.afterSeconds.isAfterSeconds) {
+                setTimeout(function () {
                     triggerElem.show();
                 }, this.options.dataPopup.afterSeconds.delay * 1000);
             } else {
@@ -75,7 +75,7 @@ define([
                 } else {
                     bioEp.init(self.options.dataPopup.popupConfig);
 
-                    if(this.options.dataPopup.fullScreen.isFullScreen) {
+                    if (this.options.dataPopup.fullScreen.isFullScreen) {
                         if ($('#mp-popup-template3').length) {
                             $('#bio_ep').css({"width": "800px", "height": "321px"});
                         } else if ($('#mp-popup-template4').length) {
@@ -144,7 +144,6 @@ define([
                 form = $('#mp-newsletter-validate-detail');
 
 
-
             form.submit(function (e) {
                 if (form.validation('isValid')) {
                     var email = $("#mp-newsletter").val();
@@ -152,7 +151,7 @@ define([
 
                     $('.popup-loader').show();
                     if (template4) {
-                        $('.popup-loader').css({'left':'200px'});
+                        $('.popup-loader').css({'left': '200px'});
                     }
                     e.preventDefault();
                     $.ajax({
@@ -178,7 +177,7 @@ define([
                                         $('#mp-coupon-code').css('color', '#3d3d3e');
                                     }
                                     if (template5) {
-                                        $('#bio_ep_close').css({'top':'0px'});
+                                        $('#bio_ep_close').css({'top': '0px'});
                                     }
                                 }
                             });
@@ -188,11 +187,11 @@ define([
 
                 //css for error message
                 if (!self._checkUpdateTemplate()) {
-                    $('#mp-newsletter-error').css({"position": "absolute", "width":"100%"});
+                    $('#mp-newsletter-error').css({"position": "absolute", "width": "100%"});
                 }
 
                 if (template4) {
-                    $('#mp-newsletter-error').css({"position": "absolute", "bottom":"25px", "left":"35px"});
+                    $('#mp-newsletter-error').css({"position": "absolute", "bottom": "25px", "left": "35px"});
                 }
 
                 if (template5) {

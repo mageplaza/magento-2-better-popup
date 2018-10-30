@@ -67,7 +67,7 @@ class Template extends Field
     protected function _getElementHtml(AbstractElement $element)
     {
         $originalData = $element->getOriginalData();
-        $buttonLabel = !empty($originalData['button_label']) ? $originalData['button_label'] : '';
+        $buttonLabel  = !empty($originalData['button_label']) ? $originalData['button_label'] : '';
         $this->addData(
             [
                 'button_label' => __($buttonLabel),
@@ -87,42 +87,42 @@ class Template extends Field
     private function getOptionTemplate()
     {
         $options = [
-			[
-				'label'       => __('Default Template'),
-				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template3/popup'),
-				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
-				'background'  => '#3d9bc7',
-				'textColor'   => '#000000',
-				'width'       => '800',
-				'height'      => '321'
-			],
-			[
-				'label'       => __('Template 1'),
-				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template4/popup'),
-				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
-				'background'  => '#fbf5ee',
-				'textColor'   => '#000000',
-				'width'       => '605',
-				'height'      => '330'
-			],
-			[
-				'label'       => __('Template 2'),
-				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template5/popup'),
-				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
-				'background'  => '#31B0D5',
-				'textColor'   => '#000000',
-				'width'       => '359',
-				'height'      => '260'
-			],
-			[
-				'label'       => __('Template 3'),
-				'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template6/popup'),
-				'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
-				'background'  => '#31B0D5',
-				'textColor'   => '#000000',
-				'width'       => '800',
-				'height'      => '250'
-			]
+            [
+                'label'       => __('Default Template'),
+                'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template3/popup'),
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+                'background'  => '#3d9bc7',
+                'textColor'   => '#000000',
+                'width'       => '800',
+                'height'      => '321'
+            ],
+            [
+                'label'       => __('Template 1'),
+                'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template4/popup'),
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+                'background'  => '#fbf5ee',
+                'textColor'   => '#000000',
+                'width'       => '605',
+                'height'      => '330'
+            ],
+            [
+                'label'       => __('Template 2'),
+                'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template5/popup'),
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+                'background'  => '#31B0D5',
+                'textColor'   => '#000000',
+                'width'       => '359',
+                'height'      => '260'
+            ],
+            [
+                'label'       => __('Template 3'),
+                'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('template6/popup'),
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success'),
+                'background'  => '#31B0D5',
+                'textColor'   => '#000000',
+                'width'       => '800',
+                'height'      => '250'
+            ]
         ];
 
         return $options;

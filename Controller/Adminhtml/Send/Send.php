@@ -80,11 +80,11 @@ class Send extends Action
     {
         parent::__construct($context);
 
-        $this->_helperData = $helperData;
-        $this->_template = $template;
+        $this->_helperData       = $helperData;
+        $this->_template         = $template;
         $this->_transportBuilder = $transportBuilder;
-        $this->_storeManager = $storeManager;
-        $this->logger = $logger;
+        $this->_storeManager     = $storeManager;
+        $this->logger            = $logger;
     }
 
     /**
@@ -93,7 +93,7 @@ class Send extends Action
     public function execute()
     {
         $result['status'] = false;
-        $toEmail = $this->_helperData->getToEmail();
+        $toEmail          = $this->_helperData->getToEmail();
 
         if ($toEmail) {
             try {
@@ -101,14 +101,14 @@ class Send extends Action
                     $this->sendMail($store);
                 }
 
-                $result['status'] = true;
+                $result['status']  = true;
                 $result['content'] = __('Sent successfully! Please check your email box.');
             } catch (\Exception $e) {
                 $result['content'] = __('There is an error occurred while sending email. Please try again later.');
                 $this->logger->critical($e);
             }
         } else {
-            $result['status'] = false;
+            $result['status']  = false;
             $result['content'] = __('Please enter email and save config');
         }
 
@@ -119,39 +119,41 @@ class Send extends Action
      * Send Mail
      *
      * @param $store
+     * @return null
      */
     public function sendMail($store)
     {
         $toEmail = $this->_helperData->getToEmail();
+        if (!$toEmail) {
+            return null;
+        }
 
-        if ($toEmail) {
-            $subscriber = $this->_template->getSubscriberInWeek($store->getId())->getSize();
-            $unSubscriber = $this->_template->getunSubscriberCollection($store->getId())->getSize();
-            $currentTime = $this->_template->getCurrentTime();
-            $store_name = $store->getName();
+        $subscriber   = $this->_template->getSubscriberInWeek($store->getId())->getSize();
+        $unSubscriber = $this->_template->getunSubscriberCollection($store->getId())->getSize();
+        $currentTime  = $this->_template->getCurrentTime();
+        $store_name   = $store->getName();
 
-            $vars = [
-                'mp_subscriber'   => $subscriber,
-                'mp_unSubscriber' => $unSubscriber,
-                'currentTime'     => $currentTime,
-                'store_name'      => $store_name
-            ];
-            $transport = $this->_transportBuilder
-                ->setTemplateIdentifier('mageplaza_betterpopup_template')
-                ->setTemplateOptions([
-                    'area'  => \Magento\Framework\App\Area::AREA_FRONTEND,
-                    'store' => $store->getId()
-                ])
-                ->setFrom('general')
-                ->addTo($toEmail)
-                ->setTemplateVars($vars)
-                ->getTransport();
+        $vars      = [
+            'mp_subscriber'   => $subscriber,
+            'mp_unSubscriber' => $unSubscriber,
+            'currentTime'     => $currentTime,
+            'store_name'      => $store_name
+        ];
+        $transport = $this->_transportBuilder
+            ->setTemplateIdentifier('mageplaza_betterpopup_template')
+            ->setTemplateOptions([
+                'area'  => \Magento\Framework\App\Area::AREA_FRONTEND,
+                'store' => $store->getId()
+            ])
+            ->setFrom('general')
+            ->addTo($toEmail)
+            ->setTemplateVars($vars)
+            ->getTransport();
 
-            try {
-                $transport->sendMessage();
-            } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
-            }
+        try {
+            $transport->sendMessage();
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
         }
     }
 }

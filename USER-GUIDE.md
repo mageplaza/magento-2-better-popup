@@ -5,7 +5,7 @@
 - Product page: https://www.mageplaza.com/magento-2-better-popup/
 - FAQs: https://www.mageplaza.com/faqs/
 - Get Support: https://mageplaza.freshdesk.com/ or support@mageplaza.com
-- Changelog: https://www.mageplaza.com/changelog/m2-better-popup.txt
+- Changelog: https://www.mageplaza.com/releases/better-popup/
 - License agreement: https://www.mageplaza.com/LICENSE.txt
 
 

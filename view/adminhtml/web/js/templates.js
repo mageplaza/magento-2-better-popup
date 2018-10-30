@@ -87,17 +87,16 @@ define([
             var select = $('#mageplaza_betterpopup_templates'),
                 textContent = $('#betterpopup_what_to_show_html_content').text();
 
-            if (textContent.indexOf('mp-popup-template4')!== -1) {
+            if (textContent.indexOf('mp-popup-template4') !== -1) {
                 select.val(1);
-            } else if (textContent.indexOf('mp-popup-template5')!== -1) {
+            } else if (textContent.indexOf('mp-popup-template5') !== -1) {
                 select.val(2);
-            } else if (textContent.indexOf('mp-popup-template6')!== -1) {
+            } else if (textContent.indexOf('mp-popup-template6') !== -1) {
                 select.val(3);
             } else {
                 select.val(0);
             }
-        },
-
+        }
     });
 
     return $.mageplaza.popupTemplates;

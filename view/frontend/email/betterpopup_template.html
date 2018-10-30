@@ -96,13 +96,17 @@
 <span style=" font-size:14px;font-weight: bold; float: right;">Store name: {{trans "%store_name" store_name=$store_name}}</span>
 
 <ul class="new-subscribers">
-    <li class="title mp-item" style="font-size: 30px;"><b> <span class="number-subscribers">{{trans "%mp_subscriber" mp_subscriber=$mp_subscriber}}</span> New Subscriber(s)</b></li>
+    <li class="title mp-item" style="font-size: 30px;">
+        <b>
+            <span class="number-subscribers">{{trans "%mp_subscriber" mp_subscriber=$mp_subscriber}}</span>
+            {{trans "New Subscriber(s)"}}
+        </b>
+    </li>
 </ul>
 
 {{layout handle="popup_email_list" area="frontend"}}
-<p style="margin-top:0;margin-bottom: 50px;">This list shows only 8 most recent subscribers this week. To see all the subscribers list, please log into your admin panel: <b>MARKETING </b> >> <b>Communications</b> >> <b>Newsletter Subscribers</b></p>
+<p style="margin-top:0;margin-bottom: 50px;">{{trans "This list shows only 8 most recent subscribers this week. To see all the subscribers list, please log into your admin panel:"}} <b>{{trans "MARKETING"}}</b> >> <b>{{trans "Communications"}}</b> >> <b>{{trans "Newsletter Subscribers"}}</b></p>
 
-<p class="sign">Happy marketing,<br>The Mageplaza Team</p>
-
+<p class="sign">{{trans "Happy marketing,"}}<br>{{trans "The Mageplaza Team"}}</p>
 
 {{template config_path="design/email/footer_template"}}

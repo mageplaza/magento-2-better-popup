@@ -38,8 +38,8 @@ class Validate extends Value
     public function beforeSave()
     {
         $pageToShow = $this->getData('fieldset_data')['which_page_to_show'];
-        $inPage = $this->getData('fieldset_data')['include_pages'];
-        $inPageUrl = $this->getData('fieldset_data')['include_pages_with_url'];
+        $inPage     = $this->getData('fieldset_data')['include_pages'];
+        $inPageUrl  = $this->getData('fieldset_data')['include_pages_with_url'];
 
         if ($pageToShow == 1 && !($inPage || $inPageUrl)) {
             throw new \Exception('Please enter the value into one of the following boxes: Include page(s) and Include Page(s) with URL contains.');
