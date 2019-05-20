@@ -314,12 +314,31 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 - [Magento 2 blog extension](https://github.com/mageplaza/magento-2-blog)
 - [Magento 2 Layered Navigation](https://github.com/mageplaza/magento-2-ajax-layered-navigation)
 - [Magento 2 shared cart](https://github.com/mageplaza/magento-2-share-cart)
+- [Magento 2 SMTP](https://github.com/mageplaza/magento-2-smtp)
 
 
-
-
-
-
+**The Best Magento 2 Popup extension**
+- [Popup Documentation](#1-popup-documentation)
+- [Better Popup FAQs](#2-better-popup-faqs)
+- [How to install Better Popup extension for Magento 2](#3-how-to-install-better-popup-extension-for-magento-2)
+  - [Install via composer](#-install-via-composer-recommend)
+- [Better Popup Highlight Features](#4-better-popup-highlight-features)
+  - [A Leads Booster](#a-leads-booster)
+  - [Exit-intent Popup](#exit-intent-popup)
+  - [Free customization](#free-customization)
+  - [Ready-to-use Popup Templates](#ready-to-use-popup-templates)
+- [More Features](#5-more-features)
+  - [Display triggers](#display-triggers)
+  - [Congratulation Popups](#congratulation-popups)
+  - [Re-display Popups](#re-display-popups)
+  - [Report emails](#report-emails)
+  - [Report compatibility](#report-compatibility)
+  - [SMTP compatibility](#smtp-compatibility)
+- [Full Magento 2 Popup features](#6-full-magento-2-popup-features)
+  - [Better Popup for store admins](#better-popup-for-store-admins)
+  - [Better Popup for shoppers](#better-popup-for-shoppers)
+- [How to configure Magento 2 Popup extension](#7-how-to-configure-magento-2-popup-extension)
+  - [Better Popup Configuration](#better-popup-configuration)
 
 
 
