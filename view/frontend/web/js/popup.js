@@ -75,7 +75,9 @@ define([
                 } else {
                     bioEp.init(self.options.dataPopup.popupConfig);
 
-                    if (this.options.dataPopup.fullScreen.isFullScreen) {
+                    if (this.options.dataPopup.fullScreen.isFullScreen
+                        || this.options.dataPopup.popupConfig.width === null
+                        || this.options.dataPopup.popupConfig.height) {
                         if ($('#mp-popup-template3').length) {
                             $('#bio_ep').css({"width": "800px", "height": "321px"});
                         } else if ($('#mp-popup-template4').length) {

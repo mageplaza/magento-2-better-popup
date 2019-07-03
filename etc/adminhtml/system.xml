@@ -52,6 +52,7 @@
                 </field>
                 <field id="width" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Width</label>
+                    <validate>validate-digits</validate>
                     <comment>In pixel</comment>
                     <depends>
                         <field id="responsive">1</field>
@@ -59,6 +60,7 @@
                 </field>
                 <field id="height" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Height</label>
+                    <validate>validate-digits</validate>
                     <comment>In pixel</comment>
                     <depends>
                         <field id="responsive">1</field>
