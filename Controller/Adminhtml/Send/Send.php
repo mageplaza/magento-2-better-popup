@@ -98,7 +98,11 @@ class Send extends Action
         if ($toEmail) {
             try {
                 foreach ($this->_storeManager->getStores() as $store) {
-                    $this->sendMail($store);
+                    $isSendMail = $this->_helperData->getSendEmailConfig('isSendEmail', $store->getId());
+
+                    if ($isSendMail) {
+                        $this->sendMail($store);
+                    }
                 }
 
                 $result['status']  = true;
