@@ -1,12 +1,16 @@
-# Magento 2 Newsletter Popup / Exit Intent FREE Module
+# The Best Magento 2 Popup extension FREE
 
-**Magento 2 Exit Intent / Newsletter Popup** cuts down the number of abandoning visitors of a store, and to help convert them to actual customers or subscribers. 
+**Mageplaza Magento 2 Better Popup extension (Exit Intent / Newsletter Popup)** cuts down the number of abandoning visitors of a store, and to help convert them to actual customers or subscribers. 
 
 **Exit-intent technology** plays the fundamental role in building better pop-ups, visitors who are about to leave your websites will be kept staying for a little longer by a subscription invitation or a discount offer.
 
+[![Latest Stable Version](https://poser.pugx.org/mageplaza/module-better-popup/v/stable)](https://packagist.org/packages/mageplaza/module-better-popup)
+[![Total Downloads](https://poser.pugx.org/mageplaza/module-better-popup/downloads)](https://packagist.org/packages/mageplaza/module-better-popup)
+
+
 ![magento 2 exit intent](https://i.imgur.com/K5mpJM0.gif)
 
-## 1. Documentation
+## 1. Popup Documentation
 
 - [Installation guide](https://www.mageplaza.com/install-magento-2-extension/)
 - [User guide](https://docs.mageplaza.com/better-popup/index.html)
@@ -14,7 +18,7 @@
 - [Contribute on Github](https://github.com/mageplaza/magento-2-better-popup)
 - [Get Support](https://github.com/mageplaza/magento-2-better-popup/issues)
 
-## 2. FAQs
+## 2. Better Popup FAQs
 
 **Q: I got error: Mageplaza_Core has been already defined**
 
@@ -59,13 +63,13 @@ php bin/magento setup:upgrade
 php bin/magento setup:static-content:deploy
 ```
 
-## 4. Highlight features
+## 4. Better Popup Highlight Features
 
 ### A Leads Booster
 
 New leads are craved by online business. Among multiple ways to expand your email list, collecting leads from subscription seems to be effective and money-saving. Better Popup extension is a good tool which can assist you to do this. Visitors who enter your online store are already interested in your service; however, they want more motivation to stay, or at least, to follow the page. A timely popup with an subscription invitation or a special offer will help you add one more email address into your list. All of this process will happen automatically.
 
-### Exit-intent technology
+### Exit-intent Popup
 
 Exit-intent technology helps a pop-up show up as soon as a visitor attempts to abandon a page. The module is able to recognize one’s intention of quitting and, right away, allows the system to pop a window.  
 
@@ -78,9 +82,9 @@ Admins can create a new template, use or customize Mageplaza’s premade pop-up 
 
 ### Ready-to-use Popup Templates
 
-There are 3 pre-made pop-up templates with 2 main display styles which are ready to use. Admins are free to change these templates or use them after installing Magento 2 Better Popup.
+There are 3 pre-made pop-up templates with 2 main display styles which are ready to use. Admins are free to change these templates or use them after installing **Magento 2 Better Popup extension**.
 
-## 5. More features
+## 5. More Features
 
 ### Display triggers
 
@@ -90,14 +94,14 @@ There are four display triggers of a pop-up:
 - A popup can be shown after X% of the page is scrolled
 - A popup can be displayed after X seconds
 
-### Congratulation pop-ups
+### Congratulation Popups
 
 After a window is popped up, if the visitor subscribes your email list, a congratulation pop-up can be shown. Admins can configure to show:
 - A message with a copyable coupon code
 - A message with fireworks
 - A message with a copyable coupon code and fireworks
 
-### Re-display pop-ups
+### Re-display Popups
 
 Visitors are not fond of spamming pop-ups, admins can configure to:
 - Re-show pop-ups after X days
@@ -115,9 +119,9 @@ If your store also install [Mageplaza Reports extension free module](https://www
 
 The new-subscriber report emails function is compatible with [Magento 2 SMTP by Mageplaza](https://www.mageplaza.com/magento-2-smtp/). This helps guarantee of spam-free emails.
 
-## 6. Full features list
+## 6. Full Magento 2 Popup features
 
-### For store admins
+### Better Popup for store admins
 - Turn on/turn off module from the backend
 - Content of the pop-ups are easily customizable
 - Display a pop-up window in full screen or center
@@ -139,20 +143,20 @@ The new-subscriber report emails function is compatible with [Magento 2 SMTP by 
 - Admins get a weekly report on new subscribers
 - Features the 8 most recent subscribed email addresses on weekly report
 
-### For shoppers
+### Better Popup for shoppers
 
 - Click exit the site without quitting the popup
 - Click on the floating button to see the popup
 - Get discount coupons after subscribing
 - Actively check the Terms and Conditions box to subscribe (GDPR compliance)
 
-## 7. How to configure Mageplaza Better Popup extension
+## 7. How to configure Magento 2 Popup extension
 
 To start the configuration, from the Admin Panel, make your way to **Store > Settings > Configuration > Mageplaza Extensions > Better Popup**
 
-![how to configure](https://i.imgur.com/iTCY7lm.png)
+![How to configure Magento 2 Popup extension](https://i.imgur.com/iTCY7lm.png)
 
-### Configuration
+### Better Popup Configuration
 
 #### General Configuration
 
@@ -160,9 +164,9 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 
 ![general configuration](https://i.imgur.com/2JpIPwz.png)
 
-#### What to show
+#### What to show Popup
 
-![what to show](https://i.imgur.com/NAcSvrz.png)
+![what to show Popup](https://i.imgur.com/NAcSvrz.png)
 
 **Template**
 
@@ -198,17 +202,18 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 - **Content**: When a popup template is selected and loaded above, the relative HTML code for congratulation popup will be displayed in this Content section. This content for congratulation popup is the same as the selected template. Admins can design the popup display by using HTML
 - **Show congratulation fireworks**: Select Yes if you want to show fireworks when a visitor successfully subscribe. Notice: Fireworks will only be displayed if you set `Responsive Design = Center Popup`
 
-#### Where to show
+#### Where to show Popup
 
-![where to show](https://i.imgur.com/tBkxOtA.png)
+![where to show](https://i.imgur.com/sYDTXhP.png)
 
 **Which page to show**
 
-- **Which page to show**:
-    * Select All Pages to display popups on all pages
-    * Select Manually Insert to display popups on only pages with a specific snippet
+![where to show](https://i.imgur.com/5gKcBQt.png)
 
-![which page to show](https://i.imgur.com/Fn8GjNc.png)
+   * **Which page to show = All Pages**: Select All Pages to display popups on all pages
+   * **Which page to show = Manually Insert**: Select Manually Insert to display popups on only pages with a specific snippet
+
+![which page to show](https://i.imgur.com/MOJl7ia.png)
 
 - **Insert manually this snippet to your page**: Display the code so that admins can copy and insert into the pages they wish to display the popup
     * **Insert manually this snippet to your page**
@@ -218,32 +223,34 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 
     * **Which page to show = Specific Page**: Display the popup on some selected pages
 
-![which page to show](https://i.imgur.com/5cvG2Oy.png)
+![which page to show](https://i.imgur.com/lfx1NTq.png)
 
 - **Include Pages**: Enter one or some pages to display the popup. If there are more than one popup, separate them by commas
     * **Include Page with URL contains**: The popup will be displayed on the page which contain the URL which is entered. Separate several URLs by downlines
     * **Exclude Pages**: Enter one or some pages which you don’t want to show the popup. Separate pages with commas
     * **Exclude page with URL contains**: The popup will not allowed to show up on pages which contain URL paths entered. Separate URLs with downlines.
 
-`Note`: The priority of Exclude section is greater than the Include section.
+``Note``: The priority of Exclude section is greater than the Include section.
 
-#### When to show
+#### When to show Popup
 
-![when to show](https://i.imgur.com/EUx0Q9Z.png)
+![when to show](https://i.imgur.com/QCwqQKi.png)
 
 **When the popup appears?**
+
+![when the popup appears](https://i.imgur.com/mkqpIRB.png)
 
 - Select Exit Intent to display popups when one moves the mouse out of the current page
 - Select After page load to display popups after the page is loaded
     * Select After X seconds to display popups after X seconds one visits the page
     
-    ![after x seconds](https://i.imgur.com/5Y6EgD0.png)
+    ![after x seconds](https://i.imgur.com/ZxONFiO.png)
     
 - After X seconds: Enter the number of seconds that a popup is displayed after a visit. After this amount of time since one stays on a page, the popup will appear.
 
 - Select After Scroll down X% to display popups after one scrolls X% of a page.
 
-![after scroll down](https://i.imgur.com/cGzCABg.png)
+![after scroll down](https://i.imgur.com/afgzM4h.png)
 
 - After scroll down: Enter the percentage of page which is scrolled before the popup shows up. The popup will appear after one scrolls down X% of the page
 - The popup will show again later
@@ -260,7 +267,7 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 
 **Send Email**
 
-![send email](https://i.imgur.com/u0egrJ4.png)
+![send email](https://i.imgur.com/lDUjy6X.png)
 
 - **Enable Send Email**: Select Yes to enable the send email functionality. 
 - **Send Email To**:
@@ -270,26 +277,68 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
     * Click on `Send Now` to send the email immediately
     * Report Emails are sent to multiple stores separately. If you have 2 stores, there will be 2 emails sent to these stores individually.
 
-## Better Popup
+### Better Popup
 
-![better popup](https://i.imgur.com/mDvAgu1.png)
+![Magento 2 better popup](https://i.imgur.com/mDvAgu1.png)
 
-## Email Reports
+### Email Reports
 
-![email reports](https://i.imgur.com/6sWvOWA.png)
+![Better Popup email reports](https://i.imgur.com/6sWvOWA.png)
 
-## Email's content
+### Email's content
 
 ![the content of the email](https://i.imgur.com/glveCbt.png)
 
 
+**Peoples also search:**
+- Mageplaza better popup
+- magento 2 popup
+- magento 2 popup free
+- magento 2 popup module
+- magento 2 popup github
+- magento 2 popup extension
+- magento 2 newsletter popup extension free
+- magento 2 exit intent popup
+- magento 2 modal popup on click
+- magento 2 popup window extension
+- popup magento 2
+- popup in magento 2
 
 
+**Other free extension on Github**
+- [Magento 2 google maps](https://github.com/mageplaza/magento-2-google-maps)
+- [Magento 2 GDPR](https://github.com/mageplaza/magento-2-gdpr)
+- [Magento 2 Multiple Flat Rates Shipping](https://github.com/mageplaza/magento-2-multi-flat-rates)
+- [Magento 2 Report extension](https://github.com/mageplaza/magento-2-reports)
+- [Magento 2 social login](https://github.com/mageplaza/magento-2-social-login)
+- [Magento 2 blog extension](https://github.com/mageplaza/magento-2-blog)
+- [Magento 2 Layered Navigation](https://github.com/mageplaza/magento-2-ajax-layered-navigation)
+- [Magento 2 shared cart](https://github.com/mageplaza/magento-2-share-cart)
+- [Magento 2 SMTP](https://github.com/mageplaza/magento-2-smtp)
 
 
-
-
-
+**The Best Magento 2 Popup extension**
+- [Popup Documentation](#1-popup-documentation)
+- [Better Popup FAQs](#2-better-popup-faqs)
+- [How to install Better Popup extension for Magento 2](#3-how-to-install-better-popup-extension-for-magento-2)
+  - [Install via composer](#-install-via-composer-recommend)
+- [Better Popup Highlight Features](#4-better-popup-highlight-features)
+  - [A Leads Booster](#a-leads-booster)
+  - [Exit-intent Popup](#exit-intent-popup)
+  - [Free customization](#free-customization)
+  - [Ready-to-use Popup Templates](#ready-to-use-popup-templates)
+- [More Features](#5-more-features)
+  - [Display triggers](#display-triggers)
+  - [Congratulation Popups](#congratulation-popups)
+  - [Re-display Popups](#re-display-popups)
+  - [Report emails](#report-emails)
+  - [Report compatibility](#report-compatibility)
+  - [SMTP compatibility](#smtp-compatibility)
+- [Full Magento 2 Popup features](#6-full-magento-2-popup-features)
+  - [Better Popup for store admins](#better-popup-for-store-admins)
+  - [Better Popup for shoppers](#better-popup-for-shoppers)
+- [How to configure Magento 2 Popup extension](#7-how-to-configure-magento-2-popup-extension)
+  - [Better Popup Configuration](#better-popup-configuration)
 
 
 
