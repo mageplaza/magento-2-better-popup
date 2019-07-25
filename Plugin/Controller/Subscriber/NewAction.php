@@ -21,11 +21,14 @@
 
 namespace Mageplaza\BetterPopup\Plugin\Controller\Subscriber;
 
+use Exception;
 use Magento\Customer\Api\AccountManagementInterface as CustomerAccountManagement;
 use Magento\Customer\Model\Session;
 use Magento\Customer\Model\Url as CustomerUrl;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Newsletter\Model\SubscriberFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Helper\Data;
@@ -37,17 +40,18 @@ use Mageplaza\BetterPopup\Helper\Data;
 class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 {
     /**
-     * @var \Magento\Framework\Controller\Result\JsonFactory
+     * @var JsonFactory
      */
     protected $resultJsonFactory;
 
     /**
-     * @var \Mageplaza\BetterPopup\Helper\Data
+     * @var Data
      */
     protected $_helperData;
 
     /**
      * NewAction constructor.
+     *
      * @param Context $context
      * @param SubscriberFactory $subscriberFactory
      * @param Session $customerSession
@@ -66,18 +70,25 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
         CustomerAccountManagement $customerAccountManagement,
         JsonFactory $resultJsonFactory,
         Data $helperData
-    )
-    {
+    ) {
         $this->resultJsonFactory = $resultJsonFactory;
-        $this->_helperData       = $helperData;
+        $this->_helperData = $helperData;
 
-        parent::__construct($context, $subscriberFactory, $customerSession, $storeManager, $customerUrl, $customerAccountManagement);
+        parent::__construct(
+            $context,
+            $subscriberFactory,
+            $customerSession,
+            $storeManager,
+            $customerUrl,
+            $customerAccountManagement
+        );
     }
 
     /**
      * @param $subject
      * @param $proceed
-     * @return \Magento\Framework\Controller\Result\Json
+     *
+     * @return Json
      */
     public function aroundExecute($subject, $proceed)
     {
@@ -87,7 +98,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 
         $response = [];
         if ($this->getRequest()->isPost() && $this->getRequest()->getPost('email')) {
-            $email = (string)$this->getRequest()->getPost('email');
+            $email = (string) $this->getRequest()->getPost('email');
 
             try {
                 $this->validateEmailFormat($email);
@@ -96,14 +107,16 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 
                 $this->_subscriberFactory->create()->subscribe($email);
                 if (!$this->_helperData->versionCompare('2.2.0')) {
-                    $this->_subscriberFactory->create()->loadByEmail($email)->setChangeStatusAt(date("Y-m-d h:i:s"))->save();
+                    $this->_subscriberFactory->create()
+                        ->loadByEmail($email)
+                        ->setChangeStatusAt(date('Y-m-d h:i:s'))->save();
                 }
-            } catch (\Magento\Framework\Exception\LocalizedException $e) {
+            } catch (LocalizedException $e) {
                 $response = [
                     'success' => true,
                     'msg'     => __('There was a problem with the subscription: %1', $e->getMessage()),
                 ];
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $response = [
                     'status' => 'ERROR',
                     'msg'    => __('Something went wrong with the subscription: %1', $e->getMessage()),

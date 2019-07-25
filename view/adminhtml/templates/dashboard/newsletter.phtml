@@ -19,27 +19,27 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-$storeId         = $this->helper('Mageplaza\BetterPopup\Helper\Data')->getStoreId();
+$storeId         = $this->helper(\Mageplaza\BetterPopup\Helper\Data::class)->getStoreId();
 $subscriberToday = $block->getSubscriberToday() ? $block->getSubscriberToday()->getSize() : 0;
 $subscriberWeek  = $block->getSubscriberInWeek() ? $block->getSubscriberInWeek($storeId)->getSize() : 0;
 $subscriberMonth = $block->getSubscriberInMonth() ? $block->getSubscriberInMonth()->getSize() : 0;
 ?>
 <div class="dashboard-item-container">
-    <div class="dashboard-item-title"><?php echo __("Subscribers") ?></div>
+    <div class="dashboard-item-title"><?= /** @noEscape */ __('Subscribers') ?></div>
     <div class="dashboard-item-content">
         <table class="dashboard-data">
             <thead>
             <tr>
-                <th><span><?php echo __('Today'); ?></span></th>
-                <th><span><?php echo __('Week'); ?></span></th>
-                <th><span><?php echo __('Month'); ?></span></th>
+                <th><span><?= /** @noEscape */ __('Today') ?></span></th>
+                <th><span><?= /** @noEscape */ __('Week') ?></span></th>
+                <th><span><?= /** @noEscape */ __('Month') ?></span></th>
             </tr>
             </thead>
             <tbody style="text-align: center;">
             <tr>
-                <td><span><?php echo $subscriberToday ?></span></td>
-                <td><span><?php echo $subscriberWeek ?></span></td>
-                <td><span><?php echo $subscriberMonth ?></span></td>
+                <td><span><?= /** @noEscape */ $subscriberToday ?></span></td>
+                <td><span><?= /** @noEscape */ $subscriberWeek ?></span></td>
+                <td><span><?= /** @noEscape */ $subscriberMonth ?></span></td>
             </tr>
             </tbody>
         </table>

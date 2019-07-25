@@ -22,8 +22,8 @@
 /** @var \Mageplaza\BetterPopup\Block\Adminhtml\System\Config\Button $block */
 ?>
 <div class="actions actions-test-email">
-    <button class="actions-test-email" type="button" id="<?php echo $block->getHtmlId() ?>">
-        <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    <button class="actions-test-email" type="button" id="<?= /** @noEscape */ $block->getHtmlId() ?>">
+        <span><?= /** @noEscape */ $block->escapeHtml($block->getButtonLabel()) ?></span>
     </button>
 </div>
 <script type="text/javascript">
@@ -34,7 +34,7 @@
     ], function ($, alert, $t) {
         $('#betterpopup_send_email_sent').click(function () {
             $.ajax({
-                url: "<?php echo $block->getUrl('mpbetterpopup/send/send', ['form_key' => $block->getFormKey(), '_current' => true]); ?>",
+                url: "<?= /** @noEscape */ $block->getUrl('mpbetterpopup/send/send', ['form_key' => $block->getFormKey(), '_current' => true]) ?>",
                 dataType: 'json',
                 showLoader: true,
                 success: function (result) {

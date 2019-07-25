@@ -24,6 +24,7 @@ namespace Mageplaza\BetterPopup\Block\Adminhtml\System\Config;
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
+use Magento\Framework\Exception\FileSystemException;
 use Mageplaza\BetterPopup\Helper\Data;
 
 /**
@@ -38,12 +39,13 @@ class Template extends Field
     protected $_template = 'Mageplaza_BetterPopup::system/config/template.phtml';
 
     /**
-     * @var \Mageplaza\BetterPopup\Helper\Data
+     * @var Data
      */
     protected $_helperData;
 
     /**
      * Template constructor.
+     *
      * @param Context $context
      * @param Data $helperData
      * @param array $data
@@ -52,8 +54,7 @@ class Template extends Field
         Context $context,
         Data $helperData,
         array $data = []
-    )
-    {
+    ) {
         $this->_helperData = $helperData;
 
         parent::__construct($context, $data);
@@ -61,13 +62,14 @@ class Template extends Field
 
     /**
      * @param AbstractElement $element
+     *
      * @return string
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws FileSystemException
      */
     protected function _getElementHtml(AbstractElement $element)
     {
         $originalData = $element->getOriginalData();
-        $buttonLabel  = !empty($originalData['button_label']) ? $originalData['button_label'] : '';
+        $buttonLabel = !empty($originalData['button_label']) ? $originalData['button_label'] : '';
         $this->addData(
             [
                 'button_label' => __($buttonLabel),
@@ -82,7 +84,7 @@ class Template extends Field
 
     /**
      * @return array
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws FileSystemException
      */
     private function getOptionTemplate()
     {

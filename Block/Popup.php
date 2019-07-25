@@ -23,6 +23,7 @@ namespace Mageplaza\BetterPopup\Block;
 
 use Magento\Catalog\Block\Product\AbstractProduct;
 use Magento\Catalog\Block\Product\Context;
+use Magento\Framework\Phrase;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
@@ -37,17 +38,18 @@ use Mageplaza\BetterPopup\Model\Config\Source\Responsive;
 class Popup extends AbstractProduct implements BlockInterface
 {
     /**
-     * @var \Mageplaza\BetterPopup\Helper\Data
+     * @var HelperData
      */
     protected $_helperData;
 
     /**
-     * @var \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory
+     * @var CollectionFactory
      */
     protected $_subscriberCollectionFactory;
 
     /**
      * Popup constructor.
+     *
      * @param Context $context
      * @param HelperData $helperData
      * @param CollectionFactory $subscriberCollectionFactory
@@ -58,9 +60,8 @@ class Popup extends AbstractProduct implements BlockInterface
         HelperData $helperData,
         CollectionFactory $subscriberCollectionFactory,
         array $data = []
-    )
-    {
-        $this->_helperData                  = $helperData;
+    ) {
+        $this->_helperData = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
 
         parent::__construct($context, $data);
@@ -113,11 +114,7 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function isFullScreen()
     {
-        if ($this->_helperData->getWhatToShowConfig('responsive') == Responsive::FULLSCREEN_POPUP) {
-            return true;
-        }
-
-        return false;
+        return (int) $this->_helperData->getWhatToShowConfig('responsive') === Responsive::FULLSCREEN_POPUP;
     }
 
     /**
@@ -127,11 +124,7 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function isShowFireworks()
     {
-        if ($this->_helperData->getWhatToShowConfig('popup_success/enabled_fireworks')) {
-            return true;
-        }
-
-        return false;
+        return $this->_helperData->getWhatToShowConfig('popup_success/enabled_fireworks');
     }
 
     /**
@@ -157,7 +150,7 @@ class Popup extends AbstractProduct implements BlockInterface
     /**
      * Get Float button label
      *
-     * @return \Magento\Framework\Phrase
+     * @return Phrase
      */
     public function getFloatLabel()
     {
@@ -173,7 +166,7 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function getPopupAppear()
     {
-        return $this->_helperData->getWhenToShowConfig('popup_appear');
+        return (int) $this->_helperData->getWhenToShowConfig('popup_appear');
     }
 
     /**
@@ -183,7 +176,7 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function getDelayConfig()
     {
-        if ($this->getPopupAppear() == Appear::AFTER_X_SECONDS) {
+        if ($this->getPopupAppear() === Appear::AFTER_X_SECONDS) {
             return $this->_helperData->getWhenToShowConfig('delay');
         }
 
@@ -197,11 +190,7 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function isExitIntent()
     {
-        if ($this->getPopupAppear() == Appear::EXIT_INTENT) {
-            return true;
-        }
-
-        return false;
+        return $this->getPopupAppear() === Appear::EXIT_INTENT;
     }
 
     /**
@@ -211,7 +200,7 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function getCookieConfig()
     {
-        $cookieDays = (int)$this->_helperData->getWhenToShowConfig('cookieExp');
+        $cookieDays = (int) $this->_helperData->getWhenToShowConfig('cookieExp');
 
         return ($cookieDays !== null) ? $cookieDays : 30;
     }
@@ -235,7 +224,7 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         $htmlConfig = $this->_helperData->getWhatToShowConfig('html_content');
 
-        $search  = [
+        $search = [
             '{{form_url}}',
             '{{url_loader}}',
             '{{email_icon_url}}',
@@ -262,9 +251,7 @@ class Popup extends AbstractProduct implements BlockInterface
             $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-email.png')
         ];
 
-        $html = str_replace($search, $replace, $htmlConfig);
-
-        return $html;
+        return str_replace($search, $replace, $htmlConfig);
     }
 
     /**
@@ -275,10 +262,10 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkIncludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
-        $includePages   = array_map('trim', $arrayPages);
+        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
+        $includePages = array_map('trim', $arrayPages);
 
-        return in_array($fullActionName, $includePages);
+        return in_array($fullActionName, $includePages, true);
     }
 
     /**
@@ -293,7 +280,7 @@ class Popup extends AbstractProduct implements BlockInterface
 
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl   = array_map('trim', $arrayPaths);
+            $pathsUrl = array_map('trim', $arrayPaths);
             foreach ($pathsUrl as $path) {
                 if ($path && strpos($currentPath, $path) !== false) {
                     return true;
@@ -312,10 +299,10 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkExcludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
-        $includePages   = array_map('trim', $arrayPages);
+        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
+        $includePages = array_map('trim', $arrayPages);
 
-        return !in_array($fullActionName, $includePages);
+        return !in_array($fullActionName, $includePages, true);
     }
 
     /**
@@ -330,7 +317,7 @@ class Popup extends AbstractProduct implements BlockInterface
 
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl   = array_map('trim', $arrayPaths);
+            $pathsUrl = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
                 if (strpos($currentPath, $path) !== false) {
@@ -370,8 +357,8 @@ class Popup extends AbstractProduct implements BlockInterface
     public function isManuallyInsert()
     {
         return $this->_helperData->isEnabled()
-            && $this->_helperData->getWhereToShowConfig('which_page_to_show') == PageToShow::MANUALLY_INSERT
-            && $this->checkExclude();
+               && (int) $this->_helperData->getWhereToShowConfig('which_page_to_show') === PageToShow::MANUALLY_INSERT
+               && $this->checkExclude();
     }
 
     /**
@@ -385,11 +372,11 @@ class Popup extends AbstractProduct implements BlockInterface
             $config = $this->_helperData->getWhereToShowConfig('which_page_to_show');
 
             switch ($config) {
-                case PageToShow::SPECIFIC_PAGES :
+                case PageToShow::SPECIFIC_PAGES:
                     return ($this->checkInclude() && $this->checkExclude());
-                case PageToShow::ALL_PAGES :
+                case PageToShow::ALL_PAGES:
                     return $this->checkExclude();
-                case PageToShow::MANUALLY_INSERT :
+                case PageToShow::MANUALLY_INSERT:
                     return false;
             }
         }
@@ -406,9 +393,9 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         $params = [
             'url'               => $this->getUrl('betterpopup/ajax/success'),
-            'isScroll'          => $this->getPopupAppear() == Appear::AFTER_SCROLL_DOWN,
+            'isScroll'          => $this->getPopupAppear() === Appear::AFTER_SCROLL_DOWN,
             'afterSeconds'      => [
-                'isAfterSeconds' => $this->getPopupAppear() == Appear::AFTER_X_SECONDS,
+                'isAfterSeconds' => $this->getPopupAppear() === Appear::AFTER_X_SECONDS,
                 'delay'          => $this->getDelayConfig()
             ],
             'percentage'        => $this->getPercentageScroll(),
