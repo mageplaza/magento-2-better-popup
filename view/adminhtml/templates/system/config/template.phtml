@@ -23,13 +23,13 @@
 <div class="actions actions-template">
     <select id="mageplaza_betterpopup_templates">
         <?php foreach ($block->getMpTemplate() as $value => $template) : ?>
-            <option value="<?php echo $value; ?>">
-                <?php echo $template['label']; ?>
+            <option value="<?= /** @noEscape */ $value ?>">
+                <?= /** @noEscape */ $template['label'] ?>
             </option>
         <?php endforeach; ?>
     </select>
-    <button class="actions-template-button" type="button" id="<?php echo $block->getHtmlId() ?>">
-        <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    <button class="actions-template-button" type="button" id="<?= /** @noEscape */ $block->getHtmlId() ?>">
+        <span><?= /** @noEscape */ $block->escapeHtml($block->getButtonLabel()) ?></span>
     </button>
 </div>
 
@@ -37,7 +37,7 @@
     {
         "#mageplaza_betterpopup_templates": {
             "mageplaza/templates": {
-                "jsonDataInfo": <?php echo $block->getDataInfo() ?>
+                "jsonDataInfo": <?= /** @noEscape */ $block->getDataInfo() ?>
             }
         }
     }

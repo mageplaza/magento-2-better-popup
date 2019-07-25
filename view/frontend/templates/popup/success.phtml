@@ -20,7 +20,7 @@
  */
 ?>
 <div id="popup-success-content">
-    <?php echo $block->getPopupSuccessContent(); ?>
+    <?= /** @noEscape */ $block->getPopupSuccessContent() ?>
 </div>
 <script>
     require(['jquery'], function ($) {

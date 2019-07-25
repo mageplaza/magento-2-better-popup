@@ -21,6 +21,8 @@
 
 namespace Mageplaza\BetterPopup\Cron;
 
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\MailException;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Controller\Adminhtml\Send\Send;
 use Mageplaza\BetterPopup\Helper\Data;
@@ -32,22 +34,23 @@ use Mageplaza\BetterPopup\Helper\Data;
 class SendMail
 {
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     protected $_storeManager;
 
     /**
-     * @var \Mageplaza\BetterPopup\Helper\Data
+     * @var Data
      */
     protected $_helperData;
 
     /**
-     * @var \Mageplaza\BetterPopup\Controller\Adminhtml\Send\Send
+     * @var Send
      */
     protected $_send;
 
     /**
      * SendMail constructor.
+     *
      * @param Data $helperData
      * @param Send $send
      * @param StoreManagerInterface $storeManager
@@ -56,15 +59,15 @@ class SendMail
         Data $helperData,
         Send $send,
         StoreManagerInterface $storeManager
-    )
-    {
-        $this->_helperData   = $helperData;
-        $this->_send         = $send;
+    ) {
+        $this->_helperData = $helperData;
+        $this->_send = $send;
         $this->_storeManager = $storeManager;
     }
 
     /**
-     * @return void
+     * @throws LocalizedException
+     * @throws MailException
      */
     public function execute()
     {

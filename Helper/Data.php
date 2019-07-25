@@ -23,6 +23,8 @@ namespace Mageplaza\BetterPopup\Helper;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Exception\FileSystemException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -42,12 +44,13 @@ class Data extends AbstractHelper
     protected $_directoryList;
 
     /**
-     * @var \Magento\Framework\Filesystem
+     * @var Filesystem
      */
     protected $_fileSystem;
 
     /**
      * Data constructor.
+     *
      * @param Context $context
      * @param ObjectManagerInterface $objectManager
      * @param StoreManagerInterface $storeManager
@@ -60,9 +63,8 @@ class Data extends AbstractHelper
         StoreManagerInterface $storeManager,
         Filesystem $filesystem,
         DirectoryList $directoryList
-    )
-    {
-        $this->_fileSystem    = $filesystem;
+    ) {
+        $this->_fileSystem = $filesystem;
         $this->_directoryList = $directoryList;
 
         parent::__construct($context, $objectManager, $storeManager);
@@ -71,6 +73,7 @@ class Data extends AbstractHelper
     /**
      * @param $code
      * @param null $storeId
+     *
      * @return array|mixed
      */
     public function getWhatToShowConfig($code, $storeId = null)
@@ -81,6 +84,7 @@ class Data extends AbstractHelper
     /**
      * @param $code
      * @param null $storeId
+     *
      * @return array|mixed
      */
     public function getWhereToShowConfig($code, $storeId = null)
@@ -91,6 +95,7 @@ class Data extends AbstractHelper
     /**
      * @param $code
      * @param null $storeId
+     *
      * @return array|mixed
      */
     public function getWhenToShowConfig($code, $storeId = null)
@@ -101,6 +106,7 @@ class Data extends AbstractHelper
     /**
      * @param $code
      * @param null $storeId
+     *
      * @return mixed
      */
     public function getSendEmailConfig($code, $storeId = null)
@@ -109,7 +115,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * Is Send Email Config
+     * @param null $storeId
      *
      * @return mixed
      */
@@ -130,8 +136,10 @@ class Data extends AbstractHelper
 
     /**
      * Get default template path
+     *
      * @param $templateId
      * @param string $type
+     *
      * @return string
      */
     public function getTemplatePath($templateId, $type = '.html')
@@ -143,17 +151,21 @@ class Data extends AbstractHelper
         $rootPath = $this->_directoryList->getRoot();
 
         $currentDirArr = explode('\\', $currentDir);
-        if (count($currentDirArr) == 1) {
+        $countDir = count($currentDirArr);
+        if ($countDir === 1) {
             $currentDirArr = explode('/', $currentDir);
+            $countDir = count($currentDirArr);
         }
 
         $rootPathArr = explode('/', $rootPath);
-        if (count($rootPathArr) == 1) {
+        $countPath = count($rootPathArr);
+        if ($countPath === 1) {
             $rootPathArr = explode('\\', $rootPath);
+            $countPath = count($rootPathArr);
         }
 
         $basePath = '';
-        for ($i = count($rootPathArr); $i < count($currentDirArr) - 1; $i++) {
+        for ($i = $countPath; $i < $countDir - 1; $i++) {
             $basePath .= $currentDirArr[$i] . '/';
         }
 
@@ -164,8 +176,9 @@ class Data extends AbstractHelper
 
     /**
      * @param $relativePath
+     *
      * @return string
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws FileSystemException
      */
     public function readFile($relativePath)
     {
@@ -176,8 +189,9 @@ class Data extends AbstractHelper
 
     /**
      * @param $templateId
+     *
      * @return string
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws FileSystemException
      */
     public function getDefaultTemplateHtml($templateId)
     {
@@ -185,9 +199,8 @@ class Data extends AbstractHelper
     }
 
     /**
-     * Get Store Id
-     *
      * @return int
+     * @throws NoSuchEntityException
      */
     public function getStoreId()
     {

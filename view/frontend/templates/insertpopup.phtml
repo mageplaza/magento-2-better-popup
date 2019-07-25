@@ -19,33 +19,33 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-if ($block->isManuallyInsert()):
+if ($block->isManuallyInsert()) :
     $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
     <canvas id="screen"></canvas>
     <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block"
-         data-mage-init='{"mpPopup": { "dataPopup": <?php echo $block->getAjaxData(); ?>}}'>
-        <div id="bio_ep" style="background-color: <?php echo $block->getBackGroundColor(); ?>; display:none">
+         data-mage-init='{"mpPopup": { "dataPopup": <?= /** @noEscape */ $block->getAjaxData() ?>}}'>
+        <div id="bio_ep" style="background-color: <?= /** @noEscape */ $block->getBackGroundColor() ?>; display:none">
             <div class="mageplaza-betterpopup-content">
                 <div id="bio_ep_close" aria-label="Close">
-                    <img src="<?php echo $block->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close.png'); ?>"/>
+                    <img src="<?= /** @noEscape */ $block->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close.png') ?>"/>
                 </div>
-                <div id="bio_ep_content" class="better-popup-content" style="color: <?php echo $block->getTextColor(); ?>">
-                    <?php echo $block->getPopupContent(); ?>
+                <div id="bio_ep_content" class="better-popup-content" style="color: <?= /** @noEscape */ $block->getTextColor() ?>">
+                    <?= /** @noEscape */ $block->getPopupContent() ?>
                 </div>
             </div>
             <div id="mp-powered">
                 <span class="lable-powered">Powered by Mageplaza</span>
             </div>
         </div>
-        <?php if ($block->isShowFloatButton()): ?>
-            <div class="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>; display: none">
-                <button class="click-trigger primary"><?php echo $block->getFloatLabel(); ?></button>
+        <?php if ($block->isShowFloatButton()) : ?>
+            <div class="mp-better-popup-click-trigger" style="<?= /** @noEscape */ $floatLocation ?>; display: none">
+                <button class="click-trigger primary"><?= /** @noEscape */ $block->getFloatLabel() ?></button>
             </div>
         <?php endif; ?>
     </div>
     <style>
         .mppopup-text {
-            color: <?php echo $block->getTextColor(); ?>
+            color: <?= /** @noEscape */ $block->getTextColor() ?>
         }
     </style>
 <?php endif; ?>

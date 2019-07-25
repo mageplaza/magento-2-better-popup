@@ -21,6 +21,7 @@
 
 namespace Mageplaza\BetterPopup\Block\Dashboard;
 
+use Magento\Framework\Phrase;
 use Mageplaza\BetterPopup\Block\Subscriber;
 
 /**
@@ -35,7 +36,7 @@ class Newsletter extends Subscriber
     protected $_template = 'dashboard/newsletter.phtml';
 
     /**
-     * @return \Magento\Framework\Phrase|string
+     * @return Phrase|string
      */
     public function getTitle()
     {

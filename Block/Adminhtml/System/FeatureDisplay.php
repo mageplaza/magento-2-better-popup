@@ -31,7 +31,8 @@ use Magento\Framework\Data\Form\Element\AbstractElement;
 class FeatureDisplay extends Field
 {
     /**
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @param AbstractElement $element
+     *
      * @return string
      */
     protected function _getElementHtml(AbstractElement $element)

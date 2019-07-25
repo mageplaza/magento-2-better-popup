@@ -21,8 +21,14 @@
 
 namespace Mageplaza\BetterPopup\Controller\Adminhtml\Send;
 
+use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Area;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Block\Email\Template;
@@ -36,7 +42,7 @@ use Psr\Log\LoggerInterface;
 class Send extends Action
 {
     /**
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 
@@ -51,17 +57,18 @@ class Send extends Action
     protected $_helperData;
 
     /**
-     * @var \Mageplaza\BetterPopup\Block\Email\Template
+     * @var Template
      */
     protected $_template;
 
     /**
-     * @var \Magento\Framework\Mail\Template\TransportBuilder
+     * @var TransportBuilder
      */
     protected $_transportBuilder;
 
     /**
      * Send constructor.
+     *
      * @param Context $context
      * @param HelperData $helperData
      * @param Template $template
@@ -76,39 +83,42 @@ class Send extends Action
         TransportBuilder $transportBuilder,
         StoreManagerInterface $storeManager,
         LoggerInterface $logger
-    )
-    {
+    ) {
         parent::__construct($context);
 
-        $this->_helperData       = $helperData;
-        $this->_template         = $template;
+        $this->_helperData = $helperData;
+        $this->_template = $template;
         $this->_transportBuilder = $transportBuilder;
-        $this->_storeManager     = $storeManager;
-        $this->logger            = $logger;
+        $this->_storeManager = $storeManager;
+        $this->logger = $logger;
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     * @return ResponseInterface|ResultInterface
      */
     public function execute()
     {
         $result['status'] = false;
-        $toEmail          = $this->_helperData->getToEmail();
+        $toEmail = $this->_helperData->getToEmail();
 
         if ($toEmail) {
             try {
                 foreach ($this->_storeManager->getStores() as $store) {
-                    $this->sendMail($store);
+                    $isSendMail = $this->_helperData->getSendEmailConfig('isSendEmail', $store->getId());
+                    $isEnable = $this->_helperData->isEnabled($store->getId());
+                    if ($isEnable && $isSendMail) {
+                        $this->sendMail($store);
+                    }
                 }
 
-                $result['status']  = true;
+                $result['status'] = true;
                 $result['content'] = __('Sent successfully! Please check your email box.');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $result['content'] = __('There is an error occurred while sending email. Please try again later.');
                 $this->logger->critical($e);
             }
         } else {
-            $result['status']  = false;
+            $result['status'] = false;
             $result['content'] = __('Please enter email and save config');
         }
 
@@ -119,7 +129,10 @@ class Send extends Action
      * Send Mail
      *
      * @param $store
-     * @return null
+     *
+     * @return |null
+     * @throws LocalizedException
+     * @throws MailException
      */
     public function sendMail($store)
     {
@@ -128,12 +141,12 @@ class Send extends Action
             return null;
         }
 
-        $subscriber   = $this->_template->getSubscriberInWeek($store->getId())->getSize();
+        $subscriber = $this->_template->getSubscriberInWeek($store->getId())->getSize();
         $unSubscriber = $this->_template->getunSubscriberCollection($store->getId())->getSize();
-        $currentTime  = $this->_template->getCurrentTime();
-        $store_name   = $store->getName();
+        $currentTime = $this->_template->getCurrentTime();
+        $store_name = $store->getName();
 
-        $vars      = [
+        $vars = [
             'mp_subscriber'   => $subscriber,
             'mp_unSubscriber' => $unSubscriber,
             'currentTime'     => $currentTime,
@@ -142,7 +155,7 @@ class Send extends Action
         $transport = $this->_transportBuilder
             ->setTemplateIdentifier('mageplaza_betterpopup_template')
             ->setTemplateOptions([
-                'area'  => \Magento\Framework\App\Area::AREA_FRONTEND,
+                'area'  => Area::AREA_FRONTEND,
                 'store' => $store->getId()
             ])
             ->setFrom('general')
@@ -152,7 +165,7 @@ class Send extends Action
 
         try {
             $transport->sendMessage();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }
     }

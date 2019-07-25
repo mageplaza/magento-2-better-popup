@@ -23,7 +23,10 @@ namespace Mageplaza\BetterPopup\Controller\Ajax;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\LayoutFactory;
 
 /**
@@ -33,17 +36,18 @@ use Magento\Framework\View\Result\LayoutFactory;
 class Success extends Action
 {
     /**
-     * @var \Magento\Framework\View\Result\LayoutFactory
+     * @var LayoutFactory
      */
     protected $resultLayoutFactory;
 
     /**
-     * @var \Magento\Framework\Controller\Result\JsonFactory
+     * @var JsonFactory
      */
     protected $resultJsonFactory;
 
     /**
      * Success constructor.
+     *
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
      * @param LayoutFactory $resultLayoutFactory
@@ -52,23 +56,22 @@ class Success extends Action
         Context $context,
         JsonFactory $resultJsonFactory,
         LayoutFactory $resultLayoutFactory
-    )
-    {
+    ) {
         $this->resultLayoutFactory = $resultLayoutFactory;
-        $this->resultJsonFactory   = $resultJsonFactory;
+        $this->resultJsonFactory = $resultJsonFactory;
 
         parent::__construct($context);
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Json|\Magento\Framework\Controller\ResultInterface
+     * @return ResponseInterface|Json|ResultInterface
      */
     public function execute()
     {
-        $result       = $this->resultJsonFactory->create();
+        $result = $this->resultJsonFactory->create();
         $resultLayout = $this->resultLayoutFactory->create();
-        $blockHtml    = $resultLayout->getLayout()
-            ->createBlock('Mageplaza\BetterPopup\Block\Success')
+        $blockHtml = $resultLayout->getLayout()
+            ->createBlock(\Mageplaza\BetterPopup\Block\Success::class)
             ->toHtml();
         $result->setData(['success' => $blockHtml]);
 
