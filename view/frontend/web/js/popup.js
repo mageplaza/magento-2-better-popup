@@ -37,7 +37,6 @@ define([
             this._clickClose();
             this._clickSuccess();
             if (this._checkUpdateTemplate()) {
-                $('#mp-powered').hide();
                 if ($('#mp-popup-template5').length) {
                     $('#bio_ep_close').css({'top': '-100px'});
                     $('#bio_ep_close img').attr('src', this.options.dataPopup.srcCloseIconWhite);
