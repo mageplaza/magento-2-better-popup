@@ -76,12 +76,40 @@
                 </field>
                 <group id="popup_success" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Popup Success</label>
-                    <field id="coupon_code" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Coupon Code</label>
+                    <field id="enable_coupon" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use Coupon</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="rule_id" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Select Cart Price Rule</label>
+                        <source_model>Mageplaza\BetterPopup\Model\Config\Source\CartRules</source_model>
+                        <comment><![CDATA[
+                            <span>Go to Marketing > Cart Price Rules to generate a rule.</span><br>
+                            <span>The rule should be set as a Specific Coupon and Auto-generated.</span><br>
+                            <a href="https://www.mageplaza.com/kb/how-create-coupon-codes-in-magento-2.html" target="_blank">Learn more</a>
+                        ]]>
+                        </comment>
+                        <depends>
+                            <field id="enable_coupon">1</field>
+                        </depends>
+                    </field>
+                    <field id="coupon_pattern" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Coupon Pattern</label>
+                        <comment><![CDATA[
+                            <span>A coupon code pattern follows this rule:</span></br>
+                            <strong>[4A]</strong> - 4 alpha characters </br>
+                            <strong>[4N]</strong> - 4 numeric characters </br>
+                            <strong>[4AN]</strong> - 4 alphanumeric characters </br>
+                            Eg: GIFT-[4AN]-[3A]-[5N] </br>=> <strong>GIFT-J34T-OEC-54354</strong> </br>
+                        ]]>
+                        </comment>
+                        <depends>
+                            <field id="enable_coupon">1</field>
+                        </depends>
                     </field>
                     <field id="html_success_content" sortOrder="90" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Content</label>
-                        <comment>HTML content</comment>
+                        <comment>HTML content. Use {{coupon_code}} variable to add coupon code</comment>
                     </field>
                     <field id="enabled_fireworks" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Show congratulation fireworks</label>
