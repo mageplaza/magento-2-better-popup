@@ -18,11 +18,14 @@ Subscribe,Subscribe
 "After scrolling down X% of page","After scrolling down X% of page"
 Left,Left
 Right,Right
+"-- Please Select --","-- Please Select --"
 "Specific pages","Specific pages"
 "All Pages","All Pages"
 "Manually Insert","Manually Insert"
 "Center Popup","Center Popup"
 "FullScreen Popup","FullScreen Popup"
+"Rule is not valid","Rule is not valid"
+"Error occurred when generating coupons: %1","Error occurred when generating coupons: %1"
 "There was a problem with the subscription: %1","There was a problem with the subscription: %1"
 "Something went wrong with the subscription: %1","Something went wrong with the subscription: %1"
 Today,Today
@@ -57,7 +60,23 @@ Height,Height
 "Background color","Background color"
 "Text color","Text color"
 "Popup Success","Popup Success"
-"Coupon Code","Coupon Code"
+"Use Coupon","Use Coupon"
+"Select Cart Price Rule","Select Cart Price Rule"
+"<span>Go to Marketing > Cart Price Rules to generate a rule.</span><br>
+                            <span>The rule should be set as a Specific Coupon and Auto-generated.</span><br>
+                            <a href=""https://www.mageplaza.com/kb/how-create-coupon-codes-in-magento-2.html"" target=""_blank"">Learn more</a>","<span>Go to Marketing > Cart Price Rules to generate a rule.</span><br>
+                            <span>The rule should be set as a Specific Coupon and Auto-generated.</span><br>
+                            <a href=""https://www.mageplaza.com/kb/how-create-coupon-codes-in-magento-2.html"" target=""_blank"">Learn more</a>"
+"Coupon Pattern","Coupon Pattern"
+"<span>A coupon code pattern follows this rule:</span></br>
+                            <strong>[4A]</strong> - 4 alpha characters </br>
+                            <strong>[4N]</strong> - 4 numeric characters </br>
+                            <strong>[4AN]</strong> - 4 alphanumeric characters </br>
+                            Eg: GIFT-[4AN]-[3A]-[5N] </br>=> <strong>GIFT-J34T-OEC-54354</strong> </br>","<span>A coupon code pattern follows this rule:</span></br>
+                            <strong>[4A]</strong> - 4 alpha characters </br>
+                            <strong>[4N]</strong> - 4 numeric characters </br>
+                            <strong>[4AN]</strong> - 4 alphanumeric characters </br>
+                            Eg: GIFT-[4AN]-[3A]-[5N] </br>=> <strong>GIFT-J34T-OEC-54354</strong> </br>"
 "Show congratulation fireworks","Show congratulation fireworks"
 "Where to Show","Where to Show"
 "Page(s) to show","Page(s) to show"

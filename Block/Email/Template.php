@@ -36,7 +36,7 @@ class Template extends Subscriber
      */
     public function getListEmailSubscriberWeek()
     {
-        $listEmail = [];
+        $listEmail             = [];
         $subscribersCollection = $this->getSubscriberInWeek($this->_helperData->getStoreId());
         foreach ($subscribersCollection as $item) {
             $listEmail[] = $item->getData('subscriber_email');

@@ -61,7 +61,7 @@ class Popup extends AbstractProduct implements BlockInterface
         CollectionFactory $subscriberCollectionFactory,
         array $data = []
     ) {
-        $this->_helperData = $helperData;
+        $this->_helperData                  = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
 
         parent::__construct($context, $data);
@@ -224,7 +224,7 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         $htmlConfig = $this->_helperData->getWhatToShowConfig('html_content');
 
-        $search = [
+        $search  = [
             '{{form_url}}',
             '{{url_loader}}',
             '{{email_icon_url}}',
@@ -262,8 +262,8 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkIncludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
-        $includePages = array_map('trim', $arrayPages);
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
+        $includePages   = array_map('trim', $arrayPages);
 
         return in_array($fullActionName, $includePages, true);
     }
@@ -280,7 +280,7 @@ class Popup extends AbstractProduct implements BlockInterface
 
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl = array_map('trim', $arrayPaths);
+            $pathsUrl   = array_map('trim', $arrayPaths);
             foreach ($pathsUrl as $path) {
                 if ($path && strpos($currentPath, $path) !== false) {
                     return true;
@@ -299,8 +299,8 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkExcludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
-        $includePages = array_map('trim', $arrayPages);
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
+        $includePages   = array_map('trim', $arrayPages);
 
         return !in_array($fullActionName, $includePages, true);
     }
@@ -317,7 +317,7 @@ class Popup extends AbstractProduct implements BlockInterface
 
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl = array_map('trim', $arrayPaths);
+            $pathsUrl   = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
                 if (strpos($currentPath, $path) !== false) {
@@ -357,8 +357,8 @@ class Popup extends AbstractProduct implements BlockInterface
     public function isManuallyInsert()
     {
         return $this->_helperData->isEnabled()
-               && (int) $this->_helperData->getWhereToShowConfig('which_page_to_show') === PageToShow::MANUALLY_INSERT
-               && $this->checkExclude();
+            && (int) $this->_helperData->getWhereToShowConfig('which_page_to_show') === PageToShow::MANUALLY_INSERT
+            && $this->checkExclude();
     }
 
     /**

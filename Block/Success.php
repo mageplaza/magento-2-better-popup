@@ -41,6 +41,7 @@ class Success extends Popup
 
     /**
      * Success constructor.
+     *
      * @param Context $context
      * @param HelperData $helperData
      * @param CollectionFactory $subscriberCollectionFactory
@@ -74,7 +75,7 @@ class Success extends Popup
             return $couponCode;
         }
         $data = [
-            'rule_id' => $this->_helperData->getWhatToShowConfig('popup_success/rule_id'),
+            'rule_id'        => $this->_helperData->getWhatToShowConfig('popup_success/rule_id'),
             'coupon_pattern' => $this->_helperData->getWhatToShowConfig('popup_success/coupon_pattern'),
         ];
 
