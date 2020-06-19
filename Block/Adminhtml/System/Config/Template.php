@@ -69,7 +69,7 @@ class Template extends Field
     protected function _getElementHtml(AbstractElement $element)
     {
         $originalData = $element->getOriginalData();
-        $buttonLabel = !empty($originalData['button_label']) ? $originalData['button_label'] : '';
+        $buttonLabel  = !empty($originalData['button_label']) ? $originalData['button_label'] : '';
         $this->addData(
             [
                 'button_label' => __($buttonLabel),

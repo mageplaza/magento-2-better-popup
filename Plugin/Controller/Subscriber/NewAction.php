@@ -72,7 +72,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
         Data $helperData
     ) {
         $this->resultJsonFactory = $resultJsonFactory;
-        $this->_helperData = $helperData;
+        $this->_helperData       = $helperData;
 
         parent::__construct(
             $context,

@@ -37,7 +37,6 @@ define([
             this._clickClose();
             this._clickSuccess();
             if (this._checkUpdateTemplate()) {
-                $('#mp-powered').hide();
                 if ($('#mp-popup-template5').length) {
                     $('#bio_ep_close').css({'top': '-100px'});
                     $('#bio_ep_close img').attr('src', this.options.dataPopup.srcCloseIconWhite);
@@ -163,7 +162,7 @@ define([
                                     bioContent.empty;
                                     bioContent.html(result.success);
                                     bioContent.trigger('contentUpdated');
-                                    if (self.options.dataPopup.isShowFireworks) {
+                                    if (self.options.dataPopup.isShowFireworks === '1') {
                                         $('canvas#screen').show();
                                         firework(this);
                                     }
@@ -251,11 +250,7 @@ define([
         },
 
         _checkUpdateTemplate: function () {
-            if ($('#mp-popup-template3').length || $('#mp-popup-template4').length || $('#mp-popup-template5').length || $('#mp-popup-template6').length) {
-                return true;
-            }
-
-            return false;
+            return !!($('#mp-popup-template3').length || $('#mp-popup-template4').length || $('#mp-popup-template5').length || $('#mp-popup-template6').length);
         },
 
         _setDefaultSize: function() {
