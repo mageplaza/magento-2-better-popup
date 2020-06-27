@@ -57,6 +57,14 @@ A: You can set the time to re-display a popup
 ### ✓ Install via composer (recommend)
 Run the following command in Magento 2 root folder:
 
+With Social Proof (Recommend):
+```
+composer require mageplaza/module-better-popup avada/module-proofo
+php bin/magento setup:upgrade
+php bin/magento setup:static-content:deploy
+```
+
+Without Social Proof:
 ```
 composer require mageplaza/module-better-popup
 php bin/magento setup:upgrade
