@@ -28,7 +28,7 @@
             <resource>Mageplaza_BetterPopup::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to enable this module</comment>
@@ -76,7 +76,7 @@
                 </field>
                 <group id="popup_success" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Popup Success</label>
-                    <field id="enable_coupon" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="enable_coupon" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Use Coupon</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
@@ -93,7 +93,7 @@
                             <field id="enable_coupon">1</field>
                         </depends>
                     </field>
-                    <field id="coupon_pattern" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="coupon_pattern" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Coupon Pattern</label>
                         <comment><![CDATA[
                             <span>A coupon code pattern follows this rule:</span></br>
@@ -107,11 +107,11 @@
                             <field id="enable_coupon">1</field>
                         </depends>
                     </field>
-                    <field id="html_success_content" sortOrder="90" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="html_success_content" sortOrder="90" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Content</label>
                         <comment>HTML content. Use {{coupon_code}} variable to add coupon code</comment>
                     </field>
-                    <field id="enabled_fireworks" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="enabled_fireworks" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Show congratulation fireworks</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
@@ -119,7 +119,7 @@
             </group>
             <group id="where_to_show" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Where to Show</label>
-                <field id="which_page_to_show" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="which_page_to_show" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Page(s) to show</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\PageToShow</source_model>
                 </field>
@@ -164,28 +164,28 @@
             </group>
             <group id="when_to_show" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>When to Show</label>
-                <field id="popup_appear" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_appear" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>When the popup appears</label>
                     <source_model>Mageplaza\BetterPopup\Model\Config\Source\Appear</source_model>
                 </field>
-                <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>After scroll down</label>
                     <comment>Percentage</comment>
                     <depends>
                         <field id="popup_appear">4</field>
                     </depends>
                 </field>
-                <field id="delay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="delay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>After X seconds</label>
                     <depends>
                         <field id="popup_appear">3</field>
                     </depends>
                 </field>
-                <field id="cookieExp" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="cookieExp" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Popup will be shown again after</label>
                     <comment>days. Leave empty to redisplay the popup after 30 days</comment>
                 </field>
-                <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show floating button</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Click trigger to open</comment>
@@ -197,7 +197,7 @@
                         <field id="show_float_button">1</field>
                     </depends>
                 </field>
-                <field id="float_button_label" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="float_button_label" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Button label</label>
                     <comment>Default: Subscribe</comment>
                     <depends>
