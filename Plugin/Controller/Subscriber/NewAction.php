@@ -29,7 +29,9 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Validator\EmailAddress as EmailValidator;
 use Magento\Newsletter\Model\SubscriberFactory;
+use Magento\Newsletter\Model\SubscriptionManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Helper\Data;
 
@@ -58,6 +60,8 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
      * @param StoreManagerInterface $storeManager
      * @param CustomerUrl $customerUrl
      * @param CustomerAccountManagement $customerAccountManagement
+     * @param SubscriptionManagerInterface $subscriptionManager
+     * @param EmailValidator|null $emailValidator
      * @param JsonFactory $resultJsonFactory
      * @param Data $helperData
      */
@@ -68,20 +72,16 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
         StoreManagerInterface $storeManager,
         CustomerUrl $customerUrl,
         CustomerAccountManagement $customerAccountManagement,
+        SubscriptionManagerInterface $subscriptionManager,
+        EmailValidator $emailValidator = null,
         JsonFactory $resultJsonFactory,
         Data $helperData
     ) {
         $this->resultJsonFactory = $resultJsonFactory;
         $this->_helperData       = $helperData;
 
-        parent::__construct(
-            $context,
-            $subscriberFactory,
-            $customerSession,
-            $storeManager,
-            $customerUrl,
-            $customerAccountManagement
-        );
+        parent::__construct($context, $subscriberFactory, $customerSession, $storeManager, $customerUrl,
+            $customerAccountManagement, $subscriptionManager, $emailValidator);
     }
 
     /**
