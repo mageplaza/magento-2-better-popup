@@ -183,6 +183,7 @@
                 </field>
                 <field id="cookieExp" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Popup will be shown again after</label>
+                    <validate>validate-no-empty validate-digits</validate>
                     <comment>days. Leave empty to redisplay the popup after 30 days</comment>
                 </field>
                 <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
