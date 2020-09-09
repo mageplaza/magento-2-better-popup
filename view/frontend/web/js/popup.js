@@ -209,7 +209,7 @@ define([
                     scrollPercent = (scrollTop) / (docHeight - winHeight),
                     optionScroll = self.options.dataPopup.percentage / 100;
 
-                if (scrollPercent > optionScroll) {
+                if ((scrollPercent >= optionScroll) || (scrollPercent > 0.9)) {
                     bioEp.init(self.options.dataPopup.popupConfig);
                     self._fullScreen();
                     $(window).off('scroll');
