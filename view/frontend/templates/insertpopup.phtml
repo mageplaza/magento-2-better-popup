@@ -47,6 +47,13 @@ if ($block->isManuallyInsert()) :
         #bio_ep_bg {
             display: none !important;
         }
+        .tmp5-img-content img, .tmp4-img-content img, .tmp3-img-content img{
+            max-width: fit-content;
+            height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
+        }
+        .tmp5-text-content, .tmp4-text-content, .tmp3-text-content{
+            height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
+        }
     </style>
 <?php endif; ?>
 
