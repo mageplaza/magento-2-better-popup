@@ -21,7 +21,12 @@
 
 /** @var \Mageplaza\BetterPopup\Block\Popup $block */
 if ($block->checkPagesToShow()) :
-    $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
+    $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px';
+
+    $widthTempate5 = $block->getWidthPopup()-$block->getWidthPopup()*0.1;
+    $heightTempate5 = $block->getHeightPopup()-$block->getHeightPopup()*0.1;
+
+    ?>
     <canvas id="screen"></canvas>
     <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block"
          data-mage-init='{"mpPopup": { "dataPopup": <?= /** @noEscape */ $block->getAjaxData() ?>}}'>
@@ -46,11 +51,42 @@ if ($block->checkPagesToShow()) :
         .mppopup-text {
             color: <?= /** @noEscape */ $block->getTextColor() ?>
         }
-        .tmp5-img-content img, .tmp4-img-content img, .tmp3-img-content img{
+
+        /*default template*/
+        .tmp3-img-content img{
             max-width: fit-content;
             height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
         }
-        .tmp5-text-content, .tmp4-text-content, .tmp3-text-content{
+
+        .tmp3-text-content{
+            height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
+        }
+        /*Template 1*/
+        .mp-popup-template4{
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /*Template 2*/
+        #mp-popup-template5 .tmp5-img-content{
+            width: -webkit-fill-available;
+            max-width: <?= /** @noEscape */ $widthTempate5 ?>px;
+            max-height: <?= /** @noEscape */ $heightTempate5 ?>px;
+        }
+        #mp-popup-template5 .tmp5-img-cap{
+            width: -webkit-fill-available;
+        }
+        .tmp5-form .tmp5-img-email{
+            width: -webkit-fill-available;
+        }
+        /*Template 3*/
+        #mp-popup-template6 .tmp6-left-title{
+            width: 40%;
+            height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
+        }
+        #mp-popup-template6 .tmp6-text-content{
+            width: 60%;
             height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
         }
     </style>
