@@ -170,6 +170,7 @@
                 </field>
                 <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>After scroll down</label>
+                    <validate>validate-digits</validate>
                     <comment>Percentage</comment>
                     <depends>
                         <field id="popup_appear">4</field>
@@ -177,6 +178,7 @@
                 </field>
                 <field id="delay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>After X seconds</label>
+                    <validate>validate-digits</validate>
                     <depends>
                         <field id="popup_appear">3</field>
                     </depends>
