@@ -200,7 +200,7 @@ class Popup extends AbstractProduct implements BlockInterface
      */
     public function getCookieConfig()
     {
-        $cookieDays = (int) $this->_helperData->getWhenToShowConfig('cookieExp');
+        $cookieDays = $this->_helperData->getWhenToShowConfig('cookieExp');
 
         return ($cookieDays !== null) ? $cookieDays : 30;
     }
