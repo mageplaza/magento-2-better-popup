@@ -64,10 +64,11 @@ define([
          */
         _autoFill: function () {
             var dataInfo = this.options.jsonDataInfo,
-                value = parseInt(this.element.val());
+                value = parseInt(this.element.val(), 10);
 
             if (value >= 0) {
                 var data = dataInfo[value];
+
                 if (data) {
                     $(this.ids.popupHtmlElm).val(data.popupHtml);
                     $(this.ids.successHtmlElm).val(data.successHtml);

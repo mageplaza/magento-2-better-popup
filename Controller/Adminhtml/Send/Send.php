@@ -122,7 +122,7 @@ class Send extends Action
             $result['content'] = __('Please enter email and save config');
         }
 
-        return $this->getResponse()->representJson($this->_helperData->jsonEncode($result));
+        return $this->getResponse()->representJson(HelperData::jsonEncode($result));
     }
 
     /**
