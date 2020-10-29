@@ -22,7 +22,7 @@ define([
     'jquery',
     'fireworks',
     'bioEp',
-    'jquery/ui'
+    'jquery-ui-modules/widget'
 ], function ($, firework) {
     'use strict';
 
