@@ -29,8 +29,8 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class PageToShow implements ArrayInterface
 {
-    const SPECIFIC_PAGES  = 1;
-    const ALL_PAGES       = 2;
+    const SPECIFIC_PAGES = 1;
+    const ALL_PAGES = 2;
     const MANUALLY_INSERT = 3;
 
     /**

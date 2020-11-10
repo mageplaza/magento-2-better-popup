@@ -104,13 +104,13 @@ class Generate
         LoggerInterface $logger
     ) {
         $this->_couponResource = $couponResource;
-        $this->_couponFactory  = $couponFactory;
-        $this->ruleRepository  = $ruleRepository;
-        $this->date            = $date;
-        $this->dateTime        = $dateTime;
-        $this->_mathRandom     = $mathRandom;
-        $this->messageManager  = $messageManager;
-        $this->logger          = $logger;
+        $this->_couponFactory = $couponFactory;
+        $this->ruleRepository = $ruleRepository;
+        $this->date = $date;
+        $this->dateTime = $dateTime;
+        $this->_mathRandom = $mathRandom;
+        $this->messageManager = $messageManager;
+        $this->logger = $logger;
     }
 
     /**
@@ -126,14 +126,14 @@ class Generate
         }
 
         try {
-            $rule    = $this->getRule($data['rule_id']);
+            $rule = $this->getRule($data['rule_id']);
             $pattern = !empty($data['coupon_pattern']) ? $data['coupon_pattern'] : '[12AN]';
             $pattern = strtoupper(str_replace(' ', '', $pattern));
-            $code    = $pattern;
+            $code = $pattern;
 
             /** @var $coupon \Magento\SalesRule\Model\Coupon */
-            $coupon        = $this->_couponFactory->create();
-            $nowTimestamp  = $this->dateTime->formatDate($this->date->gmtTimestamp());
+            $coupon = $this->_couponFactory->create();
+            $nowTimestamp = $this->dateTime->formatDate($this->date->gmtTimestamp());
             $patternString = '#\[(\d+)([AN]{1,2})\]#';
             if (preg_match($patternString, $pattern)) {
                 $code = preg_replace_callback($patternString, function ($param) {
