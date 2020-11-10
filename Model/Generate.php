@@ -162,6 +162,7 @@ class Generate
             return $code;
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage(__('Error occurred when generating coupons: %1', $e->getMessage()));
+            throw new LocalizedException(__('Error occurred when generating coupons'));
         }
     }
 

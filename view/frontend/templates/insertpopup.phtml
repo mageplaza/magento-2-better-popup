@@ -27,7 +27,7 @@ if ($block->isManuallyInsert()) :
         <div id="bio_ep" style="background-color: <?= /** @noEscape */ $block->getBackGroundColor() ?>; display:none">
             <div class="mageplaza-betterpopup-content">
                 <div id="bio_ep_close" aria-label="Close">
-                    <img src="<?= /** @noEscape */ $block->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close.png') ?>"/>
+                    <img src="<?= /** @noEscape */ $block->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close.png') ?>" alt="close"/>
                 </div>
                 <div id="bio_ep_content" class="better-popup-content" style="color: <?= /** @noEscape */ $block->getTextColor() ?>">
                     <?= /** @noEscape */ $block->getPopupContent() ?>
@@ -43,6 +43,16 @@ if ($block->isManuallyInsert()) :
     <style>
         .mppopup-text {
             color: <?= /** @noEscape */ $block->getTextColor() ?>
+        }
+        #bio_ep_bg {
+            display: none !important;
+        }
+        .tmp5-img-content img, .tmp4-img-content img, .tmp3-img-content img{
+            max-width: fit-content;
+            height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
+        }
+        .tmp5-text-content, .tmp4-text-content, .tmp3-text-content{
+            height: <?= /** @noEscape */ $block->getHeightPopup() ?>px;
         }
     </style>
 <?php endif; ?>

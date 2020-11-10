@@ -39,7 +39,7 @@ use Mageplaza\BetterPopup\Helper\Data;
  */
 class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 {
-    /**
+	/**
      * @var JsonFactory
      */
     protected $resultJsonFactory;
@@ -50,41 +50,6 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
     protected $_helperData;
 
     /**
-     * NewAction constructor.
-     *
-     * @param Context $context
-     * @param SubscriberFactory $subscriberFactory
-     * @param Session $customerSession
-     * @param StoreManagerInterface $storeManager
-     * @param CustomerUrl $customerUrl
-     * @param CustomerAccountManagement $customerAccountManagement
-     * @param JsonFactory $resultJsonFactory
-     * @param Data $helperData
-     */
-    public function __construct(
-        Context $context,
-        SubscriberFactory $subscriberFactory,
-        Session $customerSession,
-        StoreManagerInterface $storeManager,
-        CustomerUrl $customerUrl,
-        CustomerAccountManagement $customerAccountManagement,
-        JsonFactory $resultJsonFactory,
-        Data $helperData
-    ) {
-        $this->resultJsonFactory = $resultJsonFactory;
-        $this->_helperData       = $helperData;
-
-        parent::__construct(
-            $context,
-            $subscriberFactory,
-            $customerSession,
-            $storeManager,
-            $customerUrl,
-            $customerAccountManagement
-        );
-    }
-
-    /**
      * @param $subject
      * @param $proceed
      *
@@ -92,7 +57,10 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
      */
     public function aroundExecute($subject, $proceed)
     {
-        if (!$this->_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
+    	$resultJsonFactory = ObjectManager::getInstance()->get(JsonFactory::class);
+        $_helperData = ObjectManager::getInstance()->get(Data::class);
+
+        if (!$_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
             return $proceed();
         }
 
@@ -106,7 +74,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateEmailAvailable($email);
 
                 $this->_subscriberFactory->create()->subscribe($email);
-                if (!$this->_helperData->versionCompare('2.2.0')) {
+                if (!$_helperData->versionCompare('2.2.0')) {
                     $this->_subscriberFactory->create()
                         ->loadByEmail($email)
                         ->setChangeStatusAt(date('Y-m-d h:i:s'))->save();
@@ -124,6 +92,6 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
             }
         }
 
-        return $this->resultJsonFactory->create()->setData($response);
+        return $resultJsonFactory->create()->setData($response);
     }
 }
