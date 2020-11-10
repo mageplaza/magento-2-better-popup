@@ -22,15 +22,10 @@
 namespace Mageplaza\BetterPopup\Plugin\Controller\Subscriber;
 
 use Exception;
-use Magento\Customer\Api\AccountManagementInterface as CustomerAccountManagement;
-use Magento\Customer\Model\Session;
-use Magento\Customer\Model\Url as CustomerUrl;
-use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Newsletter\Model\SubscriberFactory;
-use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Helper\Data;
 
 /**
@@ -39,7 +34,7 @@ use Mageplaza\BetterPopup\Helper\Data;
  */
 class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 {
-	/**
+    /**
      * @var JsonFactory
      */
     protected $resultJsonFactory;
@@ -57,7 +52,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
      */
     public function aroundExecute($subject, $proceed)
     {
-    	$resultJsonFactory = ObjectManager::getInstance()->get(JsonFactory::class);
+        $resultJsonFactory = ObjectManager::getInstance()->get(JsonFactory::class);
         $_helperData = ObjectManager::getInstance()->get(Data::class);
 
         if (!$_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
@@ -66,7 +61,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 
         $response = [];
         if ($this->getRequest()->isPost() && $this->getRequest()->getPost('email')) {
-            $email = (string) $this->getRequest()->getPost('email');
+            $email = (string)$this->getRequest()->getPost('email');
 
             try {
                 $this->validateEmailFormat($email);
@@ -82,12 +77,12 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
             } catch (LocalizedException $e) {
                 $response = [
                     'success' => true,
-                    'msg'     => __('There was a problem with the subscription: %1', $e->getMessage()),
+                    'msg' => __('There was a problem with the subscription: %1', $e->getMessage()),
                 ];
             } catch (Exception $e) {
                 $response = [
                     'status' => 'ERROR',
-                    'msg'    => __('Something went wrong with the subscription: %1', $e->getMessage()),
+                    'msg' => __('Something went wrong with the subscription: %1', $e->getMessage()),
                 ];
             }
         }

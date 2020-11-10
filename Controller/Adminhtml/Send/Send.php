@@ -86,11 +86,11 @@ class Send extends Action
     ) {
         parent::__construct($context);
 
-        $this->_helperData       = $helperData;
-        $this->_template         = $template;
+        $this->_helperData = $helperData;
+        $this->_template = $template;
         $this->_transportBuilder = $transportBuilder;
-        $this->_storeManager     = $storeManager;
-        $this->logger            = $logger;
+        $this->_storeManager = $storeManager;
+        $this->logger = $logger;
     }
 
     /**
@@ -99,26 +99,26 @@ class Send extends Action
     public function execute()
     {
         $result['status'] = false;
-        $toEmail          = $this->_helperData->getToEmail();
+        $toEmail = $this->_helperData->getToEmail();
 
         if ($toEmail) {
             try {
                 foreach ($this->_storeManager->getStores() as $store) {
                     $isSendMail = $this->_helperData->getSendEmailConfig('isSendEmail', $store->getId());
-                    $isEnable   = $this->_helperData->isEnabled($store->getId());
+                    $isEnable = $this->_helperData->isEnabled($store->getId());
                     if ($isEnable && $isSendMail) {
                         $this->sendMail($store);
                     }
                 }
 
-                $result['status']  = true;
+                $result['status'] = true;
                 $result['content'] = __('Sent successfully! Please check your email box.');
             } catch (Exception $e) {
                 $result['content'] = __('There is an error occurred while sending email. Please try again later.');
                 $this->logger->critical($e);
             }
         } else {
-            $result['status']  = false;
+            $result['status'] = false;
             $result['content'] = __('Please enter email and save config');
         }
 
@@ -141,21 +141,21 @@ class Send extends Action
             return null;
         }
 
-        $subscriber   = $this->_template->getSubscriberInWeek($store->getId())->getSize();
+        $subscriber = $this->_template->getSubscriberInWeek($store->getId())->getSize();
         $unSubscriber = $this->_template->getunSubscriberCollection($store->getId())->getSize();
-        $currentTime  = $this->_template->getCurrentTime();
-        $store_name   = $store->getName();
+        $currentTime = $this->_template->getCurrentTime();
+        $store_name = $store->getName();
 
-        $vars      = [
-            'mp_subscriber'   => $subscriber,
+        $vars = [
+            'mp_subscriber' => $subscriber,
             'mp_unSubscriber' => $unSubscriber,
-            'currentTime'     => $currentTime,
-            'store_name'      => $store_name
+            'currentTime' => $currentTime,
+            'store_name' => $store_name
         ];
         $transport = $this->_transportBuilder
             ->setTemplateIdentifier('mageplaza_betterpopup_template')
             ->setTemplateOptions([
-                'area'  => Area::AREA_FRONTEND,
+                'area' => Area::AREA_FRONTEND,
                 'store' => $store->getId()
             ])
             ->setFrom('general')

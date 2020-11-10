@@ -19,7 +19,7 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-if ($block->isManuallyInsert()) :
+if ($block->isManuallyInsert()):
     $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
     <canvas id="screen"></canvas>
     <div id="mageplaza-betterpopup-block" class="mageplaza-betterpopup-block"
@@ -34,7 +34,7 @@ if ($block->isManuallyInsert()) :
                 </div>
             </div>
         </div>
-        <?php if ($block->isShowFloatButton()) : ?>
+        <?php if ($block->isShowFloatButton()): ?>
             <div class="mp-better-popup-click-trigger" style="<?= /** @noEscape */ $floatLocation ?>; display: none">
                 <button class="click-trigger primary"><?= /** @noEscape */ $block->getFloatLabel() ?></button>
             </div>

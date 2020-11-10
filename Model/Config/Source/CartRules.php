@@ -34,11 +34,11 @@ class CartRules implements ArrayInterface
      */
     public function toOptionArray()
     {
-        $option         = [['value' => 0, 'label' => __('-- Please Select --')]];
+        $option = [['value' => 0, 'label' => __('-- Please Select --')]];
         $ruleCollection = $this->ruleFactory->create()->getCollection();
         foreach ($ruleCollection as $rule) {
             if ($rule->getIsActive()
-                && (int) $rule->getCouponType() === Rule::COUPON_TYPE_SPECIFIC
+                && (int)$rule->getCouponType() === Rule::COUPON_TYPE_SPECIFIC
                 && $rule->getUseAutoGeneration()
             ) {
                 $option[] = [

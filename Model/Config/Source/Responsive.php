@@ -29,7 +29,7 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class Responsive implements ArrayInterface
 {
-    const CENTER_POPUP     = 1;
+    const CENTER_POPUP = 1;
     const FULLSCREEN_POPUP = 2;
 
     /**

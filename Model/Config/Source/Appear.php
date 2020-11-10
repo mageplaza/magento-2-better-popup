@@ -29,9 +29,9 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class Appear implements ArrayInterface
 {
-    const EXIT_INTENT       = 1;
+    const EXIT_INTENT = 1;
     const AFTER_PAGE_LOADED = 2;
-    const AFTER_X_SECONDS   = 3;
+    const AFTER_X_SECONDS = 3;
     const AFTER_SCROLL_DOWN = 4;
 
     /**

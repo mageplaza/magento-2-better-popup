@@ -67,9 +67,9 @@ class Subscriber extends Template implements BlockInterface
     ) {
         parent::__construct($context, $data);
 
-        $this->_helperData                  = $helperData;
+        $this->_helperData = $helperData;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
-        $this->_getDayDate                  = $getDayDate;
+        $this->_getDayDate = $getDayDate;
     }
 
     /**
@@ -94,8 +94,8 @@ class Subscriber extends Template implements BlockInterface
      */
     public function getSubscriberToday()
     {
-        $form       = $this->_getDayDate->date(null, '0:0:0');
-        $to         = $this->_getDayDate->date(null, '23:59:59');
+        $form = $this->_getDayDate->date(null, '0:0:0');
+        $to = $this->_getDayDate->date(null, '23:59:59');
         $collection = $this->getSubscriberCollection($form, $to, $this->_helperData->getStoreId());
 
         return $collection;
@@ -110,8 +110,8 @@ class Subscriber extends Template implements BlockInterface
      */
     public function getSubscriberInWeek($storeId = null)
     {
-        $now  = date('Y-m-d h:i:s');
-        $to   = date('Y-m-d h:i:s', strtotime('+1 day'));
+        $now = date('Y-m-d h:i:s');
+        $to = date('Y-m-d h:i:s', strtotime('+1 day'));
         $from = strtotime('-7 day', strtotime($now));
         $from = date('Y-m-d h:i:s', $from);
 
@@ -125,10 +125,10 @@ class Subscriber extends Template implements BlockInterface
      */
     public function getSubscriberInMonth()
     {
-        $now        = date('Y-m-d h:i:s');
-        $to         = date('Y-m-d h:i:s', strtotime('+1 day'));
-        $from       = strtotime('-30 day', strtotime($now));
-        $from       = date('Y-m-d h:i:s', $from);
+        $now = date('Y-m-d h:i:s');
+        $to = date('Y-m-d h:i:s', strtotime('+1 day'));
+        $from = strtotime('-30 day', strtotime($now));
+        $from = date('Y-m-d h:i:s', $from);
         $collection = $this->getSubscriberCollection($from, $to, $this->_helperData->getStoreId());
 
         return $collection;
@@ -143,9 +143,9 @@ class Subscriber extends Template implements BlockInterface
      */
     public function getUnSubscriberCollection($storeId)
     {
-        $to                      = date('Y-m-d h:i:s');
-        $from                    = strtotime('-7 day', strtotime($to));
-        $from                    = date('Y-m-d h:i:s', $from);
+        $to = date('Y-m-d h:i:s');
+        $from = strtotime('-7 day', strtotime($to));
+        $from = date('Y-m-d h:i:s', $from);
         $unSubscribersCollection = $this->_subscriberCollectionFactory->create()
             ->addFieldToFilter('subscriber_status', \Magento\Newsletter\Model\Subscriber::STATUS_UNSUBSCRIBED)
             ->addFieldToFilter('change_status_at', ['from' => $from, 'to' => $to])

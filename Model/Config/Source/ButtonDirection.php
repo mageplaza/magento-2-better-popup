@@ -29,7 +29,7 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class ButtonDirection implements ArrayInterface
 {
-    const FLOAT_LEFT  = 1;
+    const FLOAT_LEFT = 1;
     const FLOAT_RIGHT = 2;
 
     /**

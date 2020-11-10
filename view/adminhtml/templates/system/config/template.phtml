@@ -22,7 +22,7 @@
 
 <div class="actions actions-template">
     <select id="mageplaza_betterpopup_templates">
-        <?php foreach ($block->getMpTemplate() as $value => $template) : ?>
+        <?php foreach ($block->getMpTemplate() as $value => $template): ?>
             <option value="<?= /** @noEscape */ $value ?>">
                 <?= /** @noEscape */ $template['label'] ?>
             </option>

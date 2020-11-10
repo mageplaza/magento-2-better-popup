@@ -20,12 +20,12 @@
  */
 
 $listEmailSubscribers = array_reverse($block->getListEmailSubscriberWeek());
-if ($listEmailSubscribers) : ?>
+if ($listEmailSubscribers): ?>
     <div class="list-email-subscriber">
         <ul class="list-email">
             <?php $i = 0; ?>
-            <?php foreach ($listEmailSubscribers as $item) : ?>
-                <?php if ($i < 8) : ?>
+            <?php foreach ($listEmailSubscribers as $item): ?>
+                <?php if ($i < 8): ?>
                     <li class="items">
                         <a href="<?= /** @noEscape */ $item ?>" style="color:#006bb4;text-decoration:none"><?= /** @noEscape */ $item ?></a></li>
                     <?php $i++; ?>
@@ -33,7 +33,7 @@ if ($listEmailSubscribers) : ?>
             <?php endforeach; ?>
         </ul>
     </div>
-<?php else : ?>
+<?php else: ?>
     <span><?= /** @noEscape */ __('No one registers for a week') ?></span>
 <?php endif; ?>
 
