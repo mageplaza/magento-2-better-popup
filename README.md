@@ -349,7 +349,8 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
   - [Better Popup Configuration](#better-popup-configuration)
 
 
-
+- [Email Marketing for Shopify](https://apps.shopify.com/avada-email-marketing)
+- [Marketing Automation](http://avada.io/)
 
 
 
