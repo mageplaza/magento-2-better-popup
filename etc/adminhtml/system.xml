@@ -31,7 +31,9 @@
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Select Yes to enable this module</comment>
+                    <comment><![CDATA[Select Yes to enable this module.<br />
+                        1. Free Newsletters Exit intent and Spin to win. Free forever. <a href="https://avada.io/email-marketing/forms/?utm_source=configuration&utm_campaign=m2-betterpopup" target="_blank">Explore now</a>. <br />
+                        2. <a href="https://pages.mageplaza.com/abandoned-cart-email-templates-for-magento/?utm_source=configuration&utm_campaign=m2-smtp" target="_blank">How to setup abandoned cart email series</a>]]></comment>
                 </field>
             </group>
             <group id="what_to_show" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
