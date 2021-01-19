@@ -22,11 +22,18 @@
 namespace Mageplaza\BetterPopup\Plugin\Controller\Subscriber;
 
 use Exception;
+use Magento\Customer\Api\AccountManagementInterface as CustomerAccountManagement;
+use Magento\Customer\Model\Session;
+use Magento\Customer\Model\Url as CustomerUrl;
+use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Validator\EmailAddress as EmailValidator;
 use Magento\Newsletter\Model\SubscriberFactory;
-use Mageplaza\BetterPopup\Helper\Data;
+use Magento\Newsletter\Model\SubscriptionManagerInterface;
+use Magento\Store\Model\StoreManagerInterface;
+use Mageplaza\BetterPopup\Helper\Data as MageplazaPopupHelper;
 
 /**
  * Class NewAction
@@ -34,6 +41,25 @@ use Mageplaza\BetterPopup\Helper\Data;
  */
 class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 {
+    public function __construct(
+        Context $context,
+        SubscriberFactory $subscriberFactory,
+        Session $customerSession,
+        StoreManagerInterface $storeManager,
+        CustomerUrl $customerUrl,
+        CustomerAccountManagement $customerAccountManagement,
+        SubscriptionManagerInterface $subscriptionManager,
+        EmailValidator $emailValidator = null,
+        JsonFactory $jsonFactory,
+        MageplazaPopupHelper $poupHelper
+    
+    )
+    {
+        parent::__construct($context, $subscriberFactory, $customerSession, $storeManager, $customerUrl, $customerAccountManagement, $subscriptionManager, $emailValidator);
+        $this->jsonFactory = $jsonFactory;
+        $this->popupHelper = $poupHelper;
+    }
+    
     /**
      * @var JsonFactory
      */
@@ -52,8 +78,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
      */
     public function aroundExecute($subject, $proceed)
     {
-        $resultJsonFactory = ObjectManager::getInstance()->get(JsonFactory::class);
-        $_helperData = ObjectManager::getInstance()->get(Data::class);
+        $_helperData = $this->popupHelper;
 
         if (!$_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
             return $proceed();
@@ -67,12 +92,23 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateEmailFormat($email);
                 $this->validateGuestSubscription();
                 $this->validateEmailAvailable($email);
-
-                $this->_subscriberFactory->create()->subscribe($email);
+    
+                $status = $this->_subscriberFactory->create()->subscribe($email);
                 if (!$_helperData->versionCompare('2.2.0')) {
                     $this->_subscriberFactory->create()
                         ->loadByEmail($email)
                         ->setChangeStatusAt(date('Y-m-d h:i:s'))->save();
+                }
+                if ($status == \Magento\Newsletter\Model\Subscriber::STATUS_NOT_ACTIVE) {
+                    $response = [
+                        'status' => 'OK',
+                        'msg' => 'The confirmation request has been sent.',
+                    ];
+                } else {
+                    $response = [
+                        'status' => 'OK',
+                        'msg' => 'Thank you for your subscription.',
+                    ];
                 }
             } catch (LocalizedException $e) {
                 $response = [
@@ -87,6 +123,6 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
             }
         }
 
-        return $resultJsonFactory->create()->setData($response);
+        return  $this->jsonFactory->create()->setData($response);
     }
 }
