@@ -38,8 +38,14 @@ if ($block->checkPagesToShow()):
                 <div id="bio_ep_content" class="better-popup-content"
                      style="color: <?= /** @noEscape */ $block->getTextColor() ?>">
                     <?= /** @noEscape */ $block->getPopupContent() ?>
+                    <div id="disable_newsletter">
+                        <input type="checkbox" id="disable_popup" value="true" name="disable_popup"/>
+                        <span>Do not show this again</span>
+                    </div>
                 </div>
+               
             </div>
+            
         </div>
         <?php if ($block->isShowFloatButton()): ?>
             <div class="mp-better-popup-click-trigger" style="<?= /** @noEscape */ $floatLocation ?>; display: none">
