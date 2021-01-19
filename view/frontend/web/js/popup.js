@@ -22,9 +22,19 @@ define([
     'jquery',
     'fireworks',
     'bioEp',
-    'jquery-ui-modules/widget'
+    'jquery-ui-modules/widget',
+    "mage/cookies"
 ], function ($, firework) {
     'use strict';
+
+    $('#disable_popup').change(function(){
+        var thisCheck = $(this);
+        if( thisCheck.is(':checked') ){
+            $.mage.cookies.set("newsletter_disable","true");
+        }else{
+            $.mage.cookies.clear("newsletter_disable");
+        }
+    })
 
     $.widget('mageplaza.betterpopup_block', {
         options: {
@@ -45,45 +55,65 @@ define([
 
         },
 
-        _showPopup: function () {
-            var self = this,
-                popupElem = $('.mageplaza-betterpopup-block').length,
-                triggerElem = $('.mp-better-popup-click-trigger');
-            this._createStyleTag();
-            this._removeDuplicatePopup();
 
-            //Check show trigger
-            if (this.options.dataPopup.afterSeconds.isAfterSeconds) {
-                setTimeout(function () {
+        _disablePopup: function() {
+            /**
+             * functionality to disable newsletter pop-up  so that it does not appear
+             * on every single page if customer doesn't want to subscribe
+             */
+            $.mage.cookies.set("newsletter_disable","true");
+
+        },
+
+
+        _showPopup: function () {
+
+            /**
+             * check if cookie is not set and show the pop-up
+             */
+                var self = this,
+                    popupElem = $('.mageplaza-betterpopup-block').length,
+                    triggerElem = $('.mp-better-popup-click-trigger');
+                this._createStyleTag();
+                this._removeDuplicatePopup();
+
+
+                //Check show trigger
+                if (this.options.dataPopup.afterSeconds.isAfterSeconds) {
+                    setTimeout(function () {
+                        triggerElem.show();
+                        self._setDefaultSize();
+                    }, this.options.dataPopup.afterSeconds.delay * 1000);
+                } else {
                     triggerElem.show();
                     self._setDefaultSize();
-                }, this.options.dataPopup.afterSeconds.delay * 1000);
-            } else {
-                triggerElem.show();
-                self._setDefaultSize();
-            }
+                }
+            if($.mage.cookies.get("newsletter_disable") != "true") {
 
-            if (popupElem <= 1) {
-                if (this.options.dataPopup.isScroll) {  // show when scroll
-                    self._scrollToShow();
-                    self._setDefaultSize();
-                } else if (this.options.dataPopup.isExitIntent) { //show when Exit Intent
-                    $(document).mouseleave(function () {
+                if (popupElem <= 1) {
+                    if (this.options.dataPopup.isScroll) {  // show when scroll
+                        self._scrollToShow();
+                        self._setDefaultSize();
+                    } else if (this.options.dataPopup.isExitIntent) { //show when Exit Intent
+                        $(document).mouseleave(function () {
+                            bioEp.init(self.options.dataPopup.popupConfig);
+                            self._fullScreen();
+                            $(document).off('mouseleave');
+                            self._setDefaultSize();
+                        });
+                    } else {
                         bioEp.init(self.options.dataPopup.popupConfig);
-                        self._fullScreen();
-                        $(document).off('mouseleave');
-                        self._setDefaultSize();
-                    });
-                } else {
-                    bioEp.init(self.options.dataPopup.popupConfig);
 
-                    if (this.options.dataPopup.fullScreen.isFullScreen) {
-                        self._setDefaultSize();
+                        if (this.options.dataPopup.fullScreen.isFullScreen) {
+                            self._setDefaultSize();
+                        }
+                        self._fullScreen();
                     }
-                    self._fullScreen();
+
                 }
 
             }
+
         },
 
         /**
@@ -112,6 +142,8 @@ define([
                 });
             });
         },
+
+
 
         /**
          * Event click close popup button
@@ -159,6 +191,7 @@ define([
                                 dataType: 'json',
                                 cache: false,
                                 success: function (result) {
+                                    $.mage.cookies.set("newsletter_disable","true");
                                     bioContent.empty;
                                     bioContent.html(result.success);
                                     bioContent.trigger('contentUpdated');
@@ -173,6 +206,10 @@ define([
                                     if (template5) {
                                         $('#bio_ep_close').css({'top': '0px'});
                                     }
+
+                                    /**
+                                     * add cookie for success subscribe to be used not to show
+                                     */
                                 }
                             });
                         }
@@ -201,20 +238,22 @@ define([
          */
         _scrollToShow: function () {
             var self = this;
+            if($.mage.cookies.get("newsletter_disable")!=true){
+                $(window).scroll(function () {
+                    var scrollTop = $(window).scrollTop(),
+                        docHeight = $(document).height(),
+                        winHeight = $(window).height(),
+                        scrollPercent = (scrollTop) / (docHeight - winHeight),
+                        optionScroll = self.options.dataPopup.percentage / 100;
 
-            $(window).scroll(function () {
-                var scrollTop = $(window).scrollTop(),
-                    docHeight = $(document).height(),
-                    winHeight = $(window).height(),
-                    scrollPercent = (scrollTop) / (docHeight - winHeight),
-                    optionScroll = self.options.dataPopup.percentage / 100;
+                    if ((scrollPercent >= optionScroll) || (scrollPercent > 0.9)) {
+                        bioEp.init(self.options.dataPopup.popupConfig);
+                        self._fullScreen();
+                        $(window).off('scroll');
+                    }
+                });
+            }
 
-                if ((scrollPercent >= optionScroll) || (scrollPercent > 0.9)) {
-                    bioEp.init(self.options.dataPopup.popupConfig);
-                    self._fullScreen();
-                    $(window).off('scroll');
-                }
-            });
         },
 
         /**
