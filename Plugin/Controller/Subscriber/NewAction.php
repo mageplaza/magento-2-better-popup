@@ -22,6 +22,7 @@
 namespace Mageplaza\BetterPopup\Plugin\Controller\Subscriber;
 
 use Exception;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
