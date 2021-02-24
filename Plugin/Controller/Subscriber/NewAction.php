@@ -28,6 +28,8 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Newsletter\Model\SubscriberFactory;
 use Mageplaza\BetterPopup\Helper\Data;
 
+use \Magento\Framework\App\ObjectManager;
+
 /**
  * Class NewAction
  * @package Mageplaza\BetterPopup\Plugin\Controller\Subscriber
