@@ -22,11 +22,18 @@
 namespace Mageplaza\BetterPopup\Plugin\Controller\Subscriber;
 
 use Exception;
+use Magento\Customer\Api\AccountManagementInterface as CustomerAccountManagement;
+use Magento\Customer\Model\Session;
+use Magento\Customer\Model\Url as CustomerUrl;
+use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Validator\EmailAddress as EmailValidator;
 use Magento\Newsletter\Model\SubscriberFactory;
+use Magento\Newsletter\Model\SubscriptionManagerInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Helper\Data;
 
 /**
@@ -46,6 +53,47 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
     protected $_helperData;
 
     /**
+     * NewAction constructor.
+     *
+     * @param Context $context
+     * @param SubscriberFactory $subscriberFactory
+     * @param Session $customerSession
+     * @param StoreManagerInterface $storeManager
+     * @param CustomerUrl $customerUrl
+     * @param CustomerAccountManagement $customerAccountManagement
+     * @param SubscriptionManagerInterface $subscriptionManager
+     * @param JsonFactory $jsonFactory
+     * @param Data $helperData
+     * @param EmailValidator|null $emailValidator
+     */
+    public function __construct(
+        Context $context,
+        SubscriberFactory $subscriberFactory,
+        Session $customerSession,
+        StoreManagerInterface $storeManager,
+        CustomerUrl $customerUrl,
+        CustomerAccountManagement $customerAccountManagement,
+        SubscriptionManagerInterface $subscriptionManager,
+        JsonFactory $jsonFactory,
+        Data $helperData,
+        EmailValidator $emailValidator = null
+    ) {
+        $this->resultJsonFactory = $jsonFactory;
+        $this->_helperData = $helperData;
+
+        parent::__construct(
+            $context,
+            $subscriberFactory,
+            $customerSession,
+            $storeManager,
+            $customerUrl,
+            $customerAccountManagement,
+            $subscriptionManager,
+            $emailValidator
+        );
+    }
+
+    /**
      * @param $subject
      * @param $proceed
      *
@@ -53,10 +101,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
      */
     public function aroundExecute($subject, $proceed)
     {
-        $resultJsonFactory = ObjectManager::getInstance()->get(JsonFactory::class);
-        $_helperData = ObjectManager::getInstance()->get(Data::class);
-
-        if (!$_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
+        if (!$this->_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
             return $proceed();
         }
 
@@ -70,7 +115,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateEmailAvailable($email);
 
                 $this->_subscriberFactory->create()->subscribe($email);
-                if (!$_helperData->versionCompare('2.2.0')) {
+                if (!$this->_helperData->versionCompare('2.2.0')) {
                     $this->_subscriberFactory->create()
                         ->loadByEmail($email)
                         ->setChangeStatusAt(date('Y-m-d h:i:s'))->save();
@@ -88,6 +133,6 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
             }
         }
 
-        return $resultJsonFactory->create()->setData($response);
+        return $this->resultJsonFactory->create()->setData($response);
     }
 }
