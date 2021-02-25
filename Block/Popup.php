@@ -404,6 +404,7 @@ class Popup extends AbstractProduct implements BlockInterface
                 'bgColor' => $this->getBackGroundColor()
             ],
             'isExitIntent' => $this->isExitIntent(),
+            'isShowPopupSuccess' => $this->_helperData->getWhatToShowConfig('popup_success/enabled'),
             'isShowFireworks' => $this->isShowFireworks(),
             'popupConfig' => [
                 'width' => $this->getWidthPopup(),

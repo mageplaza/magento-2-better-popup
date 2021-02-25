@@ -140,10 +140,11 @@ define([
 
             form.submit(function (e) {
                 if (form.validation('isValid')) {
-                    var email = $("#mp-newsletter").val();
-                    var url = form.attr('action');
+                    var email = $("#mp-newsletter").val(),
+                        url = form.attr('action'),
+                        loader = $('.popup-loader');
 
-                    $('.popup-loader').show();
+                    loader.show();
                     if (template4) {
                         $('.popup-loader').css({'left': '200px'});
                     }
@@ -154,27 +155,34 @@ define([
                         type: 'POST',
                         data: {email: email},
                         success: function (data) {
-                            $.ajax({
-                                url: self.options.dataPopup.url,
-                                dataType: 'json',
-                                cache: false,
-                                success: function (result) {
-                                    bioContent.empty;
-                                    bioContent.html(result.success);
-                                    bioContent.trigger('contentUpdated');
-                                    if (self.options.dataPopup.isShowFireworks === '1') {
-                                        $('canvas#screen').show();
-                                        firework(this);
-                                    }
-                                    if (template4 || template5) {
-                                        $('#bio_ep_content').css('color', '#3d3d3e');
-                                        $('#mp-coupon-code').css('color', '#3d3d3e');
-                                    }
-                                    if (template5) {
-                                        $('#bio_ep_close').css({'top': '0px'});
-                                    }
+                            if (!data.success) {
+                                loader.hide();
+                                $('#mp-newsletter-error').text(data.msg).show();
+                            } else if (!self.options.isShowPopupSuccess) {
+                                    $('#mp-newsletter-success').text(data.msg).show();
+                                } else {
+                                    $.ajax({
+                                        url: self.options.dataPopup.url,
+                                        dataType: 'json',
+                                        cache: false,
+                                        success: function (result) {
+                                            bioContent.empty;
+                                            bioContent.html(result.success);
+                                            bioContent.trigger('contentUpdated');
+                                            if (self.options.dataPopup.isShowFireworks === '1') {
+                                                $('canvas#screen').show();
+                                                firework(this);
+                                            }
+                                            if (template4 || template5) {
+                                                $('#bio_ep_content').css('color', '#3d3d3e');
+                                                $('#mp-coupon-code').css('color', '#3d3d3e');
+                                            }
+                                            if (template5) {
+                                                $('#bio_ep_close').css({'top': '0px'});
+                                            }
+                                        }
+                                    });
                                 }
-                            });
                         }
                     });
                 }

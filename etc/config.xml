@@ -66,6 +66,7 @@
                 <background_color>#3d9bc7</background_color>
                 <text_color>#FFFFFF</text_color>
                 <popup_success>
+                    <enabled>1</enabled>
                     <enabled_fireworks>0</enabled_fireworks>
                     <html_success_content>
                         <![CDATA[
