@@ -158,7 +158,7 @@ define([
                             if (!data.success) {
                                 loader.hide();
                                 $('#mp-newsletter-error').text(data.msg).show();
-                            } else if (!self.options.isShowPopupSuccess) {
+                            } else if (self.options.dataPopup.isShowPopupSuccess !== '1') {
                                     $('#mp-newsletter-success').text(data.msg).show();
                                 } else {
                                     $.ajax({
