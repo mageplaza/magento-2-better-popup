@@ -155,8 +155,8 @@ define([
                         type: 'POST',
                         data: {email: email},
                         success: function (data) {
+                            loader.hide();
                             if (!data.success) {
-                                loader.hide();
                                 $('#mp-newsletter-error').text(data.msg).show();
                             } else if (self.options.dataPopup.isShowPopupSuccess !== '1') {
                                     $('#mp-newsletter-success').text(data.msg).show();
