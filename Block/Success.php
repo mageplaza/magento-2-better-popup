@@ -23,6 +23,7 @@ namespace Mageplaza\BetterPopup\Block;
 
 use Magento\Catalog\Block\Product\Context;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
 use Mageplaza\BetterPopup\Model\Generate;
@@ -41,9 +42,9 @@ class Success extends Popup
 
     /**
      * Success constructor.
-     *
      * @param Context $context
      * @param HelperData $helperData
+     * @param TimezoneInterface $localeDate
      * @param CollectionFactory $subscriberCollectionFactory
      * @param Generate $generate
      * @param array $data
@@ -51,11 +52,12 @@ class Success extends Popup
     public function __construct(
         Context $context,
         HelperData $helperData,
+        TimezoneInterface $localeDate,
         CollectionFactory $subscriberCollectionFactory,
         Generate $generate,
         array $data = []
     ) {
-        parent::__construct($context, $helperData, $subscriberCollectionFactory, $data);
+        parent::__construct($context, $helperData, $localeDate, $subscriberCollectionFactory, $data);
         $this->generate = $generate;
     }
 
