@@ -20,7 +20,7 @@
  */
 
 /** @var \Mageplaza\BetterPopup\Block\Popup $block */
-if ($block->checkPagesToShow()):
+if ($block->checkPagesToShow() && $block->checkBetterMaintenance()):
     $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px';
 
     $widthTempate5 = $block->getWidthPopup()-$block->getWidthPopup()*0.1;
