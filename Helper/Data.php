@@ -63,9 +63,8 @@ class Data extends AbstractHelper
         StoreManagerInterface $storeManager,
         Filesystem $filesystem,
         DirectoryList $directoryList
-    )
-    {
-        $this->_fileSystem = $filesystem;
+    ) {
+        $this->_fileSystem    = $filesystem;
         $this->_directoryList = $directoryList;
 
         parent::__construct($context, $objectManager, $storeManager);
@@ -74,6 +73,7 @@ class Data extends AbstractHelper
     /**
      * @param string $code
      * @param null $storeId
+     *
      * @return array|mixed
      */
     public function getBetterMaintenanceConfigGeneral($code = '', $storeId = null)
@@ -188,17 +188,17 @@ class Data extends AbstractHelper
         $rootPath = $this->_directoryList->getRoot();
 
         $currentDirArr = explode('\\', $currentDir);
-        $countDir = count($currentDirArr);
+        $countDir      = count($currentDirArr);
         if ($countDir === 1) {
             $currentDirArr = explode('/', $currentDir);
-            $countDir = count($currentDirArr);
+            $countDir      = count($currentDirArr);
         }
 
         $rootPathArr = explode('/', $rootPath);
-        $countPath = count($rootPathArr);
+        $countPath   = count($rootPathArr);
         if ($countPath === 1) {
             $rootPathArr = explode('\\', $rootPath);
-            $countPath = count($rootPathArr);
+            $countPath   = count($rootPathArr);
         }
 
         $basePath = '';
