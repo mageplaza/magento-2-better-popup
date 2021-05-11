@@ -22,10 +22,19 @@
 namespace Mageplaza\BetterPopup\Plugin\Controller\Subscriber;
 
 use Exception;
+use Magento\Customer\Api\AccountManagementInterface as CustomerAccountManagement;
+use Magento\Customer\Model\Session;
+use Magento\Customer\Model\Url as CustomerUrl;
+use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Phrase;
+use Magento\Framework\Validator\EmailAddress as EmailValidator;
+use Magento\Newsletter\Model\Subscriber;
 use Magento\Newsletter\Model\SubscriberFactory;
+use Magento\Newsletter\Model\SubscriptionManagerInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\BetterPopup\Helper\Data;
 
 /**
@@ -45,6 +54,53 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
     protected $_helperData;
 
     /**
+     * @var SubscriptionManagerInterface
+     */
+    protected $subscriberManagerInterface;
+
+    /**
+     * NewAction constructor.
+     *
+     * @param Context $context
+     * @param SubscriberFactory $subscriberFactory
+     * @param Session $customerSession
+     * @param StoreManagerInterface $storeManager
+     * @param CustomerUrl $customerUrl
+     * @param CustomerAccountManagement $customerAccountManagement
+     * @param SubscriptionManagerInterface $subscriptionManager
+     * @param JsonFactory $jsonFactory
+     * @param Data $helperData
+     * @param EmailValidator|null $emailValidator
+     */
+    public function __construct(
+        Context $context,
+        SubscriberFactory $subscriberFactory,
+        Session $customerSession,
+        StoreManagerInterface $storeManager,
+        CustomerUrl $customerUrl,
+        CustomerAccountManagement $customerAccountManagement,
+        SubscriptionManagerInterface $subscriptionManager,
+        JsonFactory $jsonFactory,
+        Data $helperData,
+        EmailValidator $emailValidator = null
+    ) {
+        $this->resultJsonFactory          = $jsonFactory;
+        $this->_helperData                = $helperData;
+        $this->subscriberManagerInterface = $subscriptionManager;
+
+        parent::__construct(
+            $context,
+            $subscriberFactory,
+            $customerSession,
+            $storeManager,
+            $customerUrl,
+            $customerAccountManagement,
+            $subscriptionManager,
+            $emailValidator
+        );
+    }
+
+    /**
      * @param $subject
      * @param $proceed
      *
@@ -52,10 +108,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
      */
     public function aroundExecute($subject, $proceed)
     {
-        $resultJsonFactory = ObjectManager::getInstance()->get(JsonFactory::class);
-        $_helperData = ObjectManager::getInstance()->get(Data::class);
-
-        if (!$_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
+        if (!$this->_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
             return $proceed();
         }
 
@@ -68,25 +121,77 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateGuestSubscription();
                 $this->validateEmailAvailable($email);
 
-                $this->_subscriberFactory->create()->subscribe($email);
-                if (!$_helperData->versionCompare('2.2.0')) {
-                    $this->_subscriberFactory->create()
-                        ->loadByEmail($email)
-                        ->setChangeStatusAt(date('Y-m-d h:i:s'))->save();
+                $websiteId  = (int)$this->_storeManager->getStore()->getWebsiteId();
+                $subscriber = $this->_subscriberFactory->create()->loadBySubscriberEmail($email, $websiteId);
+                if ($subscriber->getId()
+                    && (int)$subscriber->getSubscriberStatus() === Subscriber::STATUS_SUBSCRIBED) {
+                    $response = [
+                        'success' => false,
+                        'msg'     => __('This email address is already subscribed.')
+                    ];
+
+                    return $this->resultJsonFactory->create()->setData($response);
                 }
+                $storeId           = (int)$this->_storeManager->getStore()->getId();
+                $currentCustomerId = $this->getSessionCustomerId($email);
+                $subscriber        = $currentCustomerId
+                    ? $this->subscriberManagerInterface->subscribeCustomer($currentCustomerId, $storeId)
+                    : $this->subscriberManagerInterface->subscribe($email, $storeId);
+                $message           = $this->getSuccessMessage((int)$subscriber->getSubscriberStatus());
+                $response          = [
+                    'success' => true,
+                    'msg'     => $message,
+                ];
             } catch (LocalizedException $e) {
                 $response = [
-                    'success' => true,
-                    'msg' => __('There was a problem with the subscription: %1', $e->getMessage()),
+                    'success' => false,
+                    'msg'     => __('There was a problem with the subscription: %1', $e->getMessage()),
                 ];
             } catch (Exception $e) {
                 $response = [
-                    'status' => 'ERROR',
-                    'msg' => __('Something went wrong with the subscription: %1', $e->getMessage()),
+                    'status' => false,
+                    'msg'    => __('Something went wrong with the subscription: %1', $e->getMessage()),
                 ];
             }
         }
 
-        return $resultJsonFactory->create()->setData($response);
+        return $this->resultJsonFactory->create()->setData($response);
+    }
+
+    /**
+     * Get customer id from session if he is owner of the email
+     *
+     * @param string $email
+     *
+     * @return int|null
+     */
+    private function getSessionCustomerId(string $email): ?int
+    {
+        if (!$this->_customerSession->isLoggedIn()) {
+            return null;
+        }
+
+        $customer = $this->_customerSession->getCustomerDataObject();
+        if ($customer->getEmail() !== $email) {
+            return null;
+        }
+
+        return (int)$this->_customerSession->getId();
+    }
+
+    /**
+     * Get success message
+     *
+     * @param int $status
+     *
+     * @return Phrase
+     */
+    private function getSuccessMessage(int $status): Phrase
+    {
+        if ($status === Subscriber::STATUS_NOT_ACTIVE) {
+            return __('The confirmation request has been sent.');
+        }
+
+        return __('Thank you for your subscription.');
     }
 }

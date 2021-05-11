@@ -24,6 +24,7 @@ namespace Mageplaza\BetterPopup\Block;
 use Magento\Catalog\Block\Product\AbstractProduct;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Framework\Phrase;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 use Magento\Widget\Block\BlockInterface;
 use Mageplaza\BetterPopup\Helper\Data as HelperData;
@@ -43,6 +44,11 @@ class Popup extends AbstractProduct implements BlockInterface
     protected $_helperData;
 
     /**
+     * @var TimezoneInterface
+     */
+    protected $_localeDate;
+
+    /**
      * @var CollectionFactory
      */
     protected $_subscriberCollectionFactory;
@@ -52,49 +58,22 @@ class Popup extends AbstractProduct implements BlockInterface
      *
      * @param Context $context
      * @param HelperData $helperData
+     * @param TimezoneInterface $localeDate
      * @param CollectionFactory $subscriberCollectionFactory
      * @param array $data
      */
     public function __construct(
         Context $context,
         HelperData $helperData,
+        TimezoneInterface $localeDate,
         CollectionFactory $subscriberCollectionFactory,
         array $data = []
     ) {
-        $this->_helperData = $helperData;
+        $this->_helperData                  = $helperData;
+        $this->_localeDate                  = $localeDate;
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
 
         parent::__construct($context, $data);
-    }
-
-    /**
-     * Get Width Popup Config
-     *
-     * @return array|mixed
-     */
-    public function getWidthPopup()
-    {
-        return $this->_helperData->getWhatToShowConfig('width');
-    }
-
-    /**
-     * Get Height Popup Config
-     *
-     * @return array|mixed
-     */
-    public function getHeightPopup()
-    {
-        return $this->_helperData->getWhatToShowConfig('height');
-    }
-
-    /**
-     * Get Background Color Popup
-     *
-     * @return array|mixed
-     */
-    public function getBackGroundColor()
-    {
-        return $this->_helperData->getWhatToShowConfig('background_color');
     }
 
     /**
@@ -105,26 +84,6 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getTextColor()
     {
         return $this->_helperData->getWhatToShowConfig('text_color');
-    }
-
-    /**
-     * Check FullScreen option
-     *
-     * @return bool
-     */
-    public function isFullScreen()
-    {
-        return (int)$this->_helperData->getWhatToShowConfig('responsive') === Responsive::FULLSCREEN_POPUP;
-    }
-
-    /**
-     * Check show fireworks config
-     *
-     * @return bool
-     */
-    public function isShowFireworks()
-    {
-        return $this->_helperData->getWhatToShowConfig('popup_success/enabled_fireworks');
     }
 
     /**
@@ -160,62 +119,6 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
-     * Get Config Popup Appear
-     *
-     * @return array|mixed
-     */
-    public function getPopupAppear()
-    {
-        return (int)$this->_helperData->getWhenToShowConfig('popup_appear');
-    }
-
-    /**
-     * Get time delay to show popup
-     *
-     * @return array|int|mixed
-     */
-    public function getDelayConfig()
-    {
-        if ($this->getPopupAppear() === Appear::AFTER_X_SECONDS) {
-            return $this->_helperData->getWhenToShowConfig('delay');
-        }
-
-        return 0;
-    }
-
-    /**
-     * is Exit Intent Config
-     *
-     * @return string
-     */
-    public function isExitIntent()
-    {
-        return $this->getPopupAppear() === Appear::EXIT_INTENT;
-    }
-
-    /**
-     * Get Popup show again after (days)
-     *
-     * @return array|mixed
-     */
-    public function getCookieConfig()
-    {
-        $cookieDays = $this->_helperData->getWhenToShowConfig('cookieExp');
-
-        return ($cookieDays !== null) ? $cookieDays : 30;
-    }
-
-    /**
-     * Get Percentage scroll down to show Popup
-     *
-     * @return array|mixed
-     */
-    public function getPercentageScroll()
-    {
-        return $this->_helperData->getWhenToShowConfig('after_scroll');
-    }
-
-    /**
      * Get Html Content popup
      *
      * @return mixed
@@ -224,7 +127,7 @@ class Popup extends AbstractProduct implements BlockInterface
     {
         $htmlConfig = $this->_helperData->getWhatToShowConfig('html_content');
 
-        $search = [
+        $search  = [
             '{{form_url}}',
             '{{url_loader}}',
             '{{email_icon_url}}',
@@ -255,40 +158,50 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
-     * Check include pages are show Popup
+     * Get Url NewAction Newsletter
      *
-     * @return bool
+     * @return string
      */
-    public function checkIncludePages()
+    public function getFormActionUrl()
     {
-        $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
-        $includePages = array_map('trim', $arrayPages);
-
-        return in_array($fullActionName, $includePages, true);
+        return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
     }
 
     /**
-     * Check include paths to show popup
-     *
      * @return bool
      */
-    public function checkIncludePaths()
+    public function checkBetterMaintenance()
     {
-        $currentPath = $this->getRequest()->getRequestUri();
-        $pathsConfig = $this->_helperData->getWhereToShowConfig('include_pages_with_url');
-
-        if ($pathsConfig) {
-            $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl = array_map('trim', $arrayPaths);
-            foreach ($pathsUrl as $path) {
-                if ($path && strpos($currentPath, $path) !== false) {
-                    return true;
-                }
+        if ($this->_helperData->getBetterMaintenanceConfigGeneral('enabled') === '1') {
+            if (strtotime($this->_localeDate->date()->format('m/d/Y H:i:s'))
+                < strtotime($this->_helperData->getBetterMaintenanceConfigGeneral('end_time'))) {
+                return false;
             }
         }
 
-        return false;
+        return true;
+    }
+
+    /**
+     * check Manually Insert Config
+     *
+     * @return bool
+     */
+    public function isManuallyInsert()
+    {
+        return $this->_helperData->isEnabled()
+            && (int)$this->_helperData->getWhereToShowConfig('which_page_to_show') === PageToShow::MANUALLY_INSERT
+            && $this->checkExclude();
+    }
+
+    /**
+     * Check Exclude (page & path)
+     *
+     * @return bool
+     */
+    public function checkExclude()
+    {
+        return ($this->checkExcludePages() && $this->checkExcludePaths());
     }
 
     /**
@@ -299,8 +212,8 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkExcludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
-        $includePages = array_map('trim', $arrayPages);
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
+        $includePages   = array_map('trim', $arrayPages);
 
         return !in_array($fullActionName, $includePages, true);
     }
@@ -317,7 +230,7 @@ class Popup extends AbstractProduct implements BlockInterface
 
         if ($pathsConfig) {
             $arrayPaths = explode("\n", $pathsConfig);
-            $pathsUrl = array_map('trim', $arrayPaths);
+            $pathsUrl   = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
                 if (strpos($currentPath, $path) !== false) {
@@ -327,38 +240,6 @@ class Popup extends AbstractProduct implements BlockInterface
         }
 
         return true;
-    }
-
-    /**
-     * Check Include (page & path)
-     *
-     * @return bool
-     */
-    public function checkInclude()
-    {
-        return ($this->checkIncludePages() || $this->checkIncludePaths());
-    }
-
-    /**
-     * Check Exclude (page & path)
-     *
-     * @return bool
-     */
-    public function checkExclude()
-    {
-        return ($this->checkExcludePages() && $this->checkExcludePaths());
-    }
-
-    /**
-     * check Manually Insert Config
-     *
-     * @return bool
-     */
-    public function isManuallyInsert()
-    {
-        return $this->_helperData->isEnabled()
-            && (int)$this->_helperData->getWhereToShowConfig('which_page_to_show') === PageToShow::MANUALLY_INSERT
-            && $this->checkExclude();
     }
 
     /**
@@ -385,6 +266,53 @@ class Popup extends AbstractProduct implements BlockInterface
     }
 
     /**
+     * Check Include (page & path)
+     *
+     * @return bool
+     */
+    public function checkInclude()
+    {
+        return ($this->checkIncludePages() || $this->checkIncludePaths());
+    }
+
+    /**
+     * Check include pages are show Popup
+     *
+     * @return bool
+     */
+    public function checkIncludePages()
+    {
+        $fullActionName = $this->getRequest()->getFullActionName();
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
+        $includePages   = array_map('trim', $arrayPages);
+
+        return in_array($fullActionName, $includePages, true);
+    }
+
+    /**
+     * Check include paths to show popup
+     *
+     * @return bool
+     */
+    public function checkIncludePaths()
+    {
+        $currentPath = $this->getRequest()->getRequestUri();
+        $pathsConfig = $this->_helperData->getWhereToShowConfig('include_pages_with_url');
+
+        if ($pathsConfig) {
+            $arrayPaths = explode("\n", $pathsConfig);
+            $pathsUrl   = array_map('trim', $arrayPaths);
+            foreach ($pathsUrl as $path) {
+                if ($path && strpos($currentPath, $path) !== false) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Get Ajax Data
      *
      * @return string
@@ -392,39 +320,136 @@ class Popup extends AbstractProduct implements BlockInterface
     public function getAjaxData()
     {
         $params = [
-            'url' => $this->getUrl('betterpopup/ajax/success'),
-            'isScroll' => $this->getPopupAppear() === Appear::AFTER_SCROLL_DOWN,
-            'afterSeconds' => [
+            'url'                => $this->getUrl('betterpopup/ajax/success'),
+            'isScroll'           => $this->getPopupAppear() === Appear::AFTER_SCROLL_DOWN,
+            'afterSeconds'       => [
                 'isAfterSeconds' => $this->getPopupAppear() === Appear::AFTER_X_SECONDS,
-                'delay' => $this->getDelayConfig()
+                'delay'          => $this->getDelayConfig()
             ],
-            'percentage' => $this->getPercentageScroll(),
-            'fullScreen' => [
+            'percentage'         => $this->getPercentageScroll(),
+            'fullScreen'         => [
                 'isFullScreen' => $this->isFullScreen(),
-                'bgColor' => $this->getBackGroundColor()
+                'bgColor'      => $this->getBackGroundColor()
             ],
-            'isExitIntent' => $this->isExitIntent(),
-            'isShowFireworks' => $this->isShowFireworks(),
-            'popupConfig' => [
-                'width' => $this->getWidthPopup(),
-                'height' => $this->getHeightPopup(),
-                'cookieExp' => $this->getCookieConfig(),
-                'delay' => $this->getDelayConfig(),
+            'isExitIntent'       => $this->isExitIntent(),
+            'isShowPopupSuccess' => $this->_helperData->getWhatToShowConfig('popup_success/enabled'),
+            'isShowFireworks'    => $this->isShowFireworks(),
+            'popupConfig'        => [
+                'width'       => $this->getWidthPopup(),
+                'height'      => $this->getHeightPopup(),
+                'cookieExp'   => $this->getCookieConfig(),
+                'delay'       => $this->getDelayConfig(),
                 'showOnDelay' => true,
             ],
-            'srcCloseIconWhite' => $this->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close-white.png')
+            'srcCloseIconWhite'  => $this->getViewFileUrl('Mageplaza_BetterPopup::images/icon-close-white.png')
         ];
 
         return HelperData::jsonEncode($params);
     }
 
     /**
-     * Get Url NewAction Newsletter
+     * Get Config Popup Appear
+     *
+     * @return array|mixed
+     */
+    public function getPopupAppear()
+    {
+        return (int)$this->_helperData->getWhenToShowConfig('popup_appear');
+    }
+
+    /**
+     * Get time delay to show popup
+     *
+     * @return array|int|mixed
+     */
+    public function getDelayConfig()
+    {
+        if ($this->getPopupAppear() === Appear::AFTER_X_SECONDS) {
+            return $this->_helperData->getWhenToShowConfig('delay');
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get Percentage scroll down to show Popup
+     *
+     * @return array|mixed
+     */
+    public function getPercentageScroll()
+    {
+        return $this->_helperData->getWhenToShowConfig('after_scroll');
+    }
+
+    /**
+     * Check FullScreen option
+     *
+     * @return bool
+     */
+    public function isFullScreen()
+    {
+        return (int)$this->_helperData->getWhatToShowConfig('responsive') === Responsive::FULLSCREEN_POPUP;
+    }
+
+    /**
+     * Get Background Color Popup
+     *
+     * @return array|mixed
+     */
+    public function getBackGroundColor()
+    {
+        return $this->_helperData->getWhatToShowConfig('background_color');
+    }
+
+    /**
+     * is Exit Intent Config
      *
      * @return string
      */
-    public function getFormActionUrl()
+    public function isExitIntent()
     {
-        return $this->getUrl('newsletter/subscriber/new', ['_secure' => true]);
+        return $this->getPopupAppear() === Appear::EXIT_INTENT;
+    }
+
+    /**
+     * Check show fireworks config
+     *
+     * @return bool
+     */
+    public function isShowFireworks()
+    {
+        return $this->_helperData->getWhatToShowConfig('popup_success/enabled_fireworks');
+    }
+
+    /**
+     * Get Width Popup Config
+     *
+     * @return array|mixed
+     */
+    public function getWidthPopup()
+    {
+        return $this->_helperData->getWhatToShowConfig('width');
+    }
+
+    /**
+     * Get Height Popup Config
+     *
+     * @return array|mixed
+     */
+    public function getHeightPopup()
+    {
+        return $this->_helperData->getWhatToShowConfig('height');
+    }
+
+    /**
+     * Get Popup show again after (days)
+     *
+     * @return array|mixed
+     */
+    public function getCookieConfig()
+    {
+        $cookieDays = $this->_helperData->getWhenToShowConfig('cookieExp');
+
+        return ($cookieDays !== null) ? $cookieDays : 30;
     }
 }

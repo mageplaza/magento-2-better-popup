@@ -64,10 +64,23 @@ class Data extends AbstractHelper
         Filesystem $filesystem,
         DirectoryList $directoryList
     ) {
-        $this->_fileSystem = $filesystem;
+        $this->_fileSystem    = $filesystem;
         $this->_directoryList = $directoryList;
 
         parent::__construct($context, $objectManager, $storeManager);
+    }
+
+    /**
+     * @param string $code
+     * @param null $storeId
+     *
+     * @return array|mixed
+     */
+    public function getBetterMaintenanceConfigGeneral($code = '', $storeId = null)
+    {
+        $code = ($code !== '') ? '/' . $code : '';
+
+        return $this->getConfigValue('mpbettermaintenance/general' . $code, $storeId);
     }
 
     /**
@@ -104,6 +117,16 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function isSendEmail($storeId = null)
+    {
+        return $this->getSendEmailConfig('isSendEmail', $storeId);
+    }
+
+    /**
      * @param $code
      * @param null $storeId
      *
@@ -115,16 +138,6 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function isSendEmail($storeId = null)
-    {
-        return $this->getSendEmailConfig('isSendEmail', $storeId);
-    }
-
-    /**
      * Get Email is received email
      *
      * @return mixed
@@ -132,6 +145,30 @@ class Data extends AbstractHelper
     public function getToEmail()
     {
         return $this->getSendEmailConfig('to');
+    }
+
+    /**
+     * @param $templateId
+     *
+     * @return string
+     * @throws FileSystemException
+     */
+    public function getDefaultTemplateHtml($templateId)
+    {
+        return $this->readFile($this->getTemplatePath($templateId));
+    }
+
+    /**
+     * @param $relativePath
+     *
+     * @return string
+     * @throws FileSystemException
+     */
+    public function readFile($relativePath)
+    {
+        $rootDirectory = $this->_fileSystem->getDirectoryRead(DirectoryList::ROOT);
+
+        return $rootDirectory->readFile($relativePath);
     }
 
     /**
@@ -151,17 +188,17 @@ class Data extends AbstractHelper
         $rootPath = $this->_directoryList->getRoot();
 
         $currentDirArr = explode('\\', $currentDir);
-        $countDir = count($currentDirArr);
+        $countDir      = count($currentDirArr);
         if ($countDir === 1) {
             $currentDirArr = explode('/', $currentDir);
-            $countDir = count($currentDirArr);
+            $countDir      = count($currentDirArr);
         }
 
         $rootPathArr = explode('/', $rootPath);
-        $countPath = count($rootPathArr);
+        $countPath   = count($rootPathArr);
         if ($countPath === 1) {
             $rootPathArr = explode('\\', $rootPath);
-            $countPath = count($rootPathArr);
+            $countPath   = count($rootPathArr);
         }
 
         $basePath = '';
@@ -172,30 +209,6 @@ class Data extends AbstractHelper
         $templatePath = $basePath . 'view/frontend/templates/popup/template/';
 
         return $templatePath . $templateId . $type;
-    }
-
-    /**
-     * @param $relativePath
-     *
-     * @return string
-     * @throws FileSystemException
-     */
-    public function readFile($relativePath)
-    {
-        $rootDirectory = $this->_fileSystem->getDirectoryRead(DirectoryList::ROOT);
-
-        return $rootDirectory->readFile($relativePath);
-    }
-
-    /**
-     * @param $templateId
-     *
-     * @return string
-     * @throws FileSystemException
-     */
-    public function getDefaultTemplateHtml($templateId)
-    {
-        return $this->readFile($this->getTemplatePath($templateId));
     }
 
     /**
