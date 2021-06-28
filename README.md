@@ -90,7 +90,7 @@ Admins can create a new template, use or customize Mageplaza’s premade pop-up 
 
 ### Ready-to-use Popup Templates
 
-There are 3 pre-made pop-up templates with 2 main display styles which are ready to use. Admins are free to change these templates or use them after installing **Magento 2 Better Popup extension**.
+There are 3 pre-made pop-up templates with 2 main display styles which are ready to use. Admins are free to change these templates or use them after installing **[Magento 2 Popup extension](https://marketplace.magento.com/mageplaza-module-better-popup.html)**.
 
 ## 5. More Features
 
@@ -323,6 +323,16 @@ At the `Enable` box: select Yes to activate the module, select No to deactivate.
 - [Magento 2 Layered Navigation](https://github.com/mageplaza/magento-2-ajax-layered-navigation)
 - [Magento 2 shared cart](https://github.com/mageplaza/magento-2-share-cart)
 - [Magento 2 SMTP](https://github.com/mageplaza/magento-2-smtp)
+
+**[Our extensions on Marketplace](https://marketplace.magento.com/partner/Mageplaza):**
+- [Magento 2 Ajax Search](https://marketplace.magento.com/mageplaza-module-search.html)
+- [Magento 2 Image Optimizer](https://marketplace.magento.com/mageplaza-module-image-optimizer.html)
+- [Magento 2 Quick Order](https://marketplace.magento.com/mageplaza-module-quick-order.html)
+- [Magento 2 Product Feed](https://marketplace.magento.com/mageplaza-module-product-feed.html)
+- [Magento 2 Gift Wrap](https://marketplace.magento.com/mageplaza-module-gift-wrap.html)
+- [Magento 2 Product Options](https://marketplace.magento.com/mageplaza-module-better-product-options.html)
+- [Magento 2 Custom Order Number](https://marketplace.magento.com/mageplaza-module-custom-order-number.html)
+- [Magento 2 Product Attachments](https://marketplace.magento.com/mageplaza-module-product-attachments.html)
 
 
 **The Best Magento 2 Popup extension**
