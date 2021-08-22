@@ -31,7 +31,9 @@
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Select Yes to enable this module</comment>
+                    <comment><![CDATA[Select <b>Yes</b> to enable this module.<br />
+                        1. It helps to reduce abandonment cart with <a href="https://www.mageplaza.com/magento-2-one-step-checkout-extension/" target="_blank">One Step Checkout</a>. <br />
+                        2. Magento stores see upwards of 30% revenue 💰 with AVADA. <a href="https://go.avada.io/mageplaza">Learn more</a>]]></comment>
                 </field>
             </group>
             <group id="what_to_show" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -76,6 +78,11 @@
                 </field>
                 <group id="popup_success" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Popup Success</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>Select Yes to enable popup success</comment>
+                    </field>
                     <field id="enable_coupon" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Use Coupon</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -170,6 +177,7 @@
                 </field>
                 <field id="after_scroll" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>After scroll down</label>
+                    <validate>validate-digits</validate>
                     <comment>Percentage</comment>
                     <depends>
                         <field id="popup_appear">4</field>
@@ -177,12 +185,14 @@
                 </field>
                 <field id="delay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>After X seconds</label>
+                    <validate>validate-digits</validate>
                     <depends>
                         <field id="popup_appear">3</field>
                     </depends>
                 </field>
                 <field id="cookieExp" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Popup will be shown again after</label>
+                    <validate>validate-digits</validate>
                     <comment>days. Leave empty to redisplay the popup after 30 days</comment>
                 </field>
                 <field id="show_float_button" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
