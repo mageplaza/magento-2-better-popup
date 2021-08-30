@@ -2,7 +2,8 @@
   "name": "mageplaza/module-better-popup",
   "description": "Magento 2 Better Popup",
   "require": {
-    "mageplaza/module-core": "^1.4.5"
+    "mageplaza/module-core": "^1.4.5",
+    "mageplaza/module-smtp": "^4.5.3"
   },
   "type": "magento2-module",
   "version": "4.1.1",
