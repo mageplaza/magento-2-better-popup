@@ -233,7 +233,7 @@ class Popup extends AbstractProduct implements BlockInterface
             $pathsUrl   = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
-                if (strpos($currentPath, $path) !== false) {
+                if (!empty($path) && strpos($currentPath, $path) !== false) {
                     return false;
                 }
             }
