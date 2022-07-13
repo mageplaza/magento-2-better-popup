@@ -212,7 +212,7 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkExcludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages'));
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('exclude_pages') ?: '');
         $includePages   = array_map('trim', $arrayPages);
 
         return !in_array($fullActionName, $includePages, true);
@@ -233,7 +233,7 @@ class Popup extends AbstractProduct implements BlockInterface
             $pathsUrl   = array_map('trim', $arrayPaths);
 
             foreach ($pathsUrl as $path) {
-                if (strpos($currentPath, $path) !== false) {
+                if (!empty($path) && strpos($currentPath, $path) !== false) {
                     return false;
                 }
             }
