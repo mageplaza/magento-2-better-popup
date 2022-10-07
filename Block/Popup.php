@@ -283,7 +283,7 @@ class Popup extends AbstractProduct implements BlockInterface
     public function checkIncludePages()
     {
         $fullActionName = $this->getRequest()->getFullActionName();
-        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages'));
+        $arrayPages     = explode("\n", $this->_helperData->getWhereToShowConfig('include_pages') ?? '');
         $includePages   = array_map('trim', $arrayPages);
 
         return in_array($fullActionName, $includePages, true);
