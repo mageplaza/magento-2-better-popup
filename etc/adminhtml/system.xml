@@ -70,11 +70,11 @@
                 </field>
                 <field id="background_color" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Background color</label>
-                    <validate>jscolor {hash:true,refine:false}</validate>
+                    <frontend_model>Mageplaza\Core\Block\Adminhtml\System\Config\ColorPicker</frontend_model>
                 </field>
                 <field id="text_color" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Text color</label>
-                    <validate>jscolor {hash:true,refine:false}</validate>
+                    <frontend_model>Mageplaza\Core\Block\Adminhtml\System\Config\ColorPicker</frontend_model>
                 </field>
                 <group id="popup_success" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Popup Success</label>
