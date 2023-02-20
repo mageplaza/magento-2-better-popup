@@ -1,5 +1,7 @@
 # The Best Magento 2 Popup extension FREE
 
+> **(Update) 2023-02-20**: This project will be marked as a paid item and no longer be maintained as free. For further updates and technical support, please follow [Magento 2 Better Popup](http://www.mageplaza.com/magento-2-better-popup/) for more information. We understand that this change might create inconvenience for our users. However, this is to ensure that the module will be updated with more useful features to support Magento 2 stores better. If you have any concerns or ideas about any features you would like to see, don’t hesitate to [contact us](https://www.mageplaza.com/support/) and leave a request.
+
 **Mageplaza Magento 2 Better Popup extension (Exit Intent / Newsletter Popup)** cuts down the number of abandoning visitors of a store, and to help convert them to actual customers or subscribers. 
 
 **Exit-intent technology** plays the fundamental role in building better pop-ups, visitors who are about to leave your websites will be kept staying for a little longer by a subscription invitation or a discount offer.
